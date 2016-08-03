@@ -1,0 +1,23 @@
+{
+    "name": "orajo/sms-sender",
+    "description": "Module for sending SMS messages with different providers.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jarosław Wasilewski",
+            "email": "orajo@windowslive.com"
+        }
+    ],
+    "require": {
+        "smsapi.pl/php-client": "^1.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.*"
+    },
+    "autoload": {
+		"psr-4": {
+			"SmsSender\\": "src/SmsSender/"
+		}
+    }
+}

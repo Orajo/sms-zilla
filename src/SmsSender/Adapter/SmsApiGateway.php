@@ -15,8 +15,7 @@ use SmsSender\MessageModel;
 use SmsSender\SendingError;
 
 /**
- * Save message as file.
- * Create separate file for every recepient.
+ * Send message through SmsApi.pl provider.
  *
  * @author Jarek
  */
@@ -59,7 +58,10 @@ class SmsApiGateway extends AbstractGateway {
         $smsapi->setClient($client);
 
         $actionSend = $smsapi->actionSend();
-        $actionSend->setSender($sender); // Name of the sender must be defined in SMSApi admin panel first. If $sender is set to "ECO", then the ECO SMS will be send
+        
+        // Name of the sender must be defined in SMSApi admin panel first.
+        // If $sender is set to "ECO", then the ECO SMS will be send
+        $actionSend->setSender($sender); 
         $actionSend->setText($message->getText());
         foreach ($message->getRecipient() as $recipient) {
             try {
@@ -68,6 +70,7 @@ class SmsApiGateway extends AbstractGateway {
                 $response = $actionSend->execute();
 
                 foreach( $response->getList() as $status ) {
+                    // @see https://www.smsapi.pl/statusy-wiadomosci
                     if (in_array($status->getStatus(), [407, 406, 405, 401, 402])) {
                         $this->addError(new SendingError($status->getNumber(), $status->getStatus(), $status->getError()));
                         if (!$skipErrors) {

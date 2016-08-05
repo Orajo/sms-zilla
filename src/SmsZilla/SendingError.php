@@ -6,14 +6,14 @@
  * and open the template in the editor.
  */
 
-namespace SmsSender;
+namespace SmsZilla;
 
 /**
  * Description of SendingError
  *
  * @author Jarek
  */
-class SendingError implements \SmsSender\SendingErrorInterface {
+class SendingError implements \SmsZilla\SendingErrorInterface {
 
     private $code;
     private $message;

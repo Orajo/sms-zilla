@@ -1,6 +1,6 @@
 <?php
 
-namespace SmsSender;
+namespace SmsZilla;
 
 /**
  * Description of ConfigurationException

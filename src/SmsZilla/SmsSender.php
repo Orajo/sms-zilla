@@ -1,17 +1,12 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-namespace SmsSender;
+namespace SmsZilla;
 
-use SmsSender\Adapter\AdapterInterface;
-use SmsSender\MessageModel;
+use SmsZilla\Adapter\AdapterInterface;
+use SmsZilla\MessageModel;
 
 /**
- * Description of SmsSender
+ * Main worker class
  *
  * @author Jarek
  */
@@ -131,7 +126,7 @@ class SmsSender implements SmsSenderInterface {
 
     /**
      * Gets adapter object
-     * @return \SmsSender\GeatewayInterface
+     * @return \SmsZilla\GeatewayInterface
      */
     public function getAdapter() {
         return $this->adapter;

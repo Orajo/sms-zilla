@@ -1,6 +1,6 @@
 {
-    "name": "orajo/sms-sender",
-    "description": "Module for sending SMS messages with different providers.",
+    "name": "orajo/sms-zilla",
+    "description": "PHP library for sending SMS through various gateways",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -17,10 +17,10 @@
     },
     "autoload": {
         "psr-0": {
-            "SmsSender\\": "src/"
+            "SmsZilla\\": "src/"
         },
     	"psr-4": {
-			"SmsSender\\": "src/SmsSender/"
+			"SmsZilla\\": "src/SmsZilla/"
 		},
         "classmap": ["src/"]
     }

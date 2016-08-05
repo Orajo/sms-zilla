@@ -6,12 +6,12 @@
  * and open the template in the editor.
  */
 
-namespace SmsSender\Adapter;
+namespace SmsZilla\Adapter;
 
-use SmsSender\ConfigurationException;
-use SmsSender\MessageInterface;
-use SmsSender\MessageModel;
-use SmsSender\SendingErrorInterface;
+use SmsZilla\ConfigurationException;
+use SmsZilla\MessageInterface;
+use SmsZilla\MessageModel;
+use SmsZilla\SendingErrorInterface;
 
 /**
  * Description of MockGateway

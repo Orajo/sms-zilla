@@ -1,10 +1,10 @@
 <?php
 
 /**
- * This file is part of SmsSender package
+ * This file is part of SmsZilla package
  * @author Jarosław Wasilewski (orajo@windowslive.com)
  */
-namespace SmsSender;
+namespace SmsZilla;
 
 /**
  * SMS message container interface

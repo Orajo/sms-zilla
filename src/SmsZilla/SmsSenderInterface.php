@@ -1,6 +1,6 @@
 <?php
 
-namespace SmsSender;
+namespace SmsZilla;
 
 /**
  * Interface for SMS sender engine
@@ -44,13 +44,13 @@ interface SmsSenderInterface {
     
     /**
      * Sets current message object
-     * @param \SmsSender\MessageInterface $message
+     * @param \SmsZilla\MessageInterface $message
      */
     public function setMessage(MessageInterface $message);
 
     /**
      * Gets current message object
-     * @return \SmsSender\MessageInterface
+     * @return \SmsZilla\MessageInterface
      */
     public function getMessage();
     

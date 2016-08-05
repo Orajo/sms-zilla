@@ -6,9 +6,9 @@
  * and open the template in the editor.
  */
 
-namespace SmsSender\Adapter;
+namespace SmsZilla\Adapter;
 
-use SmsSender\MessageInterface;
+use SmsZilla\MessageInterface;
 
 /**
  * Description of MockGateway

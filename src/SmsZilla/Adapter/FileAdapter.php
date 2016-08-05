@@ -1,11 +1,11 @@
 <?php
-namespace SmsSender\Adapter;
+namespace SmsZilla\Adapter;
 
-use SmsSender\Adapter\AbstractAdapter;
-use SmsSender\ConfigurationException;
-use SmsSender\MessageInterface;
-use SmsSender\MessageModel;
-use SmsSender\SendingError;
+use SmsZilla\Adapter\AbstractAdapter;
+use SmsZilla\ConfigurationException;
+use SmsZilla\MessageInterface;
+use SmsZilla\MessageModel;
+use SmsZilla\SendingError;
 
 /**
  * Save message as file.

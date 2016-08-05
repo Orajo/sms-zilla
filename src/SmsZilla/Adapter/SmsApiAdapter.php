@@ -3,15 +3,15 @@
  * https://www.smsapi.pl/assets/files/api/SMSAPI_http.pdf
  */
 
-namespace SmsSender\Adapter;
+namespace SmsZilla\Adapter;
 
 use SMSApi\Api\SmsFactory;
 use SMSApi\Client;
 use SMSApi\Exception\SmsapiException;
-use SmsSender\ConfigurationException;
-use SmsSender\MessageInterface;
-use SmsSender\MessageModel;
-use SmsSender\SendingError;
+use SmsZilla\ConfigurationException;
+use SmsZilla\MessageInterface;
+use SmsZilla\MessageModel;
+use SmsZilla\SendingError;
 
 /**
  * Send message through SmsApi.pl provider.

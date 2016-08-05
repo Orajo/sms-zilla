@@ -16,7 +16,10 @@
         "phpunit/phpunit": "5.*"
     },
     "autoload": {
-		"psr-4": {
+        "psr-0": {
+            "SmsSender": "src/"
+        },
+    	"psr-4": {
 			"SmsSender\\": "src/SmsSender/"
 		}
     }

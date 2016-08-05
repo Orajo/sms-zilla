@@ -24,8 +24,11 @@ abstract class AbstractGateway implements GeatewayInterface {
     
     protected $errors;
     
-    public function __construct() {
+    public function __construct($params = null) {
         $this->clearErrors();
+        if (!is_array($params) && !empty($params)) {
+            $this->setParams($params);
+        }
     }
     
     /**

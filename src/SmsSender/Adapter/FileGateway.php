@@ -46,18 +46,18 @@ class FileGateway extends AbstractGateway {
 
         $format = $this->getParam('format');
         foreach ($message->getRecipient() as $recipient) {
-            $save_path = $storePath . DIRECTORY_SEPARATOR . $recipient . self::FILE_EXT;
+            $savePath = $storePath . DIRECTORY_SEPARATOR . $recipient . self::FILE_EXT;
             $content = sprintf($format, $recipient, $message->getText());
 
-            $return = file_put_contents($save_path, $content);
+            $return = file_put_contents($savePath, $content);
             if($return === false) {
-                $errorMsg = sprintf("Wystąpił błąd podczas dodawania pliku \"%s\" z wiadomością SMS.", $save_path);
+                $errorMsg = sprintf("Error while saving file \"%s\" with SMS message.", $savePath);
                 $this->addError(new SendingError($recipient, self::ERROR_NOT_SAVED, $errorMsg));
                 if (!$skipErrors){
                     throw new RuntimeException($errorMsg, self::ERROR_NOT_SAVED);
                 }
             }
         }
-        return true;
+        return $this->getErrors()->count() > 0;
     }
 }

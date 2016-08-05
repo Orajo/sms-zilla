@@ -18,6 +18,8 @@ class SmsApiGatewayTest extends \PHPUnit_Framework_TestCase
         '48121212121'
     ];
     
+    private $token = 'Vphbs3FT8ALr729JKsGhcmwJ1TGF63Kzivh0HVWS';
+    
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -53,7 +55,7 @@ class SmsApiGatewayTest extends \PHPUnit_Framework_TestCase
      */
     public function testSenderConfigError() {
         // store_path is not set
-        $this->object->setParams(['token' => 'Vphbs3FT8ALr729JKsGhcmwJ1TGF63Kzivh0HVWS']);
+        $this->object->setParams(['token' => $this->token]);
         $this->object->setParams(['sender' => '']);
         $this->object->send(new \SmsSender\MessageModel);
     }
@@ -66,7 +68,7 @@ class SmsApiGatewayTest extends \PHPUnit_Framework_TestCase
         $message = new \SmsSender\MessageModel();
         $message->setText($this->messageText);
         $message->addRecipient('48605171108');
-        $this->object->setParams(['token' => 'Vphbs3FT8ALr729JKsGhcmwJ1TGF63Kzivh0HVWS']);
+        $this->object->setParams(['token' => $this->token]);
         $result = $this->object->send($message);
         $this->assertTrue($result);
     }
@@ -76,8 +78,8 @@ class SmsApiGatewayTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetParams() {
         
-        $this->object->setParams(['token' => 'Vphbs3FT8ALr729JKsGhcmwJ1TGF63Kzivh0HVWS']);
-        $this->assertEquals($this->object->getParam('token'), 'Vphbs3FT8ALr729JKsGhcmwJ1TGF63Kzivh0HVWS');
+        $this->object->setParams(['token' => $this->token]);
+        $this->assertEquals($this->object->getParam('token'), $this->token);
         
         $this->expectException(\SmsSender\ConfigurationException::class);
         $this->object->setParams(['dummy' => 1]);

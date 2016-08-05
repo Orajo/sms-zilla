@@ -16,7 +16,7 @@ interface SendingErrorInterface {
     
     public function __construct($recipient, $code, $message = '');
             
-    public function getCode();
+    public function getRecipient();
     
     public function getCode();
     

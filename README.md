@@ -1,5 +1,5 @@
-# sms-sender
-PHP library form sending SMS
+# sms-zilla
+PHP library form sending SMS using varoius gateways.
 ======
 
 Installation

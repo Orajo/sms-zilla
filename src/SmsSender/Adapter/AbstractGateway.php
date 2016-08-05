@@ -24,9 +24,14 @@ abstract class AbstractGateway implements GeatewayInterface {
     
     protected $errors;
     
+    /**
+     * Constructor
+     * @param array $params Adapter parameters
+     */
     public function __construct($params = null) {
         $this->clearErrors();
-        if (!is_array($params) && !empty($params)) {
+        
+        if (is_array($params) && !empty($params)) {
             $this->setParams($params);
         }
     }
@@ -62,7 +67,11 @@ abstract class AbstractGateway implements GeatewayInterface {
      * @param array $params List of options as associative array name => value
      * @return mixed Value of the $name parameter
      */
-    public function setParams(array $params) {
+    public function setParams($params) {
+        if (!is_array($params)) {
+            throw new \InvalidArgumentException('Paramater $params must be an array.');
+        }
+        
         foreach ($params as $name => $value) {            
             if (isset($this->params[$name]) || array_key_exists($name, $this->params)) {
                 $this->params[$name] = $value;

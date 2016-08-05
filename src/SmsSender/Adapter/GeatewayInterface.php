@@ -18,10 +18,10 @@ interface GeatewayInterface{
     
     /**
      * Sets options of gateway
-     * @param array $options List of options as associative array name => value
+     * @param array $params List of options as associative array name => value
      * @return GeatewayInterface
      */
-    public function setParams(array $options);
+    public function setParams($params);
 
     /**
      * Returns value gateway param

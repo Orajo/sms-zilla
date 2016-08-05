@@ -24,7 +24,7 @@ class FileGatewayTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new FileGateway;
+        $this->object = new FileGateway();
     }
 
     /**
@@ -41,6 +41,15 @@ class FileGatewayTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * 
+     * @covers SmsSender\Adapter\FileGateway::__construct
+     */
+    public function testConstructor() {
+        $this->object = new FileGateway(['store_path' => __DIR__]);
+        $this->assertEquals(__DIR__, $this->object->getParam('store_path'));
+    }
+    
     /**
      * @covers SmsSender\Adapter\FileGateway::send
      * @expectedException \SmsSender\ConfigurationException
@@ -77,7 +86,7 @@ class FileGatewayTest extends \PHPUnit_Framework_TestCase
     public function testSetParams() {
         
         $this->object->setParams(['store_path' => __DIR__]);
-        $this->assertEquals($this->object->getParam('store_path'), __DIR__);
+        $this->assertEquals(__DIR__, $this->object->getParam('store_path'));
         
         $this->expectException(\SmsSender\ConfigurationException::class);
         $this->object->setParams(['dummy' => 1]);

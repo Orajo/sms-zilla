@@ -18,7 +18,7 @@ use SmsSender\SendingErrorInterface;
  *
  * @author Jarek
  */
-abstract class AbstractGateway implements GeatewayInterface {
+abstract class AbstractAdapter implements AdapterInterface {
     
     protected $params = [];
     
@@ -94,7 +94,7 @@ abstract class AbstractGateway implements GeatewayInterface {
     /**
      * Adds error to the list
      * @param SendingErrorInterface $error
-     * @return AbstractGateway
+     * @return AbstractAdapter
      */
     protected function addError(SendingErrorInterface $error) {
         $this->errors->append($error);
@@ -103,7 +103,7 @@ abstract class AbstractGateway implements GeatewayInterface {
     
     /**
      * Reset errors list
-     * @return AbstractGateway
+     * @return AbstractAdapter
      */
     protected function clearErrors() {
         $this->errors = new \ArrayObject();

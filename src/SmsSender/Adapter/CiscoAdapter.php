@@ -2,7 +2,7 @@
 
 namespace SmsSender\Adapter;
 
-use SmsSender\Adapter\AbstractGateway;
+use SmsSender\Adapter\AbstractAdapter;
 use SmsSender\ConfigurationException;
 use SmsSender\MessageInterface;
 use SmsSender\MessageModel;
@@ -15,7 +15,7 @@ use SmsSender\SendingError;
  *
  * @author Jarek
  */
-class CiscoGateway extends AbstractGateway {
+class CiscoAdapter extends AbstractAdapter {
 
     const ERROR_NOT_SAVED = 1;
     

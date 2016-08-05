@@ -1,7 +1,7 @@
 <?php
 namespace SmsSender\Adapter;
 
-use SmsSender\Adapter\AbstractGateway;
+use SmsSender\Adapter\AbstractAdapter;
 use SmsSender\ConfigurationException;
 use SmsSender\MessageInterface;
 use SmsSender\MessageModel;
@@ -13,7 +13,7 @@ use SmsSender\SendingError;
  *
  * @author Jarek
  */
-class FileGateway extends AbstractGateway {
+class FileAdapter extends AbstractAdapter {
     const FILE_EXT = '.call';
     
     const ERROR_NOT_SAVED = 1;
@@ -39,7 +39,7 @@ class FileGateway extends AbstractGateway {
         $pathChmod = $this->getParam('path_chmod');
         $dir = realpath($storePath);
         if (!is_dir($dir)) {
-            if (!mkdir($dir, $pathChmod, true)) {
+            if (!mkdir($storePath, $pathChmod, true)) {
                 return false;
             }
         }

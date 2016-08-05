@@ -15,7 +15,7 @@ use SmsSender\MessageInterface;
  *
  * @author Jarek
  */
-class MockGateway extends AbstractGateway {
+class MockAdapter extends AbstractAdapter {
     
     /**
      * @var array Sent messages

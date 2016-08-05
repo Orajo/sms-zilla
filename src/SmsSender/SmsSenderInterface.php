@@ -9,10 +9,10 @@ interface SmsSenderInterface {
     
     /**
      * Initialize Sender 
-     * @param Adapter\GeatewayInterface $adapter
+     * @param Adapter\AdapterInterface $adapter
      * @param array $params Adapter configuration
      */
-    public function __construct(Adapter\GeatewayInterface $adapter, array $params);
+    public function __construct(Adapter\AdapterInterface $adapter, array $params);
     
     /**
      * Add one recipient phone number
@@ -62,7 +62,7 @@ interface SmsSenderInterface {
     
     /**
      * Gets adapter object
-     * @return Adapter\GeatewayInterface
+     * @return Adapter\AdapterInterface
      */
     public function getAdapter();
 }

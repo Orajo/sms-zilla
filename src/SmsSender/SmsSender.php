@@ -7,7 +7,7 @@
 
 namespace SmsSender;
 
-use SmsSender\Adapter\GeatewayInterface;
+use SmsSender\Adapter\AdapterInterface;
 use SmsSender\MessageModel;
 
 /**
@@ -22,10 +22,10 @@ class SmsSender implements SmsSenderInterface {
 
     /**
      * Initialize Sender
-     * @param GeatewayInterface $adapter
+     * @param AdapterInterface $adapter
      * @param array $params Adapter configuration
      */
-    public function __construct(GeatewayInterface $adapter, array $params = null) {
+    public function __construct(AdapterInterface $adapter, array $params = null) {
         $this->message = new MessageModel();
 
         $this->adapter = $adapter;

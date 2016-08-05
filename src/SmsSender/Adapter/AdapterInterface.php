@@ -14,12 +14,12 @@ use SmsSender\MessageInterface;
  *
  * @author Jarek
  */
-interface GeatewayInterface{
+interface AdapterInterface{
     
     /**
      * Sets options of gateway
      * @param array $params List of options as associative array name => value
-     * @return GeatewayInterface
+     * @return AdapterInterface
      */
     public function setParams($params);
 

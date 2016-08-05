@@ -18,7 +18,7 @@ use SmsSender\SendingError;
  *
  * @author Jarek
  */
-class SmsApiGateway extends AbstractGateway {
+class SmsApiAdapter extends AbstractAdapter {
 
     protected $params = [
         'login' => null,

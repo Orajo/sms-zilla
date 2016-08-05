@@ -10,8 +10,8 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
      * @var SmsSender
      */
     protected $object;
-
-    private $messageText = "Message content with ĄŻŹĆŚĘŁÓŃążźćśęłóń";
+    
+    protected $config;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -19,7 +19,8 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new SmsSender(new \SmsSender\Adapter\MockGateway());
+        $this->config = include  __DIR__ . '/config.php';
+        $this->object = new SmsSender(new \SmsSender\Adapter\MockAdapter());
     }
 
     /**
@@ -37,7 +38,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
     public function testSetText()
     {
         $retVal = $this->object->setText('');
-        $this->assertEquals($this->messageText, $retVal->getText());
+        $this->assertEquals($this->config['message'], $retVal->getText());
     }
 
     /**
@@ -45,8 +46,8 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetText()
     {
-        $retVal = $this->object->setText($this->messageText);
-        $this->assertEquals($this->messageText, $retVal->getText());
+        $retVal = $this->object->setText($this->config['message']);
+        $this->assertEquals($this->config['message'], $retVal->getText());
     }
 
     /**
@@ -55,9 +56,9 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
     public function testSetMessage()
     {
         $message = new MessageModel();
-        $message->setText($this->messageText);
+        $message->setText($this->config['message']);
         $this->object->setMessage($message);
-        $this->assertAttributeEquals($this->messageText, 'text', $message);
+        $this->assertAttributeEquals($this->config['message'], 'text', $message);
     }
 
     /**
@@ -66,7 +67,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
     public function testGetMessage()
     {
         $message = new MessageModel();
-        $message->setText($this->messageText);
+        $message->setText($this->config['message']);
         $message->addRecipient('654789321');
         $testMsg = clone $message;
         $this->object->setMessage($message);
@@ -108,7 +109,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         $message = new MessageModel();
-        $message->setText($this->messageText);
+        $message->setText($this->config['message']);
         $this->object->setMessage($message);
         $result = $this->object->send();
         $this->assertTrue($result);
@@ -124,7 +125,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAdapter()
     {
-        $expected = new \SmsSender\Adapter\MockGateway();
+        $expected = new \SmsSender\Adapter\MockAdapter();
         $result = $this->object->getAdapter();
         $this->assertEquals($expected, $result);
     }

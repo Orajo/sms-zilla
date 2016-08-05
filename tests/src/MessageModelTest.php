@@ -11,16 +11,15 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
      */
     protected $object;
     
-    private $message = "Message content with ĄŻŹĆŚĘŁÓŃążźćśęłóń";
+    private $config = [];
 
-    private $phones = ['504324567', '48504324431', '504324561', '48000000000'];
-    
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp()
     {
+        $this->config = include  __DIR__ . '/config.php';
         $this->object = new MessageModel;
     }
 
@@ -37,8 +36,8 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetText()
     {
-        $retVal = $this->object->setText($this->message);
-        $this->assertEquals($this->message, $retVal->getText());
+        $retVal = $this->object->setText($this->config['message']);
+        $this->assertEquals($this->config['message'], $retVal->getText());
     }
     
     /**
@@ -53,8 +52,8 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetText()
     {
-        $retVal = $this->object->setText($this->message);
-        $this->assertEquals($this->message, $this->object->getText());
+        $retVal = $this->object->setText($this->config['message']);
+        $this->assertEquals($this->config['message'], $this->object->getText());
     }
 
     /**
@@ -74,11 +73,8 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
         
         $this->addRecipients();
         $retVal = $this->object->getRecipient();
-//        foreach ($this->object->getRecipient() as $item) {
-//            var_dump ($item);
-//        }
-        
-        foreach ($this->phones as $phone) {
+
+        foreach ($this->config['phones'] as $phone) {
             $this->assertEquals($phone, $retVal->current(), $phone);
             $retVal->next();
         }
@@ -95,7 +91,7 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
     
     private function addRecipients()
     {
-        foreach ($this->phones as $phone) {
+        foreach ($this->config['phones'] as $phone) {
             $this->object->addRecipient($phone);            
         }
     }

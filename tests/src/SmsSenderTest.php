@@ -129,4 +129,18 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $result = $this->object->getAdapter();
         $this->assertEquals($expected, $result);
     }
+    
+    /**
+     * @covers \SmsZilla\SmsSender::setCountryCode
+     */
+    public function testSetCountryCode() {
+        $this->object->setRecipient('695687123');
+        $result = $this->object->getRecipients();
+        $this->assertEquals('48695687123', $result[0]);
+        $this->object->setCountryCode(56);
+        $this->object->setRecipient('852741963');
+        $result = $this->object->getRecipients();
+        $this->assertEquals('56852741963', $result[1]);
+    }
+    
 }

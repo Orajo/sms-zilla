@@ -148,4 +148,18 @@ class SmsSender implements SmsSenderInterface {
     public function getAdapter() {
         return $this->adapter;
     }
+    
+    /**
+     * Sets default telephone country code.
+     * 
+     * Default is 48 (Poland).
+     * 
+     * @link https://countrycode.org/ List of country codes
+     * @param string $countryCode
+     * @return \SmsZilla\SmsSender
+     */
+    public function setCountryCode($countryCode) {
+        $this->countryCode = (string)$countryCode;
+        return $this;
+    }
 }

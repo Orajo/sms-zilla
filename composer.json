@@ -3,10 +3,13 @@
     "description": "PHP library for sending SMS through various gateways",
     "type": "library",
     "license": "MIT",
+    "keywords": ["sms", "lilbrary"],
+    "homepage": "https://github.com/Orajo/sms-zilla",
     "authors": [
         {
             "name": "Jarosław Wasilewski",
-            "email": "orajo@windowslive.com"
+            "email": "orajo@windowslive.com",
+            "role": "Developer"
         }
     ],
     "require": {

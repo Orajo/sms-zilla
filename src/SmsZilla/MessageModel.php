@@ -1,24 +1,30 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * SmsZilla
+ * PHP library for sending SMS through various gateways.
+ * @link https://github.com/Orajo/sms-zilla Homepage
+ * @copyright Copyright (c) 2016 Jarosław Wasilewski <orajo@windowslive.com>
+ * @license https://opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace SmsZilla;
 
 /**
- * Description of MessageModel
+ * Message model
  *
- * @author Jarek
+ * @author Jarosław Wasilewski <orajo@windowslive.com>
  */
 class MessageModel implements MessageInterface {
-    
+    /**
+     * List of phone numbers of recipients
+     * @var array
+     */
     protected $recipients = [];
-
-    protected $sender;
     
+    /**
+     * Message content
+     * @var string
+     */
     protected $text = '';
     
     

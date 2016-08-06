@@ -1,4 +1,11 @@
 <?php
+/**
+ * SmsZilla
+ * PHP library for sending SMS through various gateways.
+ * @link https://github.com/Orajo/sms-zilla Homepage
+ * @copyright Copyright (c) 2016 Jarosław Wasilewski <orajo@windowslive.com>
+ * @license https://opensource.org/licenses/mit-license.php MIT License
+ */
 
 namespace SmsZilla;
 
@@ -6,14 +13,22 @@ use SmsZilla\Adapter\AdapterInterface;
 use SmsZilla\MessageModel;
 
 /**
- * Main worker class
- *
- * @author Jarek
+ * Main worker class.
+ * 
+ * It sends SMS using given adapter class for handling choosen gateway.
+ * Message should be configured using this class, becouse it provide additionl
+ * validation and error handling. But if you want to, you can set your own 
+ * message class implementing {@see MessageInterface}.
+ * 
+ * @see MessageInterface, Adapter\AdapterInterface
+ * @author Jarosław Wasilewski
  */
 class SmsSender implements SmsSenderInterface {
 
     protected $message = null;
     protected $adapter = null;
+    
+    protected $countryCode = '48';
 
     /**
      * Initialize Sender
@@ -95,7 +110,7 @@ class SmsSender implements SmsSenderInterface {
             $number = trim($number);
             $number = preg_replace('/\s\-\+/', '', $number);
             if (preg_match('/^(\d{9}|\d{11})$/', $number)) {
-                $number = strlen($number) == 9 ? '48' . $number : $number;
+                $number = strlen($number) == 9 ? $this->countryCode . $number : $number;
                 $this->message->addRecipient($number);
             }
             elseif ($ignoreErrors) {
@@ -118,6 +133,8 @@ class SmsSender implements SmsSenderInterface {
 
     /**
      * Send message through given adapter (SMS gateway)
+     * 
+     * @uses Adapter\AdapterInterface Using specific adapter class
      * @return bool
      */
     public function send() {
@@ -131,5 +148,4 @@ class SmsSender implements SmsSenderInterface {
     public function getAdapter() {
         return $this->adapter;
     }
-
 }

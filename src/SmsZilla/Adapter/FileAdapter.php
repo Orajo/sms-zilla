@@ -1,4 +1,12 @@
 <?php
+/**
+ * SmsZilla
+ * PHP library for sending SMS through various gateways.
+ * @link https://github.com/Orajo/sms-zilla Homepage
+ * @copyright Copyright (c) 2016 Jarosław Wasilewski <orajo@windowslive.com>
+ * @license https://opensource.org/licenses/mit-license.php MIT License
+ */
+
 namespace SmsZilla\Adapter;
 
 use SmsZilla\Adapter\AbstractAdapter;
@@ -9,9 +17,11 @@ use SmsZilla\SendingError;
 
 /**
  * Save message as file.
- * Create separate file for every recepient.
+ * Creates separate file for every recepient. Folder with this files 
+ * can be monitored by SMS gateway server.
  *
- * @author Jarek
+ * @subpackage Adapter
+ * @author Jarosław Wasilewski <orajo@windowslive.com>
  */
 class FileAdapter extends AbstractAdapter {
     const FILE_EXT = '.call';

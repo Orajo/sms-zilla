@@ -1,13 +1,18 @@
 <?php
-
 /**
- * This file is part of SmsZilla package
- * @author Jarosław Wasilewski (orajo@windowslive.com)
+ * SmsZilla
+ * PHP library for sending SMS through various gateways.
+ * @link https://github.com/Orajo/sms-zilla Homepage
+ * @copyright Copyright (c) 2016 Jarosław Wasilewski <orajo@windowslive.com>
+ * @license https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace SmsZilla;
 
 /**
  * SMS message container interface
+ * 
+ * @author Jarosław Wasilewski (orajo@windowslive.com)
  */
 interface MessageInterface {
     

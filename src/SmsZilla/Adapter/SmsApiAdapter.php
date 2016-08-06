@@ -1,6 +1,10 @@
 <?php
-/*
- * https://www.smsapi.pl/assets/files/api/SMSAPI_http.pdf
+/**
+ * SmsZilla
+ * PHP library for sending SMS through various gateways.
+ * @link https://github.com/Orajo/sms-zilla Homepage
+ * @copyright Copyright (c) 2016 Jarosław Wasilewski <orajo@windowslive.com>
+ * @license https://opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace SmsZilla\Adapter;
@@ -15,8 +19,15 @@ use SmsZilla\SendingError;
 
 /**
  * Send message through SmsApi.pl provider.
- *
- * @author Jarek
+ * 
+ * Require PHP API from SmsApi.pl service {@see https://github.com/smsapi/smsapi-php-client}
+ * 
+ * @link https://www.smsapi.pl Service homepage
+ * @link https://www.smsapi.pl/assets/files/api/SMSAPI_http.pdf SmsApi.pl API documentation
+ * @link https://github.com/smsapi/smsapi-php-client PHP API form SmsApi.pl service
+ * 
+ * @subpackage Adapter
+ * @author Jarosław Wasilewski <orajo@windowslive.com>
  */
 class SmsApiAdapter extends AbstractAdapter {
 

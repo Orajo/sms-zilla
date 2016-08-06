@@ -1,4 +1,11 @@
 <?php
+/**
+ * SmsZilla
+ * PHP library for sending SMS through various gateways.
+ * @link https://github.com/Orajo/sms-zilla Homepage
+ * @copyright Copyright (c) 2016 Jarosław Wasilewski <orajo@windowslive.com>
+ * @license https://opensource.org/licenses/mit-license.php MIT License
+ */
 
 namespace SmsZilla\Adapter;
 
@@ -13,7 +20,8 @@ use SmsZilla\SendingError;
  * @link http://www.cisco.com/c/en/us/td/docs/routers/access/1800/1861/software/feature/guide/mrwls_hspa.html#wp1600033 Manual how to send SMS
  * Gateway suport connecting via SSH. In this case server must be authenticated by a public key.
  *
- * @author Jarek
+ * @subpackage Adapter
+ * @author Jarosław Wasilewski <orajo@windowslive.com>
  */
 class CiscoAdapter extends AbstractAdapter {
 

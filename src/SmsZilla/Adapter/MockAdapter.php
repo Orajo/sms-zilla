@@ -1,9 +1,10 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * SmsZilla
+ * PHP library for sending SMS through various gateways.
+ * @link https://github.com/Orajo/sms-zilla Homepage
+ * @copyright Copyright (c) 2016 Jarosław Wasilewski <orajo@windowslive.com>
+ * @license https://opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace SmsZilla\Adapter;
@@ -13,7 +14,8 @@ use SmsZilla\MessageInterface;
 /**
  * Description of MockGateway
  *
- * @author Jarek
+ * @subpackage Adapter
+ * @author Jarosław Wasilewski <orajo@windowslive.com>
  */
 class MockAdapter extends AbstractAdapter {
     

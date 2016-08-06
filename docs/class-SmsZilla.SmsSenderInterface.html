@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Interface SmsZilla\SmsSenderInterface | SmsZilla</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
+
+</head>
+
+<body>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">SmsZilla</a>
+			</div>
+			<div class="collapse navbar-collapse">
+
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-SmsZilla.html" title="Summary of SmsZilla"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+					<li class="divider-vertical"></li>
+
+					<li>
+						<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+					</li>
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li>
+						<a href="namespace-PHP.html">
+							PHP						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-SmsZilla.html">
+							SmsZilla<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-SmsZilla.Adapter.html">
+							Adapter						</a>
+							</li>
+								</ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-SmsZilla.MessageModel.html">MessageModel</a></li>
+				<li><a href="class-SmsZilla.SendingError.html">SendingError</a></li>
+				<li><a href="class-SmsZilla.SmsSender.html">SmsSender</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-SmsZilla.MessageInterface.html">MessageInterface</a></li>
+				<li><a href="class-SmsZilla.SendingErrorInterface.html">SendingErrorInterface</a></li>
+				<li class="active"><a href="class-SmsZilla.SmsSenderInterface.html">SmsSenderInterface</a></li>
+			</ul>
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-SmsZilla.ConfigurationException.html">ConfigurationException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Interface SmsSenderInterface</h1>
+
+
+	<div class="description">
+	<p>Interface for SMS sender engine</p>
+	</div>
+
+
+
+
+
+	<div>
+		<h3>Direct known implementers</h3>
+		<p class="elementList">
+			<code><a href="class-SmsZilla.SmsSender.html">SmsZilla\SmsSender</a></code>
+		</p>
+	</div>
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-SmsZilla.html">SmsZilla</a><br>
+		
+
+				<b>Author:</b>
+				Jarosław Wasilewski <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#111;&#114;&#97;&#106;&#111;&#64;&#119;&#105;n&#x64;&#x6f;&#x77;&#x73;&#x6c;&#x69;&#x76;&#x65;&#46;&#99;&#111;&#109;">&#111;&#114;&#97;&#106;&#111;&#64;&#119;&#105;n&#x64;&#x6f;&#x77;&#x73;&#x6c;&#x69;&#x76;&#x65;&#46;&#99;&#111;&#109;</a><br>
+			<b>Located at</b> <a href="source-class-SmsZilla.SmsSenderInterface.html#12-76" title="Go to source code">SmsZilla/SmsSenderInterface.php</a>
+		<br>
+	</div>
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="__construct" id="___construct">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code><a href="source-class-SmsZilla.SmsSenderInterface.html#18-23" title="Go to source code">__construct</a>( <span><code><a href="class-SmsZilla.Adapter.AdapterInterface.html">SmsZilla\Adapter\AdapterInterface</a></code> <var>$adapter</var></span>, <span>array <var>$params</var></span> )</code>
+
+			<div class="description short">
+				<p>Initialize Sender</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Initialize Sender</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$adapter</var></dt>
+						<dd></dd>
+						<dt><var>$params</var></dt>
+						<dd>Adapter configuration</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setRecipient" id="_setRecipient">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-SmsZilla.SmsSenderInterface.html">SmsZilla\SmsSenderInterface</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setRecipient">#</a>
+			<code><a href="source-class-SmsZilla.SmsSenderInterface.html#25-32" title="Go to source code">setRecipient</a>( <span>string|array <var>$phoneNo</var></span>, <span>boolean <var>$ignoreErrors</var> = <span class="php-keyword1">true</span></span> )</code>
+
+			<div class="description short">
+				<p>Add one recipient phone number
+If $ignoreErrors flag is true then wrong numbers will be ommited and others will be added</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Add one recipient phone number
+If $ignoreErrors flag is true then wrong numbers will be ommited and others will be added</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$phoneNo</var></dt>
+						<dd>Phone number or list of phone numbers</dd>
+						<dt><var>$ignoreErrors</var></dt>
+						<dd>Flag to ignore errors in phone number</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-SmsZilla.SmsSenderInterface.html">SmsZilla\SmsSenderInterface</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getRecipients" id="_getRecipients">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getRecipients">#</a>
+			<code><a href="source-class-SmsZilla.SmsSenderInterface.html#34-38" title="Go to source code">getRecipients</a>( )</code>
+
+			<div class="description short">
+				<p>Returns list of recipients (phone numbers)</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns list of recipients (phone numbers)</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setText" id="_setText">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-SmsZilla.SmsSenderInterface.html">SmsZilla\SmsSenderInterface</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setText">#</a>
+			<code><a href="source-class-SmsZilla.SmsSenderInterface.html#40-45" title="Go to source code">setText</a>( <span>string <var>$message</var></span> )</code>
+
+			<div class="description short">
+				<p>Sets message content</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sets message content</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$message</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-SmsZilla.SmsSenderInterface.html">SmsZilla\SmsSenderInterface</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getText" id="_getText">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getText">#</a>
+			<code><a href="source-class-SmsZilla.SmsSenderInterface.html#47-51" title="Go to source code">getText</a>( )</code>
+
+			<div class="description short">
+				<p>Returns content of the message</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns content of the message</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setMessage" id="_setMessage">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setMessage">#</a>
+			<code><a href="source-class-SmsZilla.SmsSenderInterface.html#53-57" title="Go to source code">setMessage</a>( <span><code><a href="class-SmsZilla.MessageInterface.html">SmsZilla\MessageInterface</a></code> <var>$message</var></span> )</code>
+
+			<div class="description short">
+				<p>Sets current message object</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sets current message object</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$message</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getMessage" id="_getMessage">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-SmsZilla.MessageInterface.html">SmsZilla\MessageInterface</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getMessage">#</a>
+			<code><a href="source-class-SmsZilla.SmsSenderInterface.html#59-63" title="Go to source code">getMessage</a>( )</code>
+
+			<div class="description short">
+				<p>Gets current message object</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets current message object</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-SmsZilla.MessageInterface.html">SmsZilla\MessageInterface</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="send" id="_send">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_send">#</a>
+			<code><a href="source-class-SmsZilla.SmsSenderInterface.html#65-69" title="Go to source code">send</a>( )</code>
+
+			<div class="description short">
+				<p>Send message through given adapter (SMS gateway)</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Send message through given adapter (SMS gateway)</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAdapter" id="_getAdapter">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-SmsZilla.Adapter.AdapterInterface.html">SmsZilla\Adapter\AdapterInterface</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getAdapter">#</a>
+			<code><a href="source-class-SmsZilla.SmsSenderInterface.html#71-75" title="Go to source code">getAdapter</a>( )</code>
+
+			<div class="description short">
+				<p>Gets adapter object</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets adapter object</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-SmsZilla.Adapter.AdapterInterface.html">SmsZilla\Adapter\AdapterInterface</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		SmsZilla API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

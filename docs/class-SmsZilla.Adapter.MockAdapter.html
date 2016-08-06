@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class SmsZilla\Adapter\MockAdapter | SmsZilla</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
+
+</head>
+
+<body>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">SmsZilla</a>
+			</div>
+			<div class="collapse navbar-collapse">
+
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-SmsZilla.Adapter.html" title="Summary of SmsZilla\Adapter"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+					<li class="divider-vertical"></li>
+
+					<li>
+						<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+					</li>
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li>
+						<a href="namespace-PHP.html">
+							PHP						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-SmsZilla.html">
+							SmsZilla<span></span>
+						</a>
+							<ul>
+					<li class="active">
+						<a href="namespace-SmsZilla.Adapter.html">
+							Adapter						</a>
+							</li>
+								</ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-SmsZilla.Adapter.AbstractAdapter.html">AbstractAdapter</a></li>
+				<li><a href="class-SmsZilla.Adapter.CiscoAdapter.html">CiscoAdapter</a></li>
+				<li><a href="class-SmsZilla.Adapter.FileAdapter.html">FileAdapter</a></li>
+				<li class="active"><a href="class-SmsZilla.Adapter.MockAdapter.html">MockAdapter</a></li>
+				<li><a href="class-SmsZilla.Adapter.SmsApiAdapter.html">SmsApiAdapter</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-SmsZilla.Adapter.AdapterInterface.html">AdapterInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class MockAdapter</h1>
+
+
+	<div class="description">
+	<p>Description of MockGateway</p>
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+			<a href="class-SmsZilla.Adapter.AbstractAdapter.html"><span>SmsZilla\Adapter\AbstractAdapter</span></a>
+			
+			 implements 
+				<a href="class-SmsZilla.Adapter.AdapterInterface.html"><span>SmsZilla\Adapter\AdapterInterface</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>SmsZilla\Adapter\MockAdapter</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-SmsZilla.html">SmsZilla</a>\<a href="namespace-SmsZilla.Adapter.html">Adapter</a><br>
+		
+
+				<b>Author:</b>
+				Jarosław Wasilewski <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#111;&#114;&#97;&#106;&#111;&#64;&#119;&#105;n&#x64;&#x6f;&#x77;&#x73;&#x6c;&#x69;&#x76;&#x65;&#46;&#99;&#111;&#109;">&#111;&#114;&#97;&#106;&#111;&#64;&#119;&#105;n&#x64;&#x6f;&#x77;&#x73;&#x6c;&#x69;&#x76;&#x65;&#46;&#99;&#111;&#109;</a><br>
+			<b>Located at</b> <a href="source-class-SmsZilla.Adapter.MockAdapter.html#14-38" title="Go to source code">SmsZilla/Adapter/MockAdapter.php</a>
+		<br>
+	</div>
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="send" id="_send">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_send">#</a>
+			<code><a href="source-class-SmsZilla.Adapter.MockAdapter.html#27-30" title="Go to source code">send</a>( <span><code><a href="class-SmsZilla.MessageInterface.html">SmsZilla\MessageInterface</a></code> <var>$message</var></span>, <span>boolean <var>$skipErrors</var> = <span class="php-keyword1">true</span></span> )</code>
+
+			<div class="description short">
+				<p>Send message with given SMS gateway.
+Remember to clean previews errors et the very begining of sending process!</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Send message with given SMS gateway.
+Remember to clean previews errors et the very begining of sending process!</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$message</var></dt>
+						<dd></dd>
+						<dt><var>$skipErrors</var></dt>
+						<dd>If false error during sending message breaks sending others</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>true if success, false if error
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSentMessages" id="_getSentMessages">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getSentMessages">#</a>
+			<code><a href="source-class-SmsZilla.Adapter.MockAdapter.html#32-37" title="Go to source code">getSentMessages</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-SmsZilla.Adapter.AbstractAdapter.html#methods">SmsZilla\Adapter\AbstractAdapter</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-SmsZilla.Adapter.AbstractAdapter.html#___construct">__construct()</a></code>, 
+				<code><a href="class-SmsZilla.Adapter.AbstractAdapter.html#_addError">addError()</a></code>, 
+				<code><a href="class-SmsZilla.Adapter.AbstractAdapter.html#_clearErrors">clearErrors()</a></code>, 
+				<code><a href="class-SmsZilla.Adapter.AbstractAdapter.html#_getErrors">getErrors()</a></code>, 
+				<code><a href="class-SmsZilla.Adapter.AbstractAdapter.html#_getParam">getParam()</a></code>, 
+				<code><a href="class-SmsZilla.Adapter.AbstractAdapter.html#_setParams">setParams()</a></code>
+			</p>
+		</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
+		</div>
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties inherited from <a href="class-SmsZilla.Adapter.AbstractAdapter.html#properties">SmsZilla\Adapter\AbstractAdapter</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-SmsZilla.Adapter.AbstractAdapter.html#$errors"><var>$errors</var></a></code>, 
+				<code><a href="class-SmsZilla.Adapter.AbstractAdapter.html#$params"><var>$params</var></a></code>
+			</p>
+		</div>
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		SmsZilla API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

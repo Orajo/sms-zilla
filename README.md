@@ -1,4 +1,4 @@
-# sms-zilla
+# SmsZilla
 
 PHP library for sending SMS messages using various gateways. It's simple but flexible. Allows sending for more than one recipient at a time.
 
@@ -11,13 +11,13 @@ use [composer](http://getcomposer.org/)
 
     {
         "require": {
-            "orajo/sms-zilla": "1.*"
+            "orajo/smszilla": "1.*"
         }
     }
 
 or
 
-    php composer.phar require orajo/sms-zilla
+    php composer.phar require orajo/smszilla
 
 Usage
 ------------

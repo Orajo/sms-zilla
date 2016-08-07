@@ -1,5 +1,5 @@
 {
-    "name": "orajo/smszilla",
+    "name": "orajo/sms-zilla",
     "description": "PHP library for sending SMS through various gateways",
     "type": "library",
     "license": "MIT",

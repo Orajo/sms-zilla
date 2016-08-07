@@ -11,13 +11,13 @@ use [composer](http://getcomposer.org/)
 
     {
         "require": {
-            "orajo/smszilla": "1.*"
+            "orajo/sms-zilla": "1.*"
         }
     }
 
 or
 
-    php composer.phar require orajo/smszilla
+    php composer.phar require orajo/sms-zilla
 
 Usage
 ------------

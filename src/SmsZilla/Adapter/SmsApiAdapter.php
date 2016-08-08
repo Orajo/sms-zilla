@@ -39,7 +39,7 @@ class SmsApiAdapter extends AbstractAdapter {
     ];
 
     /**
-     * Save message in file
+     * Send message through SmsApi.pl gateway
      * @param MessageModel $message
      */
     public function send(MessageInterface $message, $skipErrors = true) {
@@ -63,7 +63,6 @@ class SmsApiAdapter extends AbstractAdapter {
 
                 $response = $actionSend->execute();
 
-                var_dump($response);
                 foreach ($response->getList() as $status) {
                     // @see https://www.smsapi.pl/statusy-wiadomosci
                     if (in_array($status->getStatus(), [407, 406, 405, 401, 402])) {
@@ -85,7 +84,7 @@ class SmsApiAdapter extends AbstractAdapter {
     }
 
     /**
-     * 
+     * Prepare client configuration
      * @return SMSApi\Client
      * @throws ConfigurationException
      */

@@ -39,7 +39,7 @@ class CiscoAdapter extends AbstractAdapter {
     protected $sshCommand = 'ssh #SSH_LOGIN#@#SSH_HOST# #COMMAND#';
 
     /**
-     * Save message in file
+     * Send message
      * @param MessageModel $message
      */
     public function send(MessageInterface $message, $skipErrors = true) {

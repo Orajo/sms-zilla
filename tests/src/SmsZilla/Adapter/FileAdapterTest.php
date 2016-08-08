@@ -19,7 +19,7 @@ class FileAdapterTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->config = include  __DIR__ . '/config.php';
+        $this->config = include  __DIR__ . '/../../config.php';
         $this->object = new FileAdapter();
     }
 
@@ -48,6 +48,7 @@ class FileAdapterTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers SmsZilla\Adapter\FileAdapter::send
+     * @covers SmsZilla\ConfigurationException::__construct
      * @expectedException \SmsZilla\ConfigurationException
      * @expectedExceptionMessage SmsZilla\Adapter\FileAdapter is not configured properly. Please set "store_path" parameter.
      */

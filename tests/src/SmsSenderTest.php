@@ -30,7 +30,16 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
     }
-
+    
+    /**
+     * @covers \SmsZilla\SmsSender::__construct
+     */
+    public function testConstructor() {
+        $this->config = include  __DIR__ . '/config.php';
+        $result = new SmsSender(new \SmsZilla\Adapter\MockAdapter(), []);
+        $this->assertEquals($this->object, $result);
+    }
+   
     /**
      * @covers SmsZilla\SmsSender::setText
      * @expectedException \InvalidArgumentException
@@ -52,6 +61,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers SmsZilla\SmsSender::setMessage
+     * @covers SmsZilla\MessageModel::setText
      */
     public function testSetMessage()
     {
@@ -72,10 +82,13 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $testMsg = clone $message;
         $this->object->setMessage($message);
         $this->assertEquals($testMsg, $this->object->getMessage());
+        
+        
     }
 
     /**
      * @covers SmsZilla\SmsSender::setRecipient
+     * @covers SmsZilla\SmsSender::getRecipients
      */
     public function testSetRecipient()
     {
@@ -91,7 +104,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers SmsZilla\SmsSender::getRecipients
-     * @todo   Implement testGetRecipients().
+     * @covers SmsZilla\SmsSender::setRecipient
      */
     public function testGetRecipients()
     {
@@ -104,7 +117,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers SmsZilla\SmsSender::send
-     * @todo   Implement testSend().
+     * @covers SmsZilla\Adapter\MockAdapter::getSentMessages
      */
     public function testSend()
     {
@@ -119,6 +132,11 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($message, $messages[0]);
     }
 
+    /**
+     * @covers SmsZilla\SmsSender::send
+     * @covers SmsZilla\Adapter\MockAdapter::getSentMessages
+     * @covers \SmsZilla\SmsSender::setCountryCode
+     */
     public function testSend2()
     {
         $this->object->setCountryCode(56);
@@ -131,7 +149,6 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers SmsZilla\SmsSender::getAdapter
-     * @todo   Implement testGetAdapter().
      */
     public function testGetAdapter()
     {
@@ -141,6 +158,8 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers \SmsZilla\SmsSender::setCountryCode
+     * @covers \SmsZilla\SmsSender::getRecipients
      * @covers \SmsZilla\SmsSender::setCountryCode
      */
     public function testSetCountryCode() {

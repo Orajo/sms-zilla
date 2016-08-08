@@ -19,7 +19,7 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->config = include  __DIR__ . '/config.php';
+        $this->config = include  __DIR__ . '/../../config.php';
         $this->object = new SmsApiAdapter();
     }
 
@@ -33,6 +33,7 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers SmsZilla\Adapter\SmsApiAdapter::send
+     * @covers \SmsZilla\ConfigurationException::__construct
      * @expectedException \SmsZilla\ConfigurationException
      * @expectedExceptionMessage SmsZilla\Adapter\SmsApiAdapter is not configured properly. Please set "token" or "login" and "passwd_pash" parameters properly.
      */
@@ -44,6 +45,8 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers SmsZilla\Adapter\SmsApiAdapter::send
+     * @covers SmsZilla\Adapter\AbstractAdapter::getParams
+     * @covers \SmsZilla\ConfigurationException::__construct
      * @expectedException \SmsZilla\ConfigurationException
      * @expectedExceptionMessage SmsZilla\Adapter\SmsApiAdapter is not configured properly. Please set "sender" parameter properly.
      */
@@ -56,6 +59,8 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers SmsZilla\Adapter\SmsApiAdapter::send
+     * @covers SmsZilla\Adapter\AbstractAdapter::getErrors
+     * @covers \SmsZilla\SendingError::__construct
      */
     public function testSend()
     {
@@ -69,7 +74,7 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers SmsZilla\Adapter\SmsApiAdapter::setParams
+     * @covers SmsZilla\Adapter\AbstractAdapter::setParams
      */
     public function testSetParams() {
         

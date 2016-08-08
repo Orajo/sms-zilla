@@ -21,7 +21,7 @@ class MockAdapterTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->config = include  __DIR__ . '/config.php';
+        $this->config = include  __DIR__ . '/../../config.php';
         $this->object = new MockAdapter;
         $this->message = new \SmsZilla\MessageModel();
         $this->message->setText($this->config['message']);
@@ -55,4 +55,33 @@ class MockAdapterTest extends \PHPUnit_Framework_TestCase
         $data = $this->object->getSentMessages();
         $this->assertEquals($this->config['message'], $data[0]->getText());
     }
+    
+    /**
+     * @covers \SmsZilla\Adapter\AbstractAdapter::getParams()
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Paramater name must be not empty string
+     */
+    public function testGetParam() {
+            $this->object->getParam('');
+    }
+
+    /**
+     * @covers \SmsZilla\Adapter\AbstractAdapter::getParams()
+     * @expectedException \SmsZilla\ConfigurationException
+     * @expectedExceptionMessage Parameter no_param doeasn't exists
+     */
+    public function testGetParam2() {
+            $this->object->getParam('no_param');
+    }
+    
+    
+    /**
+     * @covers \SmsZilla\Adapter\AbstractAdapter::getParams()
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Paramater $params must be an array.
+     */
+    public function testSetParam() {
+            $this->object->setParams('no_param');
+    }
+
 }

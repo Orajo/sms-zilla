@@ -19,7 +19,7 @@ class CiscoAdapterTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->config = include  __DIR__ . '/config.php';
+        $this->config = include  __DIR__ . '/../../config.php';
         $this->object = new CiscoAdapter;
     }
 
@@ -33,7 +33,9 @@ class CiscoAdapterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * ssh login and pass are not set
-     * @covers SmsZilla\Adapter\FileGateway::send
+     * @covers SmsZilla\Adapter\CiscoAdapter::send
+     * @covers SmsZilla\Adapter\AbstractAdapter::setParams
+     * @covers \SmsZilla\ConfigurationException::__construct
      * @expectedException \SmsZilla\ConfigurationException
      * @expectedExceptionMessage SmsZilla\Adapter\CiscoAdapter is not configured properly. If SSH is enabled then parameters "ssh_host" and "ssh_login" must be set.
      */
@@ -45,6 +47,7 @@ class CiscoAdapterTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers SmsZilla\Adapter\CiscoAdapter::send
+     * @covers SmsZilla\Adapter\AbstractAdapter::addError
      */
     public function testSend()
     {
@@ -58,6 +61,11 @@ class CiscoAdapterTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers SmsZilla\Adapter\CiscoAdapter::send
+     * @covers SmsZilla\MessageModel::setText
+     * @covers SmsZilla\MessageModel::addRecipient
+     * @covers SmsZilla\Adapter\AbstractAdapter::setParams
+     * @covers SmsZilla\Adapter\AbstractAdapter::getErrors
+     * @covers SmsZilla\Adapter\AbstractAdapter::addError
      */
     public function testSendSsh()
     {

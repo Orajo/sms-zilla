@@ -14,7 +14,7 @@ use SMSApi\Client;
 use SMSApi\Exception\SmsapiException;
 use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
-use SmsZilla\MessageModel;
+use SmsZilla\SmsMessageModel;
 use SmsZilla\SendingError;
 
 /**
@@ -40,7 +40,7 @@ class SmsApiAdapter extends AbstractAdapter {
 
     /**
      * Send message through SmsApi.pl gateway
-     * @param MessageModel $message
+     * @param SmsMessageModel $message
      */
     public function send(MessageInterface $message, $skipErrors = true) {
         $smsapi = new SmsFactory();

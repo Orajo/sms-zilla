@@ -14,7 +14,7 @@ namespace SmsZilla;
  *
  * @author Jarosław Wasilewski <orajo@windowslive.com>
  */
-class MessageModel implements MessageInterface {
+class SmsMessageModel implements MessageInterface {
     /**
      * List of phone numbers of recipients
      * @var array
@@ -32,7 +32,7 @@ class MessageModel implements MessageInterface {
      * Sets message content
      * 
      * @param string $text
-     * @return MessageModel
+     * @return SmsMessageModel
      * @throws \BadMethodCallException
      */
     public function setText($text) {
@@ -55,7 +55,7 @@ class MessageModel implements MessageInterface {
      * Adds recipient phone number
      * Recipients number should be: \d{9} or \d{11}
      * @param string $phoneNo
-     * @return MessageModel
+     * @return SmsMessageModel
      */
     public function addRecipient($phoneNo) {
         

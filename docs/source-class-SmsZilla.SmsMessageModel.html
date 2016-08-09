@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex">
 
-	<title>File SmsZilla/MessageModel.php | SmsZilla</title>
+	<title>File SmsZilla/SmsMessageModel.php | SmsZilla</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -65,6 +65,10 @@
 						<a href="namespace-SmsZilla.Adapter.html">
 							Adapter						</a>
 							</li>
+					<li>
+						<a href="namespace-SmsZilla.Validator.html">
+							Validator						</a>
+							</li>
 								</ul></li>
 			</ul>
 		</div>
@@ -81,9 +85,10 @@
 				<li><a href="class-SmsZilla.Adapter.MockAdapter.html">SmsZilla\Adapter\MockAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.SmsApiAdapter.html">SmsZilla\Adapter\SmsApiAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.SmsCenterAdapter.html">SmsZilla\Adapter\SmsCenterAdapter</a></li>
-				<li><a href="class-SmsZilla.MessageModel.html">SmsZilla\MessageModel</a></li>
 				<li><a href="class-SmsZilla.SendingError.html">SmsZilla\SendingError</a></li>
+				<li><a href="class-SmsZilla.SmsMessageModel.html">SmsZilla\SmsMessageModel</a></li>
 				<li><a href="class-SmsZilla.SmsSender.html">SmsZilla\SmsSender</a></li>
+				<li><a href="class-SmsZilla.Validator.LibphonenumberValidator.html">SmsZilla\Validator\LibphonenumberValidator</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
@@ -97,6 +102,7 @@
 				<li><a href="class-SmsZilla.MessageInterface.html">SmsZilla\MessageInterface</a></li>
 				<li><a href="class-SmsZilla.SendingErrorInterface.html">SmsZilla\SendingErrorInterface</a></li>
 				<li><a href="class-SmsZilla.SmsSenderInterface.html">SmsZilla\SmsSenderInterface</a></li>
+				<li><a href="class-SmsZilla.Validator.ValidatorInterface.html">SmsZilla\Validator\ValidatorInterface</a></li>
 				<li><a href="class-Throwable.html">Throwable</a></li>
 				<li><a href="class-Traversable.html">Traversable</a></li>
 			</ul>
@@ -109,6 +115,7 @@
 				<li><a href="class-Exception.html">Exception</a></li>
 				<li><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></li>
 				<li><a href="class-LogicException.html">LogicException</a></li>
+				<li><a href="class-RuntimeException.html">RuntimeException</a></li>
 				<li><a href="class-SmsZilla.ConfigurationException.html">SmsZilla\ConfigurationException</a></li>
 			</ul>
 
@@ -137,7 +144,7 @@
 </span></span><span id="14" class="l"><a href="#14">14 </a><span class="php-comment"> *
 </span></span><span id="15" class="l"><a href="#15">15 </a><span class="php-comment"> * @author Jarosław Wasilewski &lt;orajo@windowslive.com&gt;
 </span></span><span id="16" class="l"><a href="#16">16 </a><span class="php-comment"> */</span>
-</span><span id="17" class="l"><a href="#17">17 </a><span class="php-keyword1">class</span> MessageModel <span class="php-keyword1">implements</span> MessageInterface {
+</span><span id="17" class="l"><a href="#17">17 </a><span class="php-keyword1">class</span> SmsMessageModel <span class="php-keyword1">implements</span> MessageInterface {
 </span><span id="18" class="l"><a href="#18">18 </a>    <span class="php-comment">/**
 </span></span><span id="19" class="l"><a href="#19">19 </a><span class="php-comment">     * List of phone numbers of recipients
 </span></span><span id="20" class="l"><a href="#20">20 </a><span class="php-comment">     * @var array
@@ -155,7 +162,7 @@
 </span></span><span id="32" class="l"><a href="#32">32 </a><span class="php-comment">     * Sets message content
 </span></span><span id="33" class="l"><a href="#33">33 </a><span class="php-comment">     * 
 </span></span><span id="34" class="l"><a href="#34">34 </a><span class="php-comment">     * @param string $text
-</span></span><span id="35" class="l"><a href="#35">35 </a><span class="php-comment">     * @return MessageModel
+</span></span><span id="35" class="l"><a href="#35">35 </a><span class="php-comment">     * @return SmsMessageModel
 </span></span><span id="36" class="l"><a href="#36">36 </a><span class="php-comment">     * @throws \BadMethodCallException
 </span></span><span id="37" class="l"><a href="#37">37 </a><span class="php-comment">     */</span>
 </span><span id="38" class="l"><a href="#38">38 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setText(<span class="php-var">$text</span>) {
@@ -178,7 +185,7 @@
 </span></span><span id="55" class="l"><a href="#55">55 </a><span class="php-comment">     * Adds recipient phone number
 </span></span><span id="56" class="l"><a href="#56">56 </a><span class="php-comment">     * Recipients number should be: \d{9} or \d{11}
 </span></span><span id="57" class="l"><a href="#57">57 </a><span class="php-comment">     * @param string $phoneNo
-</span></span><span id="58" class="l"><a href="#58">58 </a><span class="php-comment">     * @return MessageModel
+</span></span><span id="58" class="l"><a href="#58">58 </a><span class="php-comment">     * @return SmsMessageModel
 </span></span><span id="59" class="l"><a href="#59">59 </a><span class="php-comment">     */</span>
 </span><span id="60" class="l"><a href="#60">60 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> addRecipient(<span class="php-var">$phoneNo</span>) {
 </span><span id="61" class="l"><a href="#61">61 </a>        
@@ -218,6 +225,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?afbba0c8dc5a3a84a03953d48cef7c97f2d27e52"></script>
-<script src="elementlist.js?3f44adac86806b94583029613b181a53ef621d6f"></script>
+<script src="elementlist.js?8b2f8f00e5e092b5abd7d4d6b1aed8c9e1a6cf3e"></script>
 </body>
 </html>

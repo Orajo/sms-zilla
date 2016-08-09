@@ -7,7 +7,7 @@ namespace SmsZilla;
 class MessageModelTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var MessageModel
+     * @var SmsMessageModel
      */
     protected $object;
     
@@ -19,8 +19,8 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->config = include  __DIR__ . '/config.php';
-        $this->object = new MessageModel;
+        $this->config = include  __DIR__ . '/../config.php';
+        $this->object = new SmsMessageModel;
     }
 
     /**
@@ -32,7 +32,7 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SmsZilla\MessageModel::setText
+     * @covers SmsZilla\SmsMessageModel::setText
      */
     public function testSetText()
     {
@@ -48,7 +48,7 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SmsZilla\MessageModel::getText
+     * @covers SmsZilla\SmsMessageModel::getText
      */
     public function testGetText()
     {
@@ -57,7 +57,7 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SmsZilla\MessageModel::addRecipient
+     * @covers SmsZilla\SmsMessageModel::addRecipient
      * @expectedException InvalidArgumentException
      */
     public function testAddRecipient()
@@ -66,7 +66,7 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers SmsZilla\MessageModel::getRecipient
+     * @covers SmsZilla\SmsMessageModel::getRecipient
      */
     public function testGetRecipient()
     {
@@ -81,7 +81,7 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @covers SmsZilla\MessageModel::getRecipients
+     * @covers SmsZilla\SmsMessageModel::getRecipients
      */
     public function testGetRecipients() {
         $this->addRecipients();

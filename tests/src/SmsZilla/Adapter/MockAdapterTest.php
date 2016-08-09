@@ -23,7 +23,7 @@ class MockAdapterTest extends \PHPUnit_Framework_TestCase
     {
         $this->config = include  __DIR__ . '/../../config.php';
         $this->object = new MockAdapter;
-        $this->message = new \SmsZilla\MessageModel();
+        $this->message = new \SmsZilla\SmsMessageModel();
         $this->message->setText($this->config['message']);
     }
 
@@ -36,7 +36,7 @@ class MockAdapterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SmsZilla\Adapter\MockGateway::send
+     * @covers SmsZilla\Adapter\MockAdapter::send
      */
     public function testSend()
     {
@@ -47,7 +47,7 @@ class MockAdapterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SmsZilla\Adapter\MockGateway::getSentMessages
+     * @covers SmsZilla\Adapter\MockAdapter::getSentMessages
      */
     public function testGetSentMessages()
     {

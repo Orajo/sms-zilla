@@ -13,5 +13,8 @@ if (is_file($distFilePath)) {
         'smsapi_token' => '',
         'phones' => ['48123456789', '48121212121'],
         'my_phone' => '',
+        'smscenter_login' => '',
+        'smscenter_password' => '',
+        'smscenter_sender' => '',
     );
 }

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class SmsZilla\MessageModel | SmsZilla</title>
+	<title>Class SmsZilla\SmsMessageModel | SmsZilla</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -65,6 +65,10 @@
 						<a href="namespace-SmsZilla.Adapter.html">
 							Adapter						</a>
 							</li>
+					<li>
+						<a href="namespace-SmsZilla.Validator.html">
+							Validator						</a>
+							</li>
 								</ul></li>
 			</ul>
 		</div>
@@ -73,8 +77,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-SmsZilla.MessageModel.html">MessageModel</a></li>
 				<li><a href="class-SmsZilla.SendingError.html">SendingError</a></li>
+				<li class="active"><a href="class-SmsZilla.SmsMessageModel.html">SmsMessageModel</a></li>
 				<li><a href="class-SmsZilla.SmsSender.html">SmsSender</a></li>
 			</ul>
 
@@ -101,7 +105,7 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class MessageModel</h1>
+	<h1>Class SmsMessageModel</h1>
 
 
 	<div class="description">
@@ -110,7 +114,7 @@
 
 	<dl class="tree well">
 		<dd style="padding-left:0px">
-<b><span>SmsZilla\MessageModel</span></b>			
+<b><span>SmsZilla\SmsMessageModel</span></b>			
 			 implements 
 				<a href="class-SmsZilla.MessageInterface.html"><span>SmsZilla\MessageInterface</span></a>
 			
@@ -133,7 +137,7 @@
 
 				<b>Author:</b>
 				Jarosław Wasilewski <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#111;&#114;&#97;&#106;&#111;&#64;&#119;&#105;n&#x64;&#x6f;&#x77;&#x73;&#x6c;&#x69;&#x76;&#x65;&#46;&#99;&#111;&#109;">&#111;&#114;&#97;&#106;&#111;&#64;&#119;&#105;n&#x64;&#x6f;&#x77;&#x73;&#x6c;&#x69;&#x76;&#x65;&#46;&#99;&#111;&#109;</a><br>
-			<b>Located at</b> <a href="source-class-SmsZilla.MessageModel.html#12-89" title="Go to source code">SmsZilla/MessageModel.php</a>
+			<b>Located at</b> <a href="source-class-SmsZilla.SmsMessageModel.html#12-89" title="Go to source code">SmsZilla/SmsMessageModel.php</a>
 		<br>
 	</div>
 
@@ -146,14 +150,14 @@
 
 			<td class="attributes"><code>
 				 public 
-				<code><a href="class-SmsZilla.MessageModel.html">SmsZilla\MessageModel</a></code>
+				<code><a href="class-SmsZilla.SmsMessageModel.html">SmsZilla\SmsMessageModel</a></code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setText">#</a>
-			<code><a href="source-class-SmsZilla.MessageModel.html#31-44" title="Go to source code">setText</a>( <span>string <var>$text</var></span> )</code>
+			<code><a href="source-class-SmsZilla.SmsMessageModel.html#31-44" title="Go to source code">setText</a>( <span>string <var>$text</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets message content</p>
@@ -171,7 +175,7 @@
 
 					<h4>Returns</h4>
 					<div class="list">
-						<code><a href="class-SmsZilla.MessageModel.html">SmsZilla\MessageModel</a></code>
+						<code><a href="class-SmsZilla.SmsMessageModel.html">SmsZilla\SmsMessageModel</a></code>
 					</div>
 
 					<h4>Throws</h4>
@@ -197,7 +201,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getText">#</a>
-			<code><a href="source-class-SmsZilla.MessageModel.html#46-52" title="Go to source code">getText</a>( )</code>
+			<code><a href="source-class-SmsZilla.SmsMessageModel.html#46-52" title="Go to source code">getText</a>( )</code>
 
 			<div class="description short">
 				<p>Gets message content</p>
@@ -225,14 +229,14 @@
 
 			<td class="attributes"><code>
 				 public 
-				<code><a href="class-SmsZilla.MessageModel.html">SmsZilla\MessageModel</a></code>
+				<code><a href="class-SmsZilla.SmsMessageModel.html">SmsZilla\SmsMessageModel</a></code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_addRecipient">#</a>
-			<code><a href="source-class-SmsZilla.MessageModel.html#54-69" title="Go to source code">addRecipient</a>( <span>string <var>$phoneNo</var></span> )</code>
+			<code><a href="source-class-SmsZilla.SmsMessageModel.html#54-69" title="Go to source code">addRecipient</a>( <span>string <var>$phoneNo</var></span> )</code>
 
 			<div class="description short">
 				<p>Adds recipient phone number
@@ -252,7 +256,7 @@ Recipients number should be: \d{9} or \d{11}</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						<code><a href="class-SmsZilla.MessageModel.html">SmsZilla\MessageModel</a></code>
+						<code><a href="class-SmsZilla.SmsMessageModel.html">SmsZilla\SmsMessageModel</a></code>
 					</div>
 
 
@@ -274,7 +278,7 @@ Recipients number should be: \d{9} or \d{11}</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getRecipients">#</a>
-			<code><a href="source-class-SmsZilla.MessageModel.html#71-77" title="Go to source code">getRecipients</a>( )</code>
+			<code><a href="source-class-SmsZilla.SmsMessageModel.html#71-77" title="Go to source code">getRecipients</a>( )</code>
 
 			<div class="description short">
 				<p>Gets all recipients.</p>
@@ -309,7 +313,7 @@ Recipients number should be: \d{9} or \d{11}</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getRecipient">#</a>
-			<code><a href="source-class-SmsZilla.MessageModel.html#79-88" title="Go to source code">getRecipient</a>( )</code>
+			<code><a href="source-class-SmsZilla.SmsMessageModel.html#79-88" title="Go to source code">getRecipient</a>( )</code>
 
 			<div class="description short">
 				<p>Gets next recipient from list of recipients.
@@ -358,7 +362,7 @@ Implements generator through yield</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-SmsZilla.MessageModel.html#18-22" title="Go to source code"><var>$recipients</var></a>
+					<a href="source-class-SmsZilla.SmsMessageModel.html#18-22" title="Go to source code"><var>$recipients</var></a>
 
 				<div class="description short">
 					<p>List of phone numbers of recipients</p>
@@ -383,7 +387,7 @@ Implements generator through yield</p>
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-SmsZilla.MessageModel.html#24-28" title="Go to source code"><var>$text</var></a>
+					<a href="source-class-SmsZilla.SmsMessageModel.html#24-28" title="Go to source code"><var>$text</var></a>
 
 				<div class="description short">
 					<p>Message content</p>

@@ -39,7 +39,7 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function testTokenConfigError() {
         // store_path is not set
-        $this->object->send(new \SmsZilla\MessageModel);
+        $this->object->send(new \SmsZilla\SmsMessageModel);
     }
     
     
@@ -54,7 +54,7 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
         // store_path is not set
         $this->object->setParams(['token' => $this->config['smsapi_token']]);
         $this->object->setParams(['sender' => '']);
-        $this->object->send(new \SmsZilla\MessageModel);
+        $this->object->send(new \SmsZilla\SmsMessageModel);
     }
     
     /**
@@ -64,7 +64,7 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function testSend()
     {
-        $message = new \SmsZilla\MessageModel();
+        $message = new \SmsZilla\SmsMessageModel();
         $message->setText($this->config['message']);
         $message->addRecipient($this->config['my_phone']);
         $this->object->setParams(['token' => $this->config['smsapi_token']]);

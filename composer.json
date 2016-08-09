@@ -14,7 +14,8 @@
     ],
     "require": {
         "smsapi.pl/php-client": "^1.7",
-        "mlebkowski/mobitex": "1.0.*"
+        "mlebkowski/mobitex": "1.0.*",
+        "giggsey/libphonenumber-for-php": "7.5.1"
     },
     "require-dev": {
         "phpunit/phpunit": "5.*"

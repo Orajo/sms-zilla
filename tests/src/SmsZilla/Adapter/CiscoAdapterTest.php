@@ -42,7 +42,7 @@ class CiscoAdapterTest extends \PHPUnit_Framework_TestCase
     public function testSendConfigError() {
         $this->object->setParams(['use_ssh' => true]);
         // store_path is not set
-        $this->object->send(new \SmsZilla\MessageModel);
+        $this->object->send(new \SmsZilla\SmsMessageModel);
     }
     
     /**
@@ -51,7 +51,7 @@ class CiscoAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function testSend()
     {
-        $message = new \SmsZilla\MessageModel();
+        $message = new \SmsZilla\SmsMessageModel();
         $message->setText($this->config['message']);
         $message->addRecipient($this->config['phones'][0]);
         $result = $this->object->send($message);
@@ -61,15 +61,15 @@ class CiscoAdapterTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers SmsZilla\Adapter\CiscoAdapter::send
-     * @covers SmsZilla\MessageModel::setText
-     * @covers SmsZilla\MessageModel::addRecipient
+     * @covers SmsZilla\SmsMessageModel::setText
+     * @covers SmsZilla\SmsMessageModel::addRecipient
      * @covers SmsZilla\Adapter\AbstractAdapter::setParams
      * @covers SmsZilla\Adapter\AbstractAdapter::getErrors
      * @covers SmsZilla\Adapter\AbstractAdapter::addError
      */
     public function testSendSsh()
     {
-        $message = new \SmsZilla\MessageModel();
+        $message = new \SmsZilla\SmsMessageModel();
         $message->setText($this->config['message']);
         $message->addRecipient($this->config['phones'][0]);
         

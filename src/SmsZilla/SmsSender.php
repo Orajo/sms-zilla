@@ -10,7 +10,8 @@
 namespace SmsZilla;
 
 use SmsZilla\Adapter\AdapterInterface;
-use SmsZilla\MessageModel;
+use SmsZilla\SmsMessageModel;
+use SmsZilla\Validator\ValidatorInterface;
 
 /**
  * Main worker class.
@@ -27,8 +28,13 @@ class SmsSender implements SmsSenderInterface {
 
     protected $message = null;
     protected $adapter = null;
-    
-    protected $countryCode = '48';
+
+    /**
+     * Phone numbers validator and formatter
+     * 
+     * @var ValidatorInterface
+     */
+    protected $validator = null;
 
     /**
      * Initialize Sender
@@ -36,30 +42,33 @@ class SmsSender implements SmsSenderInterface {
      * @param array $params Adapter configuration
      */
     public function __construct(AdapterInterface $adapter, array $params = null) {
-        $this->message = new MessageModel();
+        $this->message = new SmsMessageModel();
 
         $this->adapter = $adapter;
         if (is_array($params) && !empty($params)) {
             $this->adapter->setParams($params);
+        }
+
+        // default validator
+        try {
+            $this->setValidator(new Validator\LibphonenumberValidator());
+        }
+        catch (\Exception $exp) {
+            ; // nothing to do, validation deisabled
         }
     }
 
     /**
      * Sets message content
      * @param string $message
-     * @param string $encoding Encoding name
      * @return SmsSender
      * @throws \InvalidArgumentException
      */
-    public function setText($message, $encoding = 'UTF-8') {
+    public function setText($message) {
         if (empty($message)) {
-            throw new \InvalidArgumentException('SMS message cannot be empty');
+            throw new \InvalidArgumentException('Message cannot be empty');
         }
-        if (!empty($encoding)) {
-            if (extension_loaded('mbstring')) {
-                $message = mb_convert_encoding((string) $message, $encoding);
-            }
-        }
+
         $this->message->setText($message);
         return $this;
     }
@@ -84,13 +93,13 @@ class SmsSender implements SmsSenderInterface {
 
     /**
      * Gets current message object
-     * @return MessageModel
+     * @return SmsMessageModel
      */
     public function getMessage() {
         if ($this->message instanceof MessageInterface) {
             return $this->message;
         }
-        return $this->mesage = new MessageModel();
+        return $this->mesage = new SmsMessageModel();
     }
 
     /**
@@ -108,16 +117,20 @@ class SmsSender implements SmsSenderInterface {
 
         foreach ($phoneNo as $number) {
             $number = trim($number);
-            $number = preg_replace('/\s\-\+/', '', $number);
-            if (preg_match('/^(\d{9}|\d{11})$/', $number)) {
-                $number = strlen($number) == 9 ? $this->countryCode . $number : $number;
-                $this->message->addRecipient($number);
-            }
-            elseif ($ignoreErrors) {
-                continue;
+            if ($this->validator instanceof Validator\ValidatorInterface) {
+                if ($this->validator->isValid($number)) {
+                    $number = $this->validator->format($number);
+                    $this->message->addRecipient($number);
+                }
+                elseif ($ignoreErrors) {
+                    continue;
+                }
+                else {
+                    throw new \BadMethodCallException(join(' ', $this->validator->getMessages()));
+                }
             }
             else {
-                throw new \BadMethodCallException('Phone number has incorrect format. It should be 9 or 11 digits');
+                $this->message->addRecipient($number);
             }
         }
         return $this;
@@ -148,18 +161,10 @@ class SmsSender implements SmsSenderInterface {
     public function getAdapter() {
         return $this->adapter;
     }
-    
-    /**
-     * Sets default telephone country code.
-     * 
-     * Default is 48 (Poland).
-     * 
-     * @link https://countrycode.org/ List of country codes
-     * @param string $countryCode
-     * @return \SmsZilla\SmsSender
-     */
-    public function setCountryCode($countryCode) {
-        $this->countryCode = (string)$countryCode;
+
+    public function setValidator(ValidatorInterface $validator) {
+        $this->validator = $validator;
         return $this;
     }
+
 }

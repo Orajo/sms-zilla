@@ -14,7 +14,7 @@ use Mobitex\Sender;
 use SMSApi\Client;
 use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
-use SmsZilla\MessageModel;
+use SmsZilla\SmsMessageModel;
 use SmsZilla\SendingError;
 
 /**
@@ -39,7 +39,7 @@ class SmsCenterAdapter extends AbstractAdapter {
     
     /**
      * Send message through SmsCenter.pl gateway
-     * @param MessageModel $message
+     * @param SmsMessageModel $message
      */
     public function send(MessageInterface $message, $skipErrors = true) {
 

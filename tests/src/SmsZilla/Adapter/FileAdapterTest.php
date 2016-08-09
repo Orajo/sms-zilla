@@ -54,7 +54,7 @@ class FileAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function testSendConfigError() {
         // store_path is not set
-        $this->object->send(new \SmsZilla\MessageModel);
+        $this->object->send(new \SmsZilla\SmsMessageModel);
     }
     
     /**
@@ -63,7 +63,7 @@ class FileAdapterTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         $this->object->setParams(['store_path' => __DIR__]);
-        $message = new \SmsZilla\MessageModel();
+        $message = new \SmsZilla\SmsMessageModel();
         $message->setText($this->config['message']);
         $message->addRecipient($this->config['phones'][0]);
         $this->assertFileNotExists(__DIR__ . DIRECTORY_SEPARATOR . $this->config['phones'][0] . \SmsZilla\Adapter\FileAdapter::FILE_EXT);

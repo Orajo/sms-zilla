@@ -12,7 +12,7 @@ namespace SmsZilla\Adapter;
 use SmsZilla\Adapter\AbstractAdapter;
 use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
-use SmsZilla\MessageModel;
+use SmsZilla\SmsMessageModel;
 use SmsZilla\SendingError;
 
 /**
@@ -36,7 +36,7 @@ class FileAdapter extends AbstractAdapter {
     
     /**
      * Save message in file
-     * @param MessageModel $message
+     * @param SmsMessageModel $message
      */
     public function send(MessageInterface $message, $skipErrors = true) {
         $this->clearErrors();

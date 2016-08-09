@@ -36,10 +36,14 @@ class SmsCenterAdapterTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testSend().
      */
     public function testSend() {
-        $message = new \SmsZilla\MessageModel();
+        $message = new \SmsZilla\SmsMessageModel();
         $message->setText($this->config['message']);
         $message->addRecipient($this->config['my_phone']);
-        $this->object->setParams(['login' => 'orajo3', 'password' => 'pE4.wU2$kB', 'sender' => '48605171108']);
+        $this->object->setParams([
+            'login' => $this->config['smscenter_login'],
+            'password' => $this->config['smscenter_password'],
+            'sender' => $this->config['smscenter_sender']]
+        );
         $result = $this->object->send($message, false);
         $this->assertTrue($result);
         $this->assertCount(0, $this->object->getErrors());
@@ -50,8 +54,12 @@ class SmsCenterAdapterTest extends \PHPUnit_Framework_TestCase {
      * @covers SmsZilla\Adapter\SmsCenterAdapter::setParams
      */
     public function testSetParams() {
-        $this->object->setParams(['login' => 'orajo', 'password' => 'lS_aP0l', 'sender' => '48605171108']);        
-        $this->assertEquals($this->object->getParam('login'), 'orajo');
+        $this->object->setParams([
+            'login' => $this->config['smscenter_login'],
+            'password' => $this->config['smscenter_password'],
+            'sender' => $this->config['smscenter_sender']]
+        );
+        $this->assertEquals($this->object->getParam('login'), $this->config['smscenter_login']);
         
         $this->expectException(\SmsZilla\ConfigurationException::class);
         $this->object->setParams(['dummy' => 1]);

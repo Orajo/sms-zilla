@@ -12,7 +12,7 @@ namespace SmsZilla\Adapter;
 
 use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
-use SmsZilla\MessageModel;
+use SmsZilla\SmsMessageModel;
 use SmsZilla\SendingErrorInterface;
 
 /**
@@ -50,7 +50,7 @@ abstract class AbstractAdapter implements AdapterInterface {
      * Send message with given SMS gateway.
      * Remember to clean previews errors et the very begining of sending process!
      * 
-     * @param MessageModel $message
+     * @param SmsMessageModel $message
      * @param bool $skipErrors If false error during sending message breaks sending others
      * @return bool true if success, false if error
      */

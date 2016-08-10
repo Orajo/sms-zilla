@@ -46,7 +46,7 @@ $smsSender->setRecipient(['511654321', '48511654987', '+41751654987']);
 
 // Add recipient from other then default country.
 // If region is changed then country code (+41) can be ommited.
-$smsSender->getValidator()->setDefaultRegion('CH);
+$smsSender->getValidator()->setDefaultRegion('CH');
 $smsSender->setRecipient('987654321');
 
 $smsSender->setText("Message text");

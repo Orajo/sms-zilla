@@ -55,6 +55,8 @@ $result = $smsSender->send();
 
 See tests for more examples.
 
+See https://github.com/Orajo/zf-sms-zilla if you need ZendFramework 2 module for sending SMS. The module is based on this library. 
+
 Author
 ------
 

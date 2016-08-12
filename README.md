@@ -53,6 +53,8 @@ $smsSender->setText("Message text");
 $result = $smsSender->send();
 ```
 
+See tests for more examples.
+
 Author
 ------
 

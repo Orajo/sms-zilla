@@ -12,6 +12,8 @@ Currently supported gateways:
 * text files generator (form gateways which monitor sahred folder,
 * mock (dummy gateway for testing)
 
+The library can be easily extended to support new gateways or integrated into your application, such as filtering of recipients based on consent to receiving SMS messages.
+
 ======
 
 Installation
@@ -34,16 +36,26 @@ Usage
 
 ```php
 $smsSender = new SmsZilla\SmsSender(new SmsZilla\Adapter\MockAdapter());
-$smsSender->setCountryCode(56);
 
+// default validator supports Polish numbers (PL) without country code
+// others must be given with + and country code
 // adding one recipient
-$smsSender->setRecipient('987654321');
+$smsSender->setRecipient('605123456');
 // adding more recipients (with and without country code)
-$smsSender->setRecipient(['987654321', '48321654987']);
+$smsSender->setRecipient(['511654321', '48511654987', '+41751654987']);
+
+// Add recipient from other then default country.
+// If region is changed then country code (+41) can be ommited.
+$smsSender->getValidator()->setDefaultRegion('CH');
+$smsSender->setRecipient('987654321');
 
 $smsSender->setText("Message text");
 $result = $smsSender->send();
 ```
+
+See tests for more examples.
+
+See https://github.com/Orajo/zf-sms-zilla if you need ZendFramework 2 module for sending SMS. The module is based on this library. 
 
 Author
 ------

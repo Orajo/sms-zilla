@@ -20,11 +20,11 @@ use SmsZilla\SendingError;
 /**
  * Send message through SmsApi.pl provider.
  * 
- * Require PHP API from SmsApi.pl service {@see https://github.com/smsapi/smsapi-php-client}
+ * Require PHP API from SmsApi.pl service {@link https://github.com/smsapi/smsapi-php-client}
  * 
  * @link https://www.smsapi.pl Service homepage
  * @link https://www.smsapi.pl/assets/files/api/SMSAPI_http.pdf SmsApi.pl API documentation
- * @link https://github.com/smsapi/smsapi-php-client PHP API form SmsApi.pl service
+ * @link https://github.com/smsapi/smsapi-php-client PHP API for SmsApi.pl service
  * 
  * @subpackage Adapter
  * @author Jarosław Wasilewski <orajo@windowslive.com>

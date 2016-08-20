@@ -12,7 +12,7 @@ namespace SmsZilla\Adapter;
 use SmsZilla\MessageInterface;
 
 /**
- * Description of MockGateway
+ * MockGateway for testing purposes
  *
  * @subpackage Adapter
  * @author Jarosław Wasilewski <orajo@windowslive.com>

@@ -11,9 +11,11 @@ namespace SmsZilla\Adapter;
 
 use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
-use SmsZilla\SmsMessageModel;
 use SmsZilla\SendingError;
+use SmsZilla\SmsMessageModel;
+use Zend\Http\Client;
 use Zend\Http\Request;
+use Zend\Http\Response;
 
 /**
  * Send message through infobip.com provider.
@@ -70,7 +72,7 @@ class InfobipAdapter extends AbstractAdapter {
         
         $request->setContent(json_encode($body));
         try {
-            $client = new \Zend\Http\Client();
+            $client = new Client();
             $response = $client->send($request);
             $status = $response->getStatusCode();
 
@@ -93,7 +95,7 @@ class InfobipAdapter extends AbstractAdapter {
     /**
      * Prepare request configuration
      * 
-     * @return SMSApi\Client
+     * @return Request
      * @throws ConfigurationException
      */
     private function getRequest() {
@@ -129,18 +131,18 @@ class InfobipAdapter extends AbstractAdapter {
      * }
      *
      * @link https://dev.infobip.com/v1/docs/2fa-status-codes-and-error-details Status codes and error details
-     * @param \Zend\Http\Response $response
+     * @param Response $response
      */
-    private function decodeError(\Zend\Http\Response $response) {
+    private function decodeError(Response $response) {
         $data = json_decode($response->getContent());
 
         if (is_object($data)) {
             $code = $data->requestError->serviceException->messageId;
             $msg = $data->requestError->serviceException->text;
-            $this->addError(new \SmsZilla\SendingError('', $this->errorCodes[$code], $msg));
+            $this->addError(new SendingError('', $this->errorCodes[$code], $msg));
         }
         else {
-            $this->addError(new \SmsZilla\SendingError('', $response->getStatusCode(), $response->getContent()));
+            $this->addError(new SendingError('', $response->getStatusCode(), $response->getContent()));
         }
     }
     
@@ -161,7 +163,7 @@ class InfobipAdapter extends AbstractAdapter {
      *    }
      * ]}
      * 
-     * @param \Zend\Http\Response $response
+     * @param Response $response
      * @return void
      */
     private function decodeResponse($response) {

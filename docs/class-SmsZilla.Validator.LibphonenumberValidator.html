@@ -112,7 +112,7 @@ phone numbers.</p>
 		<dd style="padding-left:0px">
 <b><span>SmsZilla\Validator\LibphonenumberValidator</span></b>			
 			 implements 
-<span>SmsZilla\ValidatorInterface</span>
+				<a href="class-SmsZilla.Validator.ValidatorInterface.html"><span>SmsZilla\Validator\ValidatorInterface</span></a>
 			
 			
 		</dd>
@@ -138,7 +138,7 @@ phone numbers.</p>
 for parsing, formatting, and validating international phone numbers.</a><br>
 				<b>Link:</b>
 				<a href="https://github.com/giggsey/libphonenumber-for-php">PHP port of Google lib</a><br>
-			<b>Located at</b> <a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#12-138" title="Go to source code">SmsZilla/Validator/LibphonenumberValidator.php</a>
+			<b>Located at</b> <a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#14-139" title="Go to source code">SmsZilla/Validator/LibphonenumberValidator.php</a>
 		<br>
 	</div>
 
@@ -158,7 +158,7 @@ for parsing, formatting, and validating international phone numbers.</a><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#41-51" title="Go to source code">__construct</a>( <span> <var>$region</var> = <span class="php-quote">''</span></span> )</code>
+			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#47-57" title="Go to source code">__construct</a>( <span> <var>$region</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
 				
@@ -180,28 +180,47 @@ for parsing, formatting, and validating international phone numbers.</a><br>
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_isValid">#</a>
-			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#53-73" title="Go to source code">isValid</a>( <span> <var>$number</var></span> )</code>
+			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#59-77" title="Go to source code">isValid</a>( <span>mixed <var>$number</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns true if and only if $value meets the validation requirements</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns true if and only if $value meets the validation requirements</p>
+
+<p>If $value fails validation, then this method returns false, and
+getMessages() will return an array of messages that explain why the
+validation failed.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$number</var></dt>
+						<dd>$value</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						Exception\RuntimeException<br>If validation of $value is impossible
+					</div>
 
 
 
-
-
-
-
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-SmsZilla.Validator.ValidatorInterface.html#_isValid">SmsZilla\Validator\ValidatorInterface::isValid()</a></code></div>
 			</div>
 			</div></td>
 		</tr>
@@ -216,7 +235,7 @@ for parsing, formatting, and validating international phone numbers.</a><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_format">#</a>
-			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#75-95" title="Go to source code">format</a>( <span>string <var>$number</var></span> )</code>
+			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#79-96" title="Go to source code">format</a>( <span>string <var>$number</var></span> )</code>
 
 			<div class="description short">
 				<p>Format phone number according to E164 standard but without leading
@@ -246,6 +265,8 @@ for parsing, formatting, and validating international phone numbers.</a><br>
 
 
 
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-SmsZilla.Validator.ValidatorInterface.html#_format">SmsZilla\Validator\ValidatorInterface::format()</a></code></div>
 			</div>
 			</div></td>
 		</tr>
@@ -260,7 +281,7 @@ for parsing, formatting, and validating international phone numbers.</a><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getMessages">#</a>
-			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#97-103" title="Go to source code">getMessages</a>( )</code>
+			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#98-104" title="Go to source code">getMessages</a>( )</code>
 
 			<div class="description short">
 				<p>Return list of error messages</p>
@@ -279,6 +300,8 @@ for parsing, formatting, and validating international phone numbers.</a><br>
 
 
 
+					<h4>Implementation of</h4>
+					<div class="list"><code><a href="class-SmsZilla.Validator.ValidatorInterface.html#_getMessages">SmsZilla\Validator\ValidatorInterface::getMessages()</a></code></div>
 			</div>
 			</div></td>
 		</tr>
@@ -293,7 +316,7 @@ for parsing, formatting, and validating international phone numbers.</a><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDefaultRegion">#</a>
-			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#105-111" title="Go to source code">getDefaultRegion</a>( )</code>
+			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#106-112" title="Go to source code">getDefaultRegion</a>( )</code>
 
 			<div class="description short">
 				<p>Return default region code.</p>
@@ -326,7 +349,7 @@ for parsing, formatting, and validating international phone numbers.</a><br>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setDefaultRegion">#</a>
-			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#113-123" title="Go to source code">setDefaultRegion</a>( <span>string <var>$countryCode</var></span> )</code>
+			<code><a href="source-class-SmsZilla.Validator.LibphonenumberValidator.html#114-124" title="Go to source code">setDefaultRegion</a>( <span>string <var>$region</var></span> )</code>
 
 			<div class="description short">
 				<p>Sets default region code.
@@ -340,7 +363,7 @@ Region code is used only if it cennot be determined from phone number.</p>
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$countryCode</var></dt>
+						<dt><var>$region</var></dt>
 						<dd></dd>
 					</dl></div>
 

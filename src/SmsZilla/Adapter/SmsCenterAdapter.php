@@ -11,20 +11,19 @@ namespace SmsZilla\Adapter;
 
 use Mobitex\Exception;
 use Mobitex\Sender;
-use SMSApi\Client;
 use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
 use SmsZilla\SmsMessageModel;
 use SmsZilla\SendingError;
 
 /**
- * Send message through SmsApi.pl provider.
+ * Send message through SmsCenter.pl provider.
  * 
- * Require PHP API from SmsApi.pl service {@see https://github.com/smsapi/smsapi-php-client}
+ * Require Mobitex SMS Api
  * 
- * @link https://www.smsapi.pl Service homepage
- * @link https://www.smsapi.pl/assets/files/api/SMSAPI_http.pdf SmsApi.pl API documentation
- * @link https://github.com/smsapi/smsapi-php-client PHP API form SmsApi.pl service
+ * @link https://smscenter.pl Service homepage
+ * @link http://smscenter.pl/specyfikacja_mt.pdf SmsCenter.pl API documentation
+ * @link https://github.com/mlebkowski/mobitex Mobitex SMS Api
  * 
  * @subpackage Adapter
  * @author Jarosław Wasilewski <orajo@windowslive.com>

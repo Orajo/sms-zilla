@@ -70,7 +70,6 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRecipient()
     {
-        
         $this->addRecipients();
         $retVal = $this->object->getRecipient();
 
@@ -86,13 +85,27 @@ class MessageModelTest extends \PHPUnit_Framework_TestCase
     public function testGetRecipients() {
         $this->addRecipients();
         $retVal = $this->object->getRecipients();
-        $this->assertCount(4, $retVal);
+        $this->assertCount(count($this->config['phones']), $retVal);
     }
     
     private function addRecipients()
     {
         foreach ($this->config['phones'] as $phone) {
-            $this->object->addRecipient($phone);            
+            $this->object->addRecipient($phone);
         }
+    }
+    
+    /**
+     * @covers SmsZilla\SmsMessageModel::setRecipient
+     * @covers SmsZilla\SmsMessageModel::getRecipients
+     */
+    public function testDuplicatedRecipients() {
+        foreach ($this->config['phones'] as $phone) {
+            $this->object->addRecipient($phone);
+        }
+        $this->object->addRecipient($this->config['phones'][0]);
+        $this->object->addRecipient($this->config['phones'][count($this->config['phones'])-1]);
+        $retVal = $this->object->getRecipients();
+        $this->assertCount(count($this->config['phones']), $retVal);
     }
 }

@@ -60,7 +60,9 @@ class SmsMessageModel implements MessageInterface {
     public function addRecipient($phoneNo) {
         
         if (!empty($phoneNo)) {
-            $this->recipients[] = (string)$phoneNo;
+            if (!in_array($phoneNo, $this->recipients)) {
+                $this->recipients[] = (string)$phoneNo;
+            }
         }
         else { 
             throw new \InvalidArgumentException('Phone number cannot be empty.');

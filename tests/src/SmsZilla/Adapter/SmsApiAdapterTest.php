@@ -69,6 +69,7 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
         $message->addRecipient($this->config['my_phone']);
         $this->object->setParams(['token' => $this->config['smsapi_token']]);
         $result = $this->object->send($message);
+        var_dump($this->object->getErrors());
         $this->assertTrue($result);
         $this->assertCount(0, $this->object->getErrors());
     }

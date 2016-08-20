@@ -40,6 +40,7 @@ class SmsCenterAdapter extends AbstractAdapter {
     /**
      * Send message through SmsCenter.pl gateway
      * @param SmsMessageModel $message
+     * @return bool
      */
     public function send(MessageInterface $message, $skipErrors = true) {
 

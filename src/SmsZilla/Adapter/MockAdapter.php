@@ -24,6 +24,12 @@ class MockAdapter extends AbstractAdapter {
      */
     private $sentMessages = array();
     
+    /**
+     * Stores messages on stack
+     * @param MessageInterface $message
+     * @param bool $skipErrors
+     * @return boolean Always true
+     */
     public function send(MessageInterface $message, $skipErrors = true) {
         $this->sentMessages[] = $message;
         return true;

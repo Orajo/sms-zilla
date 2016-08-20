@@ -22,7 +22,7 @@ use SmsZilla\Validator\ValidatorInterface;
  * message class implementing {@see MessageInterface}.
  * 
  * @see MessageInterface, Adapter\AdapterInterface
- * @author Jarosław Wasilewski
+ * @author Jarosław Wasilewski <orajo@windowslive.com>
  */
 class SmsSender implements SmsSenderInterface {
 

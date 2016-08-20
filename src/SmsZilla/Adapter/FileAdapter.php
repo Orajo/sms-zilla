@@ -37,6 +37,7 @@ class FileAdapter extends AbstractAdapter {
     /**
      * Save message in file
      * @param SmsMessageModel $message
+     * @return bool
      */
     public function send(MessageInterface $message, $skipErrors = true) {
         $this->clearErrors();

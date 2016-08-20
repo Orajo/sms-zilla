@@ -41,6 +41,7 @@ class CiscoAdapter extends AbstractAdapter {
     /**
      * Send message
      * @param SmsMessageModel $message
+     * @return bool
      */
     public function send(MessageInterface $message, $skipErrors = true) {
         $this->clearErrors();

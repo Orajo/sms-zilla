@@ -73,11 +73,11 @@ class FileAdapter extends AbstractAdapter {
     }
     
     /**
-     * 
+     * Generates name of the file which will store the message.
      * @param string $recipient
      * @return string
      */
     protected function getFileName($recipient) {
-        return crc32($recipient . mktime()) . self::FILE_EXT;
+        return crc32($recipient . time()) . self::FILE_EXT;
     }
 }

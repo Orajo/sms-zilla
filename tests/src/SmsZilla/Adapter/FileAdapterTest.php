@@ -20,7 +20,8 @@ class FileAdapterTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->config = include  __DIR__ . '/../../config.php';
-        $this->object = new FileAdapter();
+        require_once __DIR__ . '/FileAdapterMock.php';
+        $this->object = new FileAdapterMock();
     }
 
     /**

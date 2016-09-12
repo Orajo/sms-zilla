@@ -57,7 +57,7 @@ class FileAdapter extends AbstractAdapter {
 
         $format = $this->getParam('format');
         foreach ($message->getRecipient() as $recipient) {
-            $savePath = $storePath . DIRECTORY_SEPARATOR . $recipient . self::FILE_EXT;
+            $savePath = $storePath . DIRECTORY_SEPARATOR . $this->getFileName($recipient);
             $content = sprintf($format, $recipient, $message->getText());
 
             $return = file_put_contents($savePath, $content);
@@ -70,5 +70,14 @@ class FileAdapter extends AbstractAdapter {
             }
         }
         return $this->getErrors()->count() > 0;
+    }
+    
+    /**
+     * 
+     * @param string $recipient
+     * @return string
+     */
+    protected function getFileName($recipient) {
+        return crc32($recipient . mktime()) . self::FILE_EXT;
     }
 }

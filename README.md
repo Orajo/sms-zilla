@@ -6,9 +6,10 @@
 PHP library for sending SMS messages using various gateways. It's simple but flexible. Allows sending for more than one recipient at a time.
 
 Currently supported gateways:
-* SMSApi.pl,
-* SmsCenter.pl,
-* Infobip.com (infobip.com.pl)
+* [SMSApi.pl](https://www.smsapi.pl/),
+* [SmsCenter.pl](https://smscenter.pl/),
+* [Infobip.com](http://www.infobip.com/)
+* [Clickatell](https://www.clickatell.com/)
 * Cisco EHWIC and 880G for 3.7G (HSPA+)/3.5G (HSPA) device,
 * text files generator (form gateways which monitor sahred folder,
 * mock (dummy gateway for testing)
@@ -39,7 +40,7 @@ Usage
 $smsSender = new SmsZilla\SmsSender(new SmsZilla\Adapter\MockAdapter());
 
 // default validator supports Polish numbers (PL) without country code
-// others must be given with + and country code
+// others must be given with + (plus) sign and country code
 // adding one recipient
 $smsSender->setRecipient('605123456');
 // adding more recipients (with and without country code)

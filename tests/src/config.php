@@ -17,5 +17,6 @@ if (is_file($distFilePath)) {
         'smscenter_password' => '',
         'smscenter_sender' => '',
         'infobip_token' => '',
+        'clickatell_token' => '',
     );
 }

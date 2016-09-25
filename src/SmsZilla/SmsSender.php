@@ -54,7 +54,7 @@ class SmsSender implements SmsSenderInterface {
             $this->setValidator(new Validator\LibphonenumberValidator());
         }
         catch (\Exception $exp) {
-            ; // nothing to do, validation deisabled
+            ; // nothing to do, validation disabled
         }
     }
 

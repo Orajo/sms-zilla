@@ -3,7 +3,7 @@
     "description": "PHP library for sending SMS through various gateways",
     "type": "library",
     "license": "MIT",
-    "keywords": ["sms", "library"],
+    "keywords": ["sms", "library", "SerwerSMS", "Clickatell", "SMSApi", "SmsCenter", "Infobip", "Cisco"],
     "homepage": "https://github.com/Orajo/sms-zilla",
     "authors": [
         {

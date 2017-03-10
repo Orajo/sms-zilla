@@ -8,6 +8,7 @@ PHP library for sending SMS messages using various gateways. It's simple but fle
 Currently supported gateways:
 * [SMSApi.pl](https://www.smsapi.pl/),
 * [SmsCenter.pl](https://smscenter.pl/),
+* [SerwerSms.pl](https://serwersms.pl/),
 * [Infobip.com](http://www.infobip.com/)
 * [Clickatell](https://www.clickatell.com/)
 * Cisco EHWIC and 880G for 3.7G (HSPA+)/3.5G (HSPA) device,

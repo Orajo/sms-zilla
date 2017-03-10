@@ -4,19 +4,26 @@
  * phone number and SmsApi.pl security token.
  */
 
+$config = array(
+    'message' => 'Message content with ĄŻŹĆŚĘŁÓŃążźćśęłóń',
+    'smsapi_token' => '',
+    'phones' => ['48123456789', '48121212121'],
+    'my_phone' => '',
+    'smscenter_login' => '',
+    'smscenter_password' => '',
+    'smscenter_sender' => '',
+    'infobip_token' => '',
+    'clickatell_token' => '',
+    'serwersms_login' => 'demo',
+    'serwersms_password' => 'demo',
+    'serwersms_sender' => null,
+    'serwersms_test' => false,
+    'serwersms_details' => true,
+);
+
+$local_config = [];
 $distFilePath = __DIR__ . '/config.local.php';
 if (is_file($distFilePath)) {
-    return include $distFilePath;
-} else {
-    return array(
-        'message' => 'Message content with ĄŻŹĆŚĘŁÓŃążźćśęłóń',
-        'smsapi_token' => '',
-        'phones' => ['48123456789', '48121212121'],
-        'my_phone' => '',
-        'smscenter_login' => '',
-        'smscenter_password' => '',
-        'smscenter_sender' => '',
-        'infobip_token' => '',
-        'clickatell_token' => '',
-    );
+    $local_config = include $distFilePath;
 }
+return array_merge($config, $local_config);

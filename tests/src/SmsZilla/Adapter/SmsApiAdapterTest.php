@@ -12,7 +12,7 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
     protected $object;
 
     private $config = [];
-    
+
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -41,8 +41,8 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
         // store_path is not set
         $this->object->send(new \SmsZilla\SmsMessageModel);
     }
-    
-    
+
+
     /**
      * @covers SmsZilla\Adapter\SmsApiAdapter::send
      * @covers SmsZilla\Adapter\AbstractAdapter::getParams
@@ -51,12 +51,11 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
      * @expectedExceptionMessage SmsZilla\Adapter\SmsApiAdapter is not configured properly. Please set "sender" parameter properly.
      */
     public function testSenderConfigError() {
-        // store_path is not set
         $this->object->setParams(['token' => $this->config['smsapi_token']]);
         $this->object->setParams(['sender' => '']);
         $this->object->send(new \SmsZilla\SmsMessageModel);
     }
-    
+
     /**
      * @covers SmsZilla\Adapter\SmsApiAdapter::send
      * @covers SmsZilla\Adapter\AbstractAdapter::getErrors
@@ -73,15 +72,15 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($result);
         $this->assertCount(0, $this->object->getErrors());
     }
-    
+
     /**
      * @covers SmsZilla\Adapter\AbstractAdapter::setParams
      */
     public function testSetParams() {
-        
+
         $this->object->setParams(['token' => $this->config['smsapi_token']]);
         $this->assertEquals($this->object->getParam('token'), $this->config['smsapi_token']);
-        
+
         $this->expectException(\SmsZilla\ConfigurationException::class);
         $this->object->setParams(['dummy' => 1]);
     }

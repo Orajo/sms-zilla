@@ -19,11 +19,11 @@ use Zend\Http\Response;
 
 /**
  * Send message through infobip.com provider.
- * 
+ *
  * @link http://www.infobip.com Service homepage
  * @link http://www.infobip.com.pl Service homepage in Poland
  * @link https://dev.infobip.com/docs/send-single-sms API documentation (including PHP examples)
- * 
+ *
  * @subpackage Adapter
  * @author Jarosław Wasilewski <orajo@windowslive.com>
  */
@@ -33,9 +33,9 @@ class InfobipAdapter extends AbstractAdapter {
         'sender' => 'InfoSMS',
         'token' => null,
     ];
-    
+
     private $url = 'https://api.infobip.com/sms/1/text/single';
-    
+
     private $errorCodes = [
         'BAD_REQUEST' => 400,
         'UNAUTHORIZED' => 401,
@@ -45,15 +45,15 @@ class InfobipAdapter extends AbstractAdapter {
         'INTERNAL_SERVER_ERROR' => 500,
         'SERVICE_UNAVAILABLE' => 503,
     ];
-    
+
     const STATUS_GROUPS_ACCEPTED = 0;	// Message is accepted.
     const STATUS_GROUPS_PENDING = 1; 	// Message is in pending status.
     const STATUS_GROUPS_UNDELIVERABLE = 2;// Message is undeliverable.
     const STATUS_GROUPS_DELIVERED = 3; 	// Message is delivered.
     const STATUS_GROUPS_EXPIRED = 4; 	// Message is expired.
     const STATUS_GROUPS_REJECTED = 5; 	// Message is rejected.
-    
-    
+
+
     /**
      * Send message through infobip.com gateway
      * @param SmsMessageModel $error
@@ -62,14 +62,14 @@ class InfobipAdapter extends AbstractAdapter {
     public function send(MessageInterface $error, $skipErrors = true) {
 
         $sender = $this->getParam('sender');
-        
+
         $request = $this->getRequest();
         $body = [
             'from' => $sender,
             'to' => $error->getRecipients(),
             'text' => $error->getText()
         ];
-        
+
         $request->setContent(json_encode($body));
         try {
             $client = new Client();
@@ -86,7 +86,7 @@ class InfobipAdapter extends AbstractAdapter {
         catch (Exception $e) {
             $this->addError(new SendingError(json_encode($body), $e->getCode(), $e->getMessage()));
             if (!$skipErrors) {
-                throw new \RuntimeException($e->getMessage());
+                throw new \RuntimeException($e->getMessage(), $e->getCode(), true);
             }
         }
         return $this->getErrors()->count() === 0;
@@ -94,12 +94,12 @@ class InfobipAdapter extends AbstractAdapter {
 
     /**
      * Prepare request configuration
-     * 
+     *
      * @return Request
      * @throws ConfigurationException
      */
     private function getRequest() {
-        
+
         $token = $this->getParam('token');
 
         if (empty($token)) {
@@ -145,10 +145,10 @@ class InfobipAdapter extends AbstractAdapter {
             $this->addError(new SendingError('', $response->getStatusCode(), $response->getContent()));
         }
     }
-    
+
     /**
      * Decodes response
-     * 
+     *
      * Response is has JSON structure:
      * {"messages":[
      *    {"to":"null",
@@ -162,12 +162,12 @@ class InfobipAdapter extends AbstractAdapter {
      *        }
      *    }
      * ]}
-     * 
+     *
      * @param Response $response
      * @return void
      */
     private function decodeResponse($response) {
-        
+
         $data = json_decode($response->getContent());
 
         if (count($data->messages)> 0) {
@@ -176,10 +176,10 @@ class InfobipAdapter extends AbstractAdapter {
             }
         }
     }
-    
+
     /**
      * Parses response message. Optionally register errors.
-     * 
+     *
      * @link https://dev.infobip.com/docs/send-sms-response Description of the response message
      * @param Object $msg Message object according to {@link https://dev.infobip.com/docs/send-sms-response}
      * @return boolean True if there are no errors
@@ -189,7 +189,7 @@ class InfobipAdapter extends AbstractAdapter {
             self::STATUS_GROUPS_UNDELIVERABLE, self::STATUS_GROUPS_EXPIRED,
             self::STATUS_GROUPS_REJECTED])) {
             $code = $msg->status->id;
-            $text = sprintf("Error id=%d (groupId=%d). Message: %s %s", 
+            $text = sprintf("Error id=%d (groupId=%d). Message: %s %s",
                     $msg->status->id,
                     $msg->status->groupId,
                     $msg->status->description,

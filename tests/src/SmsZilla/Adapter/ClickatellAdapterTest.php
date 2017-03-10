@@ -10,7 +10,7 @@ class ClickatellAdapterTest extends \PHPUnit_Framework_TestCase {
     protected $object;
 
     private $config = [];
-        
+
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -25,7 +25,7 @@ class ClickatellAdapterTest extends \PHPUnit_Framework_TestCase {
      * This method is called after a test is executed.
      */
     protected function tearDown() {
-        
+
     }
 
     /**
@@ -40,13 +40,11 @@ class ClickatellAdapterTest extends \PHPUnit_Framework_TestCase {
             'token' => $this->config['clickatell_token']]
         );
         $result = $this->object->send($message, false);
-        var_dump($result);
-        var_dump($this->object->getErrors());
         $this->assertTrue($result);
         $this->assertCount(0, $this->object->getErrors());
     }
-    
-        
+
+
     /**
      * @covers SmsZilla\Adapter\SmsCenterAdapter::setParams
      */
@@ -55,7 +53,7 @@ class ClickatellAdapterTest extends \PHPUnit_Framework_TestCase {
             'token' => $this->config['clickatell_token']]
         );
         $this->assertEquals($this->object->getParam('token'), $this->config['clickatell_token']);
-        
+
         $this->expectException(\SmsZilla\ConfigurationException::class);
         $this->object->setParams(['dummy' => 1]);
     }

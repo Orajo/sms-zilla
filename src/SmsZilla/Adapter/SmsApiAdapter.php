@@ -19,13 +19,13 @@ use SmsZilla\SendingError;
 
 /**
  * Send message through SmsApi.pl provider.
- * 
+ *
  * Require PHP API from SmsApi.pl service {@link https://github.com/smsapi/smsapi-php-client}
- * 
+ *
  * @link https://www.smsapi.pl Service homepage
  * @link https://www.smsapi.pl/assets/files/api/SMSAPI_http.pdf SmsApi.pl API documentation
  * @link https://github.com/smsapi/smsapi-php-client PHP API for SmsApi.pl service
- * 
+ *
  * @subpackage Adapter
  * @author Jarosław Wasilewski <orajo@windowslive.com>
  */
@@ -69,7 +69,7 @@ class SmsApiAdapter extends AbstractAdapter {
                     if (in_array($status->getStatus(), [407, 406, 405, 401, 402])) {
                         $this->addError(new SendingError($status->getNumber(), $status->getStatus(), $status->getError()));
                         if (!$skipErrors) {
-                            throw new \RuntimeException($e->getMessage());
+                            throw new \RuntimeException($status->getError(), $status->getStatus());
                         }
                     }
                 }
@@ -77,7 +77,7 @@ class SmsApiAdapter extends AbstractAdapter {
             catch (SmsapiException $e) {
                 $this->addError(new SendingError($recipient, $e->getCode(), $e->getMessage()));
                 if (!$skipErrors) {
-                    throw new \RuntimeException($e->getMessage());
+                    throw new \RuntimeException($e->getMessage(), $e->getCode(), true);
                 }
             }
         }

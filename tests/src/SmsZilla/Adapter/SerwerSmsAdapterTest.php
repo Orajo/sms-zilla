@@ -36,11 +36,11 @@ class SerwerSmsAdapterTest extends \PHPUnit_Framework_TestCase
      * @covers SmsZilla\Adapter\AbstractAdapter::setParams
      * @covers \SmsZilla\ConfigurationException::__construct
      * @expectedException \SmsZilla\ConfigurationException
-     * @expectedExceptionMessage SmsZilla\Adapter\SerwerSmsAdapter is not configured properly. Please set "login" and "passwd" parameters properly.
+     * @expectedExceptionMessage SmsZilla\Adapter\SerwerSmsAdapter is not configured properly. Please set "login" and "password" parameters properly.
      */
     public function testSenderConfigError() {
         $this->object->setParams(['login' => $this->config['serwersms_login']]);
-//        $this->object->setParams(['passwd' => $this->config['serwersms_password']]);
+//        $this->object->setParams(['password' => $this->config['serwersms_password']]);
         $this->object->setParams(['sender' => 'serwersms_sender']);
         $this->object->setParams(['extra' => ['test' => $this->config['serwersms_test']]]);
         $this->object->send(new \SmsZilla\SmsMessageModel);
@@ -58,7 +58,7 @@ class SerwerSmsAdapterTest extends \PHPUnit_Framework_TestCase
         $message->addRecipient($this->config['my_phone']);
         $this->object->setParams([
             'login' => $this->config['serwersms_login'],
-            'passwd' => $this->config['serwersms_password'],
+            'password' => $this->config['serwersms_password'],
             'sender' => $this->config['serwersms_sender'],
             'extra' => ['test' => $this->config['serwersms_test']]
         ]);
@@ -81,7 +81,7 @@ class SerwerSmsAdapterTest extends \PHPUnit_Framework_TestCase
         $message->addRecipient($this->config['my_phone']);
         $this->object->setParams([
             'login' => $this->config['serwersms_login'],
-            'passwd' => $this->config['serwersms_password'],
+            'password' => $this->config['serwersms_password'],
             'sender' => $this->config['serwersms_sender'],
             'extra' => ['test' => $this->config['serwersms_test']]
         ]);
@@ -95,10 +95,10 @@ class SerwerSmsAdapterTest extends \PHPUnit_Framework_TestCase
     public function testSetParams() {
 
         $this->object->setParams(['login' => $this->config['serwersms_login']]);
-        $this->object->setParams(['passwd' => $this->config['serwersms_password']]);
+        $this->object->setParams(['password' => $this->config['serwersms_password']]);
         $this->object->setParams(['extra' => ['utf' => false]]);
         $this->assertEquals($this->object->getParam('login'), $this->config['serwersms_login']);
-        $this->assertEquals($this->object->getParam('passwd'), $this->config['serwersms_password']);
+        $this->assertEquals($this->object->getParam('password'), $this->config['serwersms_password']);
         $extra = $this->object->getParam('extra');
         $this->assertEquals($extra['utf'], false);
 
@@ -114,7 +114,7 @@ class SerwerSmsAdapterTest extends \PHPUnit_Framework_TestCase
     public function testSetParamsError() {
 
         $this->object->setParams(['login' => $this->config['serwersms_login']]);
-        $this->object->setParams(['passwd' => $this->config['serwersms_password']]);
+        $this->object->setParams(['password' => $this->config['serwersms_password']]);
         $this->object->setParams(['extra' => ['details' => false]]);
     }
 }

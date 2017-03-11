@@ -33,7 +33,7 @@ class SerwerSmsAdapter extends AbstractAdapter {
 
     protected $params = [
         'login' => '',
-        'passwd' => '',
+        'password' => '',
         'sender' => null, // ECO
         'extra' => array(
             'test' => false,
@@ -96,10 +96,10 @@ class SerwerSmsAdapter extends AbstractAdapter {
      */
     private function getClient() {
         $login = $this->getParam('login');
-        $password = $this->getParam('passwd');
+        $password = $this->getParam('password');
 
         if (empty($login) || empty($password)) {
-            throw new ConfigurationException(__CLASS__ . ' is not configured properly. Please set "login" and "passwd" parameters properly.');
+            throw new ConfigurationException(__CLASS__ . ' is not configured properly. Please set "login" and "password" parameters properly.');
         }
 
         return new SerwerSMS($login, $password);

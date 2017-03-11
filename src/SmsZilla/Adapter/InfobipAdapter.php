@@ -189,11 +189,10 @@ class InfobipAdapter extends AbstractAdapter {
             self::STATUS_GROUPS_UNDELIVERABLE, self::STATUS_GROUPS_EXPIRED,
             self::STATUS_GROUPS_REJECTED])) {
             $code = $msg->status->id;
-            $text = sprintf("Error id=%d (groupId=%d). Message: %s %s",
+            $text = sprintf("Error id=%d (groupId=%d). Message: %s",
                     $msg->status->id,
                     $msg->status->groupId,
-                    $msg->status->description,
-                    $msg->status->action);
+                    $msg->status->description);
             $this->addError(new SendingError($msg->to, $code, $text));
             return false;
         }

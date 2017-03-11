@@ -107,7 +107,9 @@ class SerwerSmsAdapter extends AbstractAdapter {
 
     /**
      * Sets options of gateway
-     * "details" option (in "extra" group) is readonly and must be true according to properly handle errors
+     *
+     * "details" option (in "extra" group) is read only and must be true for
+     * properly handle errors
      * @param array $params List of options as associative array name => value
      * @return mixed Value of the $name parameter
      */

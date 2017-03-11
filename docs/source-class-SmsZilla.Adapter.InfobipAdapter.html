@@ -81,9 +81,11 @@
 				<li><a href="class-Generator.html">Generator</a></li>
 				<li><a href="class-SmsZilla.Adapter.AbstractAdapter.html">SmsZilla\Adapter\AbstractAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.CiscoAdapter.html">SmsZilla\Adapter\CiscoAdapter</a></li>
+				<li><a href="class-SmsZilla.Adapter.ClickatellAdapter.html">SmsZilla\Adapter\ClickatellAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.FileAdapter.html">SmsZilla\Adapter\FileAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.InfobipAdapter.html">SmsZilla\Adapter\InfobipAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.MockAdapter.html">SmsZilla\Adapter\MockAdapter</a></li>
+				<li><a href="class-SmsZilla.Adapter.SerwerSmsAdapter.html">SmsZilla\Adapter\SerwerSmsAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.SmsApiAdapter.html">SmsZilla\Adapter\SmsApiAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.SmsCenterAdapter.html">SmsZilla\Adapter\SmsCenterAdapter</a></li>
 				<li><a href="class-SmsZilla.SendingError.html">SmsZilla\SendingError</a></li>
@@ -150,11 +152,11 @@
 </span><span id="19" class="l"><a href="#19"> 19 </a>
 </span><span id="20" class="l"><a href="#20"> 20 </a><span class="php-comment">/**
 </span></span><span id="21" class="l"><a href="#21"> 21 </a><span class="php-comment"> * Send message through infobip.com provider.
-</span></span><span id="22" class="l"><a href="#22"> 22 </a><span class="php-comment"> * 
+</span></span><span id="22" class="l"><a href="#22"> 22 </a><span class="php-comment"> *
 </span></span><span id="23" class="l"><a href="#23"> 23 </a><span class="php-comment"> * @link http://www.infobip.com Service homepage
 </span></span><span id="24" class="l"><a href="#24"> 24 </a><span class="php-comment"> * @link http://www.infobip.com.pl Service homepage in Poland
 </span></span><span id="25" class="l"><a href="#25"> 25 </a><span class="php-comment"> * @link https://dev.infobip.com/docs/send-single-sms API documentation (including PHP examples)
-</span></span><span id="26" class="l"><a href="#26"> 26 </a><span class="php-comment"> * 
+</span></span><span id="26" class="l"><a href="#26"> 26 </a><span class="php-comment"> *
 </span></span><span id="27" class="l"><a href="#27"> 27 </a><span class="php-comment"> * @subpackage Adapter
 </span></span><span id="28" class="l"><a href="#28"> 28 </a><span class="php-comment"> * @author Jarosław Wasilewski &lt;orajo@windowslive.com&gt;
 </span></span><span id="29" class="l"><a href="#29"> 29 </a><span class="php-comment"> */</span>
@@ -164,9 +166,9 @@
 </span><span id="33" class="l"><a href="#33"> 33 </a>        <span class="php-quote">'sender'</span> =&gt; <span class="php-quote">'InfoSMS'</span>,
 </span><span id="34" class="l"><a href="#34"> 34 </a>        <span class="php-quote">'token'</span> =&gt; <span class="php-keyword1">null</span>,
 </span><span id="35" class="l"><a href="#35"> 35 </a>    ];
-</span><span id="36" class="l"><a href="#36"> 36 </a>    
+</span><span id="36" class="l"><a href="#36"> 36 </a>
 </span><span id="37" class="l"><a href="#37"> 37 </a>    <span class="php-keyword1">private</span> <span class="php-var">$url</span> = <span class="php-quote">'https://api.infobip.com/sms/1/text/single'</span>;
-</span><span id="38" class="l"><a href="#38"> 38 </a>    
+</span><span id="38" class="l"><a href="#38"> 38 </a>
 </span><span id="39" class="l"><a href="#39"> 39 </a>    <span class="php-keyword1">private</span> <span class="php-var">$errorCodes</span> = [
 </span><span id="40" class="l"><a href="#40"> 40 </a>        <span class="php-quote">'BAD_REQUEST'</span> =&gt; <span class="php-num">400</span>,
 </span><span id="41" class="l"><a href="#41"> 41 </a>        <span class="php-quote">'UNAUTHORIZED'</span> =&gt; <span class="php-num">401</span>,
@@ -176,15 +178,15 @@
 </span><span id="45" class="l"><a href="#45"> 45 </a>        <span class="php-quote">'INTERNAL_SERVER_ERROR'</span> =&gt; <span class="php-num">500</span>,
 </span><span id="46" class="l"><a href="#46"> 46 </a>        <span class="php-quote">'SERVICE_UNAVAILABLE'</span> =&gt; <span class="php-num">503</span>,
 </span><span id="47" class="l"><a href="#47"> 47 </a>    ];
-</span><span id="48" class="l"><a href="#48"> 48 </a>    
+</span><span id="48" class="l"><a href="#48"> 48 </a>
 </span><span id="49" class="l"><a href="#49"> 49 </a>    <span class="php-keyword1">const</span> STATUS_GROUPS_ACCEPTED = <span class="php-num">0</span>;   <span class="php-comment">// Message is accepted.</span>
 </span><span id="50" class="l"><a href="#50"> 50 </a>    <span class="php-keyword1">const</span> STATUS_GROUPS_PENDING = <span class="php-num">1</span>;    <span class="php-comment">// Message is in pending status.</span>
 </span><span id="51" class="l"><a href="#51"> 51 </a>    <span class="php-keyword1">const</span> STATUS_GROUPS_UNDELIVERABLE = <span class="php-num">2</span>;<span class="php-comment">// Message is undeliverable.</span>
 </span><span id="52" class="l"><a href="#52"> 52 </a>    <span class="php-keyword1">const</span> STATUS_GROUPS_DELIVERED = <span class="php-num">3</span>;  <span class="php-comment">// Message is delivered.</span>
 </span><span id="53" class="l"><a href="#53"> 53 </a>    <span class="php-keyword1">const</span> STATUS_GROUPS_EXPIRED = <span class="php-num">4</span>;    <span class="php-comment">// Message is expired.</span>
 </span><span id="54" class="l"><a href="#54"> 54 </a>    <span class="php-keyword1">const</span> STATUS_GROUPS_REJECTED = <span class="php-num">5</span>;   <span class="php-comment">// Message is rejected.</span>
-</span><span id="55" class="l"><a href="#55"> 55 </a>    
-</span><span id="56" class="l"><a href="#56"> 56 </a>    
+</span><span id="55" class="l"><a href="#55"> 55 </a>
+</span><span id="56" class="l"><a href="#56"> 56 </a>
 </span><span id="57" class="l"><a href="#57"> 57 </a>    <span class="php-comment">/**
 </span></span><span id="58" class="l"><a href="#58"> 58 </a><span class="php-comment">     * Send message through infobip.com gateway
 </span></span><span id="59" class="l"><a href="#59"> 59 </a><span class="php-comment">     * @param SmsMessageModel $error
@@ -193,14 +195,14 @@
 </span><span id="62" class="l"><a href="#62"> 62 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> send(MessageInterface <span class="php-var">$error</span>, <span class="php-var">$skipErrors</span> = <span class="php-keyword1">true</span>) {
 </span><span id="63" class="l"><a href="#63"> 63 </a>
 </span><span id="64" class="l"><a href="#64"> 64 </a>        <span class="php-var">$sender</span> = <span class="php-var">$this</span>-&gt;getParam(<span class="php-quote">'sender'</span>);
-</span><span id="65" class="l"><a href="#65"> 65 </a>        
+</span><span id="65" class="l"><a href="#65"> 65 </a>
 </span><span id="66" class="l"><a href="#66"> 66 </a>        <span class="php-var">$request</span> = <span class="php-var">$this</span>-&gt;getRequest();
 </span><span id="67" class="l"><a href="#67"> 67 </a>        <span class="php-var">$body</span> = [
 </span><span id="68" class="l"><a href="#68"> 68 </a>            <span class="php-quote">'from'</span> =&gt; <span class="php-var">$sender</span>,
 </span><span id="69" class="l"><a href="#69"> 69 </a>            <span class="php-quote">'to'</span> =&gt; <span class="php-var">$error</span>-&gt;getRecipients(),
 </span><span id="70" class="l"><a href="#70"> 70 </a>            <span class="php-quote">'text'</span> =&gt; <span class="php-var">$error</span>-&gt;<span class="php-keyword2">getText</span>()
 </span><span id="71" class="l"><a href="#71"> 71 </a>        ];
-</span><span id="72" class="l"><a href="#72"> 72 </a>        
+</span><span id="72" class="l"><a href="#72"> 72 </a>
 </span><span id="73" class="l"><a href="#73"> 73 </a>        <span class="php-var">$request</span>-&gt;setContent(<span class="php-keyword2">json_encode</span>(<span class="php-var">$body</span>));
 </span><span id="74" class="l"><a href="#74"> 74 </a>        <span class="php-keyword1">try</span> {
 </span><span id="75" class="l"><a href="#75"> 75 </a>            <span class="php-var">$client</span> = <span class="php-keyword1">new</span> Client();
@@ -217,7 +219,7 @@
 </span><span id="86" class="l"><a href="#86"> 86 </a>        <span class="php-keyword1">catch</span> (Exception <span class="php-var">$e</span>) {
 </span><span id="87" class="l"><a href="#87"> 87 </a>            <span class="php-var">$this</span>-&gt;addError(<span class="php-keyword1">new</span> SendingError(<span class="php-keyword2">json_encode</span>(<span class="php-var">$body</span>), <span class="php-var">$e</span>-&gt;getCode(), <span class="php-var">$e</span>-&gt;getMessage()));
 </span><span id="88" class="l"><a href="#88"> 88 </a>            <span class="php-keyword1">if</span> (!<span class="php-var">$skipErrors</span>) {
-</span><span id="89" class="l"><a href="#89"> 89 </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \RuntimeException(<span class="php-var">$e</span>-&gt;getMessage());
+</span><span id="89" class="l"><a href="#89"> 89 </a>                <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \RuntimeException(<span class="php-var">$e</span>-&gt;getMessage(), <span class="php-var">$e</span>-&gt;getCode(), <span class="php-keyword1">true</span>);
 </span><span id="90" class="l"><a href="#90"> 90 </a>            }
 </span><span id="91" class="l"><a href="#91"> 91 </a>        }
 </span><span id="92" class="l"><a href="#92"> 92 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getErrors()-&gt;<span class="php-keyword2">count</span>() === <span class="php-num">0</span>;
@@ -225,12 +227,12 @@
 </span><span id="94" class="l"><a href="#94"> 94 </a>
 </span><span id="95" class="l"><a href="#95"> 95 </a>    <span class="php-comment">/**
 </span></span><span id="96" class="l"><a href="#96"> 96 </a><span class="php-comment">     * Prepare request configuration
-</span></span><span id="97" class="l"><a href="#97"> 97 </a><span class="php-comment">     * 
+</span></span><span id="97" class="l"><a href="#97"> 97 </a><span class="php-comment">     *
 </span></span><span id="98" class="l"><a href="#98"> 98 </a><span class="php-comment">     * @return Request
 </span></span><span id="99" class="l"><a href="#99"> 99 </a><span class="php-comment">     * @throws ConfigurationException
 </span></span><span id="100" class="l"><a href="#100">100 </a><span class="php-comment">     */</span>
 </span><span id="101" class="l"><a href="#101">101 </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> getRequest() {
-</span><span id="102" class="l"><a href="#102">102 </a>        
+</span><span id="102" class="l"><a href="#102">102 </a>
 </span><span id="103" class="l"><a href="#103">103 </a>        <span class="php-var">$token</span> = <span class="php-var">$this</span>-&gt;getParam(<span class="php-quote">'token'</span>);
 </span><span id="104" class="l"><a href="#104">104 </a>
 </span><span id="105" class="l"><a href="#105">105 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">empty</span>(<span class="php-var">$token</span>)) {
@@ -276,10 +278,10 @@
 </span><span id="145" class="l"><a href="#145">145 </a>            <span class="php-var">$this</span>-&gt;addError(<span class="php-keyword1">new</span> SendingError(<span class="php-quote">''</span>, <span class="php-var">$response</span>-&gt;getStatusCode(), <span class="php-var">$response</span>-&gt;getContent()));
 </span><span id="146" class="l"><a href="#146">146 </a>        }
 </span><span id="147" class="l"><a href="#147">147 </a>    }
-</span><span id="148" class="l"><a href="#148">148 </a>    
+</span><span id="148" class="l"><a href="#148">148 </a>
 </span><span id="149" class="l"><a href="#149">149 </a>    <span class="php-comment">/**
 </span></span><span id="150" class="l"><a href="#150">150 </a><span class="php-comment">     * Decodes response
-</span></span><span id="151" class="l"><a href="#151">151 </a><span class="php-comment">     * 
+</span></span><span id="151" class="l"><a href="#151">151 </a><span class="php-comment">     *
 </span></span><span id="152" class="l"><a href="#152">152 </a><span class="php-comment">     * Response is has JSON structure:
 </span></span><span id="153" class="l"><a href="#153">153 </a><span class="php-comment">     * {&quot;messages&quot;:[
 </span></span><span id="154" class="l"><a href="#154">154 </a><span class="php-comment">     *    {&quot;to&quot;:&quot;null&quot;,
@@ -293,12 +295,12 @@
 </span></span><span id="162" class="l"><a href="#162">162 </a><span class="php-comment">     *        }
 </span></span><span id="163" class="l"><a href="#163">163 </a><span class="php-comment">     *    }
 </span></span><span id="164" class="l"><a href="#164">164 </a><span class="php-comment">     * ]}
-</span></span><span id="165" class="l"><a href="#165">165 </a><span class="php-comment">     * 
+</span></span><span id="165" class="l"><a href="#165">165 </a><span class="php-comment">     *
 </span></span><span id="166" class="l"><a href="#166">166 </a><span class="php-comment">     * @param Response $response
 </span></span><span id="167" class="l"><a href="#167">167 </a><span class="php-comment">     * @return void
 </span></span><span id="168" class="l"><a href="#168">168 </a><span class="php-comment">     */</span>
 </span><span id="169" class="l"><a href="#169">169 </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> decodeResponse(<span class="php-var">$response</span>) {
-</span><span id="170" class="l"><a href="#170">170 </a>        
+</span><span id="170" class="l"><a href="#170">170 </a>
 </span><span id="171" class="l"><a href="#171">171 </a>        <span class="php-var">$data</span> = <span class="php-keyword2">json_decode</span>(<span class="php-var">$response</span>-&gt;getContent());
 </span><span id="172" class="l"><a href="#172">172 </a>
 </span><span id="173" class="l"><a href="#173">173 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">count</span>(<span class="php-var">$data</span>-&gt;messages)&gt; <span class="php-num">0</span>) {
@@ -307,10 +309,10 @@
 </span><span id="176" class="l"><a href="#176">176 </a>            }
 </span><span id="177" class="l"><a href="#177">177 </a>        }
 </span><span id="178" class="l"><a href="#178">178 </a>    }
-</span><span id="179" class="l"><a href="#179">179 </a>    
+</span><span id="179" class="l"><a href="#179">179 </a>
 </span><span id="180" class="l"><a href="#180">180 </a>    <span class="php-comment">/**
 </span></span><span id="181" class="l"><a href="#181">181 </a><span class="php-comment">     * Parses response message. Optionally register errors.
-</span></span><span id="182" class="l"><a href="#182">182 </a><span class="php-comment">     * 
+</span></span><span id="182" class="l"><a href="#182">182 </a><span class="php-comment">     *
 </span></span><span id="183" class="l"><a href="#183">183 </a><span class="php-comment">     * @link https://dev.infobip.com/docs/send-sms-response Description of the response message
 </span></span><span id="184" class="l"><a href="#184">184 </a><span class="php-comment">     * @param Object $msg Message object according to {@link https://dev.infobip.com/docs/send-sms-response}
 </span></span><span id="185" class="l"><a href="#185">185 </a><span class="php-comment">     * @return boolean True if there are no errors
@@ -320,7 +322,7 @@
 </span><span id="189" class="l"><a href="#189">189 </a>            self::STATUS_GROUPS_UNDELIVERABLE, self::STATUS_GROUPS_EXPIRED,
 </span><span id="190" class="l"><a href="#190">190 </a>            self::STATUS_GROUPS_REJECTED])) {
 </span><span id="191" class="l"><a href="#191">191 </a>            <span class="php-var">$code</span> = <span class="php-var">$msg</span>-&gt;status-&gt;id;
-</span><span id="192" class="l"><a href="#192">192 </a>            <span class="php-var">$text</span> = <span class="php-keyword2">sprintf</span>(<span class="php-quote">&quot;Error id=%d (groupId=%d). Message: %s %s&quot;</span>, 
+</span><span id="192" class="l"><a href="#192">192 </a>            <span class="php-var">$text</span> = <span class="php-keyword2">sprintf</span>(<span class="php-quote">&quot;Error id=%d (groupId=%d). Message: %s %s&quot;</span>,
 </span><span id="193" class="l"><a href="#193">193 </a>                    <span class="php-var">$msg</span>-&gt;status-&gt;id,
 </span><span id="194" class="l"><a href="#194">194 </a>                    <span class="php-var">$msg</span>-&gt;status-&gt;groupId,
 </span><span id="195" class="l"><a href="#195">195 </a>                    <span class="php-var">$msg</span>-&gt;status-&gt;description,
@@ -339,6 +341,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?afbba0c8dc5a3a84a03953d48cef7c97f2d27e52"></script>
-<script src="elementlist.js?af6b544cdee5ec862637d0efd6d27137aef8eecd"></script>
+<script src="elementlist.js?9b5bfc3aec4bdaa03ea386f8a575e0a4854bbf17"></script>
 </body>
 </html>

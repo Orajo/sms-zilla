@@ -81,9 +81,11 @@
 				<li><a href="class-Generator.html">Generator</a></li>
 				<li><a href="class-SmsZilla.Adapter.AbstractAdapter.html">SmsZilla\Adapter\AbstractAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.CiscoAdapter.html">SmsZilla\Adapter\CiscoAdapter</a></li>
+				<li><a href="class-SmsZilla.Adapter.ClickatellAdapter.html">SmsZilla\Adapter\ClickatellAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.FileAdapter.html">SmsZilla\Adapter\FileAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.InfobipAdapter.html">SmsZilla\Adapter\InfobipAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.MockAdapter.html">SmsZilla\Adapter\MockAdapter</a></li>
+				<li><a href="class-SmsZilla.Adapter.SerwerSmsAdapter.html">SmsZilla\Adapter\SerwerSmsAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.SmsApiAdapter.html">SmsZilla\Adapter\SmsApiAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.SmsCenterAdapter.html">SmsZilla\Adapter\SmsCenterAdapter</a></li>
 				<li><a href="class-SmsZilla.SendingError.html">SmsZilla\SendingError</a></li>
@@ -150,13 +152,13 @@
 </span><span id="19" class="l"><a href="#19"> 19 </a>
 </span><span id="20" class="l"><a href="#20"> 20 </a><span class="php-comment">/**
 </span></span><span id="21" class="l"><a href="#21"> 21 </a><span class="php-comment"> * Send message through SmsApi.pl provider.
-</span></span><span id="22" class="l"><a href="#22"> 22 </a><span class="php-comment"> * 
+</span></span><span id="22" class="l"><a href="#22"> 22 </a><span class="php-comment"> *
 </span></span><span id="23" class="l"><a href="#23"> 23 </a><span class="php-comment"> * Require PHP API from SmsApi.pl service {@link https://github.com/smsapi/smsapi-php-client}
-</span></span><span id="24" class="l"><a href="#24"> 24 </a><span class="php-comment"> * 
+</span></span><span id="24" class="l"><a href="#24"> 24 </a><span class="php-comment"> *
 </span></span><span id="25" class="l"><a href="#25"> 25 </a><span class="php-comment"> * @link https://www.smsapi.pl Service homepage
 </span></span><span id="26" class="l"><a href="#26"> 26 </a><span class="php-comment"> * @link https://www.smsapi.pl/assets/files/api/SMSAPI_http.pdf SmsApi.pl API documentation
 </span></span><span id="27" class="l"><a href="#27"> 27 </a><span class="php-comment"> * @link https://github.com/smsapi/smsapi-php-client PHP API for SmsApi.pl service
-</span></span><span id="28" class="l"><a href="#28"> 28 </a><span class="php-comment"> * 
+</span></span><span id="28" class="l"><a href="#28"> 28 </a><span class="php-comment"> *
 </span></span><span id="29" class="l"><a href="#29"> 29 </a><span class="php-comment"> * @subpackage Adapter
 </span></span><span id="30" class="l"><a href="#30"> 30 </a><span class="php-comment"> * @author Jarosław Wasilewski &lt;orajo@windowslive.com&gt;
 </span></span><span id="31" class="l"><a href="#31"> 31 </a><span class="php-comment"> */</span>
@@ -200,7 +202,7 @@
 </span><span id="69" class="l"><a href="#69"> 69 </a>                    <span class="php-keyword1">if</span> (<span class="php-keyword2">in_array</span>(<span class="php-var">$status</span>-&gt;getStatus(), [<span class="php-num">407</span>, <span class="php-num">406</span>, <span class="php-num">405</span>, <span class="php-num">401</span>, <span class="php-num">402</span>])) {
 </span><span id="70" class="l"><a href="#70"> 70 </a>                        <span class="php-var">$this</span>-&gt;addError(<span class="php-keyword1">new</span> SendingError(<span class="php-var">$status</span>-&gt;getNumber(), <span class="php-var">$status</span>-&gt;getStatus(), <span class="php-var">$status</span>-&gt;getError()));
 </span><span id="71" class="l"><a href="#71"> 71 </a>                        <span class="php-keyword1">if</span> (!<span class="php-var">$skipErrors</span>) {
-</span><span id="72" class="l"><a href="#72"> 72 </a>                            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \RuntimeException(<span class="php-var">$e</span>-&gt;getMessage());
+</span><span id="72" class="l"><a href="#72"> 72 </a>                            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \RuntimeException(<span class="php-var">$status</span>-&gt;getError(), <span class="php-var">$status</span>-&gt;getStatus());
 </span><span id="73" class="l"><a href="#73"> 73 </a>                        }
 </span><span id="74" class="l"><a href="#74"> 74 </a>                    }
 </span><span id="75" class="l"><a href="#75"> 75 </a>                }
@@ -208,7 +210,7 @@
 </span><span id="77" class="l"><a href="#77"> 77 </a>            <span class="php-keyword1">catch</span> (SmsapiException <span class="php-var">$e</span>) {
 </span><span id="78" class="l"><a href="#78"> 78 </a>                <span class="php-var">$this</span>-&gt;addError(<span class="php-keyword1">new</span> SendingError(<span class="php-var">$recipient</span>, <span class="php-var">$e</span>-&gt;getCode(), <span class="php-var">$e</span>-&gt;getMessage()));
 </span><span id="79" class="l"><a href="#79"> 79 </a>                <span class="php-keyword1">if</span> (!<span class="php-var">$skipErrors</span>) {
-</span><span id="80" class="l"><a href="#80"> 80 </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \RuntimeException(<span class="php-var">$e</span>-&gt;getMessage());
+</span><span id="80" class="l"><a href="#80"> 80 </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \RuntimeException(<span class="php-var">$e</span>-&gt;getMessage(), <span class="php-var">$e</span>-&gt;getCode(), <span class="php-keyword1">true</span>);
 </span><span id="81" class="l"><a href="#81"> 81 </a>                }
 </span><span id="82" class="l"><a href="#82"> 82 </a>            }
 </span><span id="83" class="l"><a href="#83"> 83 </a>        }
@@ -249,6 +251,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?afbba0c8dc5a3a84a03953d48cef7c97f2d27e52"></script>
-<script src="elementlist.js?af6b544cdee5ec862637d0efd6d27137aef8eecd"></script>
+<script src="elementlist.js?9b5bfc3aec4bdaa03ea386f8a575e0a4854bbf17"></script>
 </body>
 </html>

@@ -81,9 +81,11 @@
 				<li><a href="class-Generator.html">Generator</a></li>
 				<li><a href="class-SmsZilla.Adapter.AbstractAdapter.html">SmsZilla\Adapter\AbstractAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.CiscoAdapter.html">SmsZilla\Adapter\CiscoAdapter</a></li>
+				<li><a href="class-SmsZilla.Adapter.ClickatellAdapter.html">SmsZilla\Adapter\ClickatellAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.FileAdapter.html">SmsZilla\Adapter\FileAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.InfobipAdapter.html">SmsZilla\Adapter\InfobipAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.MockAdapter.html">SmsZilla\Adapter\MockAdapter</a></li>
+				<li><a href="class-SmsZilla.Adapter.SerwerSmsAdapter.html">SmsZilla\Adapter\SerwerSmsAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.SmsApiAdapter.html">SmsZilla\Adapter\SmsApiAdapter</a></li>
 				<li><a href="class-SmsZilla.Adapter.SmsCenterAdapter.html">SmsZilla\Adapter\SmsCenterAdapter</a></li>
 				<li><a href="class-SmsZilla.SendingError.html">SmsZilla\SendingError</a></li>
@@ -188,7 +190,7 @@
 </span><span id="57" class="l"><a href="#57">57 </a>
 </span><span id="58" class="l"><a href="#58">58 </a>        <span class="php-var">$format</span> = <span class="php-var">$this</span>-&gt;getParam(<span class="php-quote">'format'</span>);
 </span><span id="59" class="l"><a href="#59">59 </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$message</span>-&gt;getRecipient() <span class="php-keyword1">as</span> <span class="php-var">$recipient</span>) {
-</span><span id="60" class="l"><a href="#60">60 </a>            <span class="php-var">$savePath</span> = <span class="php-var">$storePath</span> . DIRECTORY_SEPARATOR . <span class="php-var">$recipient</span> . self::FILE_EXT;
+</span><span id="60" class="l"><a href="#60">60 </a>            <span class="php-var">$savePath</span> = <span class="php-var">$storePath</span> . DIRECTORY_SEPARATOR . <span class="php-var">$this</span>-&gt;getFileName(<span class="php-var">$recipient</span>);
 </span><span id="61" class="l"><a href="#61">61 </a>            <span class="php-var">$content</span> = <span class="php-keyword2">sprintf</span>(<span class="php-var">$format</span>, <span class="php-var">$recipient</span>, <span class="php-var">$message</span>-&gt;<span class="php-keyword2">getText</span>());
 </span><span id="62" class="l"><a href="#62">62 </a>
 </span><span id="63" class="l"><a href="#63">63 </a>            <span class="php-var">$return</span> = <span class="php-keyword2">file_put_contents</span>(<span class="php-var">$savePath</span>, <span class="php-var">$content</span>);
@@ -202,8 +204,17 @@
 </span><span id="71" class="l"><a href="#71">71 </a>        }
 </span><span id="72" class="l"><a href="#72">72 </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getErrors()-&gt;<span class="php-keyword2">count</span>() &gt; <span class="php-num">0</span>;
 </span><span id="73" class="l"><a href="#73">73 </a>    }
-</span><span id="74" class="l"><a href="#74">74 </a>}
-</span><span id="75" class="l"><a href="#75">75 </a></span></code></pre>
+</span><span id="74" class="l"><a href="#74">74 </a>    
+</span><span id="75" class="l"><a href="#75">75 </a>    <span class="php-comment">/**
+</span></span><span id="76" class="l"><a href="#76">76 </a><span class="php-comment">     * Generates name of the file which will store the message.
+</span></span><span id="77" class="l"><a href="#77">77 </a><span class="php-comment">     * @param string $recipient
+</span></span><span id="78" class="l"><a href="#78">78 </a><span class="php-comment">     * @return string
+</span></span><span id="79" class="l"><a href="#79">79 </a><span class="php-comment">     */</span>
+</span><span id="80" class="l"><a href="#80">80 </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> getFileName(<span class="php-var">$recipient</span>) {
+</span><span id="81" class="l"><a href="#81">81 </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">crc32</span>(<span class="php-var">$recipient</span> . <span class="php-keyword2">time</span>()) . self::FILE_EXT;
+</span><span id="82" class="l"><a href="#82">82 </a>    }
+</span><span id="83" class="l"><a href="#83">83 </a>}
+</span><span id="84" class="l"><a href="#84">84 </a></span></code></pre>
 	</div>
 
 	<div id="footer">
@@ -211,6 +222,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?afbba0c8dc5a3a84a03953d48cef7c97f2d27e52"></script>
-<script src="elementlist.js?af6b544cdee5ec862637d0efd6d27137aef8eecd"></script>
+<script src="elementlist.js?9b5bfc3aec4bdaa03ea386f8a575e0a4854bbf17"></script>
 </body>
 </html>

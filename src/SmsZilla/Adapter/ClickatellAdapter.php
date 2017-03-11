@@ -9,7 +9,6 @@
 
 namespace SmsZilla\Adapter;
 
-use Clickatell\Api\ClickatellRest;
 use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
 use SmsZilla\SmsMessageModel;
@@ -17,14 +16,14 @@ use SmsZilla\SendingError;
 
 /**
  * Send message through Clickatell provider.
- * 
+ *
  * Require Clickatell PHP Api
- * 
+ *
  * @link https://www.clickatell.com Service homepage
  * @link https://www.clickatell.com/developers/ Clickatell API documentation
  * @link https://github.com/clickatell/clickatell-php Clickatell PHP Api
  * @link https://www.clickatell.com/developers/scripts/php-library/ PHP library documentation
- * 
+ *
  * @subpackage Adapter
  * @author Jarosław Wasilewski <orajo@windowslive.com>
  */
@@ -33,7 +32,7 @@ class ClickatellAdapter extends AbstractAdapter {
     protected $params = [
         'token' => null,
     ];
-    
+
     /**
      * Send message through Clickatell.com gateway
      * @param SmsMessageModel $message
@@ -43,13 +42,13 @@ class ClickatellAdapter extends AbstractAdapter {
 
         // check clickatell limit
         if (count($message->getRecipients()) > 600) {
-            $this->addError(new SendingError($message->getRecipients(), 
+            $this->addError(new SendingError($message->getRecipients(),
                     'You have excedded provider limit of messages to send in one time.'
                     , $message->error));
         }
-        
+
         $gateway = $this->getClient();
-        
+
         try {
             $response = $gateway->sendMessage($message->getRecipients(), $message->getText());
             foreach ($response as $message) {

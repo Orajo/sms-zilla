@@ -29,8 +29,7 @@ class ClickatellAdapterTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers SmsZilla\Adapter\SmsCenterAdapter::send
-     * @todo   Implement testSend().
+     * @covers SmsZilla\Adapter\ClickatellAdapter::send
      */
     public function testSend() {
         $message = new \SmsZilla\SmsMessageModel();
@@ -46,7 +45,7 @@ class ClickatellAdapterTest extends \PHPUnit_Framework_TestCase {
 
 
     /**
-     * @covers SmsZilla\Adapter\SmsCenterAdapter::setParams
+     * @covers SmsZilla\Adapter\ClickatellAdapter::setParams
      */
     public function testSetParams() {
         $this->object->setParams([

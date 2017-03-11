@@ -12,7 +12,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
      * @var SmsZilla
      */
     protected $object;
-    
+
     protected $config;
 
     /**
@@ -32,7 +32,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
     }
-    
+
     /**
      * @covers \SmsZilla\SmsSender::__construct
      */
@@ -40,7 +40,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $result = new SmsSender(new \SmsZilla\Adapter\MockAdapter(), []);
         $this->assertEquals($this->object, $result);
     }
-    
+
     /**
      * @covers \SmsZilla\SmsSender::__construct
      */
@@ -49,7 +49,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $result = new SmsSender(new \SmsZilla\Adapter\FileAdapter(), ['store_path' => __DIR__]);
         $this->assertEquals($reference, $result->getAdapter());
     }
-   
+
     /**
      * @covers SmsZilla\SmsSender::setText
      * @expectedException \InvalidArgumentException
@@ -59,7 +59,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $retVal = $this->object->setText('');
         $this->assertEquals($this->config['message'], $retVal->getText());
     }
-    
+
     /**
      * @covers SmsZilla\SmsSender::setText
      */
@@ -68,7 +68,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $retVal = $this->object->setText($this->config['message']);
         $this->assertEquals($this->config['message'], $retVal->getText());
     }
-    
+
     /**
      * @covers SmsZilla\SmsSender::getText
      */
@@ -95,12 +95,13 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetMessage()
     {
+        $this->assertInstanceOf(SmsMessageModel::class, $this->object->getMessage());
         $message = new SmsMessageModel();
         $message->setText($this->config['message']);
         $message->addRecipient('654789321');
         $testMsg = clone $message;
         $this->object->setMessage($message);
-        $this->assertEquals($testMsg, $this->object->getMessage());        
+        $this->assertEquals($testMsg, $this->object->getMessage());
     }
 
     /**
@@ -145,7 +146,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($result);
         $messages = $this->object->getAdapter()->getSentMessages();
         $this->assertCount(1, $messages);
-        
+
         $this->assertEquals($message, $messages[0]);
     }
 
@@ -161,7 +162,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($result);
     }
 
-    
+
     /**
      * @covers SmsZilla\SmsSender::getAdapter
      */
@@ -171,7 +172,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $result = $this->object->getAdapter();
         $this->assertEquals($expected, $result);
     }
-    
+
     /**
      * @covers \SmsZilla\SmsSender::getRecipients
      * @covers \SmsZilla\SmsSender::setRecipient
@@ -182,7 +183,7 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $this->object->setRecipient('695687123', false);
         $result = $this->object->getRecipients();
         $this->assertEquals('48695687123', $result[0]);
-        
+
         // testing parsing phone number using defferent region
         $this->object->setValidator(new Validator\LibphonenumberValidator('CH'));
         $this->object->setRecipient('41758180020', false);
@@ -194,5 +195,5 @@ class SmsSenderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('41758185021', $result[2]);
         $this->assertEquals('48605874569', $result[3]);
     }
-    
+
 }

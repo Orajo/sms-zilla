@@ -8,6 +8,7 @@ $config = array(
     'message' => 'Message content with ĄŻŹĆŚĘŁÓŃążźćśęłóń',
     'smsapi_token' => '',
     'phones' => ['48123456789', '48121212121'],
+    'wrong_phone' => '48251365', // wrong phone number
     'my_phone' => '',
     'smscenter_login' => '',
     'smscenter_password' => '',
@@ -18,7 +19,6 @@ $config = array(
     'serwersms_password' => 'demo',
     'serwersms_sender' => null,
     'serwersms_test' => false,
-    'serwersms_details' => true,
 );
 
 $local_config = [];

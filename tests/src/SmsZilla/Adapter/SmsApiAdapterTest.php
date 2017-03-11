@@ -61,14 +61,12 @@ class SmsApiAdapterTest extends \PHPUnit_Framework_TestCase
      * @covers SmsZilla\Adapter\AbstractAdapter::getErrors
      * @covers \SmsZilla\SendingError::__construct
      */
-    public function testSend()
-    {
+    public function testSend() {
         $message = new \SmsZilla\SmsMessageModel();
         $message->setText($this->config['message']);
         $message->addRecipient($this->config['my_phone']);
         $this->object->setParams(['token' => $this->config['smsapi_token']]);
         $result = $this->object->send($message);
-        var_dump($this->object->getErrors());
         $this->assertTrue($result);
         $this->assertCount(0, $this->object->getErrors());
     }

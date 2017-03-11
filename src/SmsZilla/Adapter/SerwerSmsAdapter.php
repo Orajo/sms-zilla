@@ -37,7 +37,7 @@ class SerwerSmsAdapter extends AbstractAdapter {
         'sender' => null, // ECO
         'extra' => array(
             'test' => false,
-            'details' => true,
+            'details' => true, // readonly and always true
             'utf' => true
         ),
     ];
@@ -54,19 +54,24 @@ class SerwerSmsAdapter extends AbstractAdapter {
 
         $client = $this->getClient();
 
+        // details must be always true
         $extraParams = $this->getParam('extra');
+        if (!isset($extraParams['details']) || $extraParams['details'] === false) {
+            $extraParams['details'] = true;
+        }
+
         try {
             $response = $client->messages->sendSms(
                 $message->getRecipients(),
                 $message->getText(),
                 $this->getParam('sender'),
-                $this->getParam('extra')
+                $extraParams
             );
 
             if ((int)$response->unsent > 0) {
                 foreach ($response->items as $item) {
                     // @see http://dev.serwersms.pl/https-api-v2/wysylanie-wiadomosci-sms-o-jednakowej-tresci
-                    if (in_array($item->status === 'unsent')) {
+                    if ($item->status === 'unsent') {
                         $this->addError(new SendingError($item->phone, $item->error_code, $item->error_message . 'id:' . $item->id));
                         if (!$skipErrors) {
                             throw new \RuntimeException($item->error_message, $item->error_code);
@@ -100,4 +105,18 @@ class SerwerSmsAdapter extends AbstractAdapter {
         return new SerwerSMS($login, $password);
     }
 
+    /**
+     * Sets options of gateway
+     * "details" option (in "extra" group) is readonly and must be true according to properly handle errors
+     * @param array $params List of options as associative array name => value
+     * @return mixed Value of the $name parameter
+     */
+    public function setParams($params) {
+        if (isset($params['extra'])) {
+            if (isset($params['extra']['details'])) {
+                throw new ConfigurationException('"details" option is readonly (always true) and cannot be set');
+            }
+        }
+        parent::setParams($params);
+    }
 }

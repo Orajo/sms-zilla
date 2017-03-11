@@ -68,21 +68,53 @@ class SerwerSmsAdapterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers SmsZilla\Adapter\SerwerSmsAdapter::send
+     * @covers SmsZilla\Adapter\AbstractAdapter::getErrors
+     * @covers \SmsZilla\SendingError::__construct
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Błędny numer odbiorcy
+     */
+    public function testSendError() {
+        $message = new \SmsZilla\SmsMessageModel();
+        $message->setText($this->config['message']);
+        $message->addRecipient($this->config['wrong_phone']);
+        $message->addRecipient($this->config['my_phone']);
+        $this->object->setParams([
+            'login' => $this->config['serwersms_login'],
+            'passwd' => $this->config['serwersms_password'],
+            'sender' => $this->config['serwersms_sender'],
+            'extra' => ['test' => $this->config['serwersms_test']]
+        ]);
+        $result = $this->object->send($message, false);
+    }
+
+    /**
      * @covers SmsZilla\Adapter\AbstractAdapter::setParams
+     * @covers SmsZilla\Adapter\AbstractAdapter::getParam
      */
     public function testSetParams() {
 
         $this->object->setParams(['login' => $this->config['serwersms_login']]);
         $this->object->setParams(['passwd' => $this->config['serwersms_password']]);
         $this->object->setParams(['extra' => ['utf' => false]]);
-        $this->object->setParams(['extra' => ['details' => false]]);
         $this->assertEquals($this->object->getParam('login'), $this->config['serwersms_login']);
         $this->assertEquals($this->object->getParam('passwd'), $this->config['serwersms_password']);
         $extra = $this->object->getParam('extra');
         $this->assertEquals($extra['utf'], false);
-        $this->assertEquals($extra['details'], false);
 
         $this->expectException(\SmsZilla\ConfigurationException::class);
         $this->object->setParams(['dummy' => 1]);
+    }
+
+    /**
+     * @covers SmsZilla\Adapter\AbstractAdapter::setParams
+     * @expectedException \SmsZilla\ConfigurationException
+     * @expectedExceptionMessage "details" option is readonly (always true) and cannot be set
+     */
+    public function testSetParamsError() {
+
+        $this->object->setParams(['login' => $this->config['serwersms_login']]);
+        $this->object->setParams(['passwd' => $this->config['serwersms_password']]);
+        $this->object->setParams(['extra' => ['details' => false]]);
     }
 }

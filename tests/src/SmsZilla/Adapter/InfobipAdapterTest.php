@@ -46,4 +46,15 @@ class InfobipAdapterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($result);
         $this->assertCount(0, $this->object->getErrors());
     }
+
+    public function testSendError() {
+        $message = new \SmsZilla\SmsMessageModel();
+        $message->setText($this->config['message']);
+        $message->addRecipient($this->config['wrong_phone']);
+        $this->object->setParams(['token' => $this->config['infobip_token']]);
+        $result = $this->object->send($message);
+
+        $this->assertFalse($result);
+        $this->assertCount(1, $this->object->getErrors());
+    }
 }

@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "arcturial/clickatell": "*",
+        "arcturial/clickatell": "3.*",
         "smsapi.pl/php-client": "^1.7",
         "mlebkowski/mobitex": "1.0.*",
         "giggsey/libphonenumber-for-php": "7.5.1",

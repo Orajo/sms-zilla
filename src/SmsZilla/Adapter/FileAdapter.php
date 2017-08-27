@@ -17,7 +17,7 @@ use SmsZilla\SendingError;
 
 /**
  * Save message as file.
- * Creates separate file for every recepient. Folder with this files 
+ * Creates separate file for every recepient. Folder with this files
  * can be monitored by SMS gateway server.
  *
  * @subpackage Adapter
@@ -25,15 +25,15 @@ use SmsZilla\SendingError;
  */
 class FileAdapter extends AbstractAdapter {
     const FILE_EXT = '.call';
-    
+
     const ERROR_NOT_SAVED = 1;
-    
+
     protected $params  = [
         'store_path' => null,
         'path_chmod' => 660,
         'format' => "[%s]" . PHP_EOL . "%s" . PHP_EOL,
     ];
-    
+
     /**
      * Save message in file
      * @param SmsMessageModel $message
@@ -41,12 +41,12 @@ class FileAdapter extends AbstractAdapter {
      */
     public function send(MessageInterface $message, $skipErrors = true) {
         $this->clearErrors();
-        
+
         $storePath = $this->getParam('store_path');
         if (empty($storePath)) {
             throw new ConfigurationException(__CLASS__ . ' is not configured properly. Please set "store_path" parameter.');
         }
-        
+
         $pathChmod = $this->getParam('path_chmod');
         $dir = realpath($storePath);
         if (!is_dir($dir)) {
@@ -71,7 +71,7 @@ class FileAdapter extends AbstractAdapter {
         }
         return $this->getErrors()->count() > 0;
     }
-    
+
     /**
      * Generates name of the file which will store the message.
      * @param string $recipient

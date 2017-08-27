@@ -26,7 +26,7 @@ abstract class AbstractAdapter implements AdapterInterface {
      * Adapter configuration
      * @var array
      */
-    protected $params = [];
+    protected $params = null;
 
     /**
      * List of errors while sendind messages to recipients
@@ -103,7 +103,7 @@ abstract class AbstractAdapter implements AdapterInterface {
     }
 
     /**
-     * Return all errors, that occired during sending process.
+     * Return all errors, that occured during sending process.
      * Error code depends of selected Adapter
      * @return ArrayObject
      */
@@ -122,7 +122,8 @@ abstract class AbstractAdapter implements AdapterInterface {
     }
 
     /**
-     * Reset errors list
+     * Reset list of errors
+     *
      * @return AbstractAdapter
      */
     protected function clearErrors() {

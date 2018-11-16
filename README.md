@@ -12,7 +12,7 @@ Currently supported gateways:
 * [Infobip.com](http://www.infobip.com/)
 * [Clickatell](https://www.clickatell.com/)
 * Cisco EHWIC and 880G for 3.7G (HSPA+)/3.5G (HSPA) device,
-* text files generator (form gateways which monitor sahred folder,
+* text files generator (for gateways which monitor shared folder,
 * mock (dummy gateway for testing)
 
 The library can be easily extended to support new gateways or integrated into your application, such as filtering of recipients based on consent to receiving SMS messages.

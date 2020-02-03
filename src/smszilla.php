@@ -37,7 +37,7 @@ function getConsoleUsage($withBanner = false) {
         $help = "smszilla.php allows sending SMS messages through simple console command\n\n";
     }
 
-    $help .= "Usage: smszilla.php [-pProfileName] -nnumber -mmessage [-cpath_to_config_file] [-h] [-v]\n".
+    $help .= "Usage: php smszilla.php [-pProfileName] -nnumber -mmessage [-cpath_to_config_file] [-h] [-v]\n".
         "-p profilename\tName of the profile\n".
         "-n number\tRecipients phone numbers\n".
         "-m message\tmesage to send\n".

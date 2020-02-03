@@ -71,6 +71,28 @@ class SerwerSmsAdapterTest extends \PHPUnit_Framework_TestCase
      * @covers SmsZilla\Adapter\SerwerSmsAdapter::send
      * @covers SmsZilla\Adapter\AbstractAdapter::getErrors
      * @covers \SmsZilla\SendingError::__construct
+     */
+    public function testSendToGroup()
+    {
+        $message = new \SmsZilla\SmsMessageModel();
+        $message->setText($this->config['message']);
+//        $message->addRecipient($this->config['my_phone']);
+        $this->object->setParams([
+            'login' => $this->config['serwersms_login'],
+            'password' => $this->config['serwersms_password'],
+            'sender' => $this->config['serwersms_sender'],
+            'extra' => ['test' => $this->config['serwersms_test'], 'group_id' => 17409360]
+        ]);
+        $result = $this->object->send($message);
+        $this->assertTrue($result);
+        $this->assertCount(0, $this->object->getErrors());
+    }
+
+
+    /**
+     * @covers SmsZilla\Adapter\SerwerSmsAdapter::send
+     * @covers SmsZilla\Adapter\AbstractAdapter::getErrors
+     * @covers \SmsZilla\SendingError::__construct
      * @expectedException \RuntimeException
      * @expectedExceptionMessage Błędny numer odbiorcy
      */

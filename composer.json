@@ -13,12 +13,13 @@
         }
     ],
     "require": {
-        "arcturial/clickatell": "3.*",
+        "arcturial/clickatell": "2.*",
         "smsapi.pl/php-client": "^1.7",
         "mlebkowski/mobitex": "1.0.*",
         "giggsey/libphonenumber-for-php": "8.*",
         "zendframework/zend-http": "2.*",
-        "serwersms/serwersms-php-client": "1.0.2"
+        "serwersms/serwersms-php-client": "1.0.2",
+        "twilio/sdk": "^5.0"
     },
     "require-dev": {
         "phpunit/phpunit": "5.*"

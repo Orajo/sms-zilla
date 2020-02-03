@@ -19,6 +19,10 @@ $config = array(
     'serwersms_password' => 'demo',
     'serwersms_sender' => null,
     'serwersms_test' => false,
+    'twilio_api_key' => '',
+    'twilio_api_secret' => '',
+    'twilio_account_sid' => '',
+    'twilio_number' => '',
 );
 
 $local_config = [];

@@ -69,7 +69,7 @@ class FileAdapter extends AbstractAdapter {
                 }
             }
         }
-        return $this->getErrors()->count() > 0;
+        return $this->getErrors()->count() === 0;
     }
 
     /**

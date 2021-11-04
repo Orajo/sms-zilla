@@ -13,9 +13,9 @@ use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
 use SmsZilla\SendingError;
 use SmsZilla\SmsMessageModel;
-use Zend\Http\Client;
-use Zend\Http\Request;
-use Zend\Http\Response;
+use Laminas\Http\Client;
+use Laminas\Http\Request;
+use Laminas\Http\Response;
 
 /**
  * Send message through infobip.com provider.

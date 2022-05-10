@@ -143,7 +143,7 @@ class SmsSender implements SmsSenderInterface {
      * Phone number must be \d{9} or \d{11}
      * @param string|array $phoneNo Phone number or list of phone numbers
      * @param bool $ignoreErrors Flag to ignore errors in phone number
-     * @return
+     * @return SmsSender
      */
     public function setRecipients($phoneNo, $ignoreErrors = true) {
         $this->getMessage()->clearRecipients();

@@ -21,16 +21,28 @@ interface SmsSenderInterface {
      * @param array $params Adapter configuration
      */
     public function __construct(Adapter\AdapterInterface $adapter, array $params);
-    
+
     /**
-     * Add one recipient phone number
-     * If $ignoreErrors flag is true then wrong numbers will be ommited and others will be added
+     * Add one or many recipients phone numbers
+     * If $ignoreErrors flag is true then wrong numbers will be ommited and others will be added.
+     * Phone number must be \d{9} or \d{11}
      * @param string|array $phoneNo Phone number or list of phone numbers
      * @param bool $ignoreErrors Flag to ignore errors in phone number
      * @return SmsSenderInterface
      */
-    public function setRecipient($phoneNo, $ignoreErrors = true);
-    
+    public function addRecipient($phoneNo, $ignoreErrors = true);
+
+    /**
+     * Sets recipients phone numbers.
+     * Previous recipients will be removed.
+     * If $ignoreErrors flag is true then wrong numbers will be ommited and others will be added.
+     * Phone number must be \d{9} or \d{11}
+     * @param string|array $phoneNo Phone number or list of phone numbers
+     * @param bool $ignoreErrors Flag to ignore errors in phone number
+     * @return SmsSenderInterface
+     */
+    public function setRecipients($phoneNo, $ignoreErrors = true);
+
     /**
      * Returns list of recipients (phone numbers)
      * @return array

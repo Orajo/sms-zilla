@@ -27,7 +27,7 @@
         "mlebkowski/mobitex": "1.0.*",
         "giggsey/libphonenumber-for-php": "8.*",
         "laminas/laminas-http": "2.*",
-        "serwersms/serwersms-php-client": "1.0.2",
+        "serwersms/serwersms-php-client": "1.*",
         "laminas/laminas-dependency-plugin": "^2.1"
     },
     "require-dev": {
@@ -43,5 +43,10 @@
         "classmap": [
             "src/"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "laminas/laminas-dependency-plugin": true
+        }
     }
 }

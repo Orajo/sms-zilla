@@ -103,14 +103,14 @@ class SmsSender implements SmsSenderInterface {
     }
 
     /**
-     * Add one recipient phone number
+     * Add one or many recipients phone numbers
      * If $ignoreErrors flag is true then wrong numbers will be ommited and others will be added.
      * Phone number must be \d{9} or \d{11}
      * @param string|array $phoneNo Phone number or list of phone numbers
      * @param bool $ignoreErrors Flag to ignore errors in phone number
      * @return SmsSender
      */
-    public function setRecipient($phoneNo, $ignoreErrors = true) {
+    public function addRecipient($phoneNo, $ignoreErrors = true) {
         if (!is_array($phoneNo)) {
             $phoneNo = array($phoneNo);
         }
@@ -134,6 +134,20 @@ class SmsSender implements SmsSenderInterface {
             }
         }
         return $this;
+    }
+
+    /**
+     * Sets recipients phone numbers.
+     * Previous recipients will be removed.
+     * If $ignoreErrors flag is true then wrong numbers will be ommited and others will be added.
+     * Phone number must be \d{9} or \d{11}
+     * @param string|array $phoneNo Phone number or list of phone numbers
+     * @param bool $ignoreErrors Flag to ignore errors in phone number
+     * @return
+     */
+    public function setRecipients($phoneNo, $ignoreErrors = true) {
+        $this->getMessage()->clearRecipients();
+        return $this->addRecipient($phoneNo, $ignoreErrors);
     }
 
     /**

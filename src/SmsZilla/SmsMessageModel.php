@@ -35,7 +35,8 @@ class SmsMessageModel implements MessageInterface {
      * @return SmsMessageModel
      * @throws \BadMethodCallException
      */
-    public function setText($text) {
+    public function setText($text)
+    {
         if (empty($text)) {
             throw new \InvalidArgumentException('SMS message cannot be empty');
         }
@@ -47,7 +48,8 @@ class SmsMessageModel implements MessageInterface {
      * Gets message content
      * @return string
      */
-    public function getText() {
+    public function getText()
+    {
         return $this->text;
     }
 
@@ -57,7 +59,8 @@ class SmsMessageModel implements MessageInterface {
      * @param string $phoneNo
      * @return SmsMessageModel
      */
-    public function addRecipient($phoneNo) {
+    public function addRecipient($phoneNo)
+    {
         
         if (!empty($phoneNo)) {
             if (!in_array($phoneNo, $this->recipients)) {
@@ -67,6 +70,17 @@ class SmsMessageModel implements MessageInterface {
         else { 
             throw new \InvalidArgumentException('Phone number cannot be empty.');
         }
+        return $this;
+    }
+
+    /**
+     * Sets recipients phone numbers
+     * @param array $recipients
+     * @return SmsMessageModel
+     */
+    public function setRecipients(array $recipients)
+    {
+        $this->recipients = $recipients;
         return $this;
     }
 
@@ -87,5 +101,13 @@ class SmsMessageModel implements MessageInterface {
         foreach ($this->recipients as $recipient) {
             yield $recipient;
         }
+    }
+
+    /**
+     * Clears recipients list
+     * @return void
+     */
+    public function clearRecipients() {
+        $this->recipients = [];
     }
 }

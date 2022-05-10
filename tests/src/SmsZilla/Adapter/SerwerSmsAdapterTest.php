@@ -67,6 +67,23 @@ class SerwerSmsAdapterTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(0, $this->object->getErrors());
     }
 
+    public function testSetRecipients()
+    {
+        $message = new \SmsZilla\SmsMessageModel();
+        $message->setText($this->config['message']);
+        $message->addRecipient($this->config['wrong_phone']);
+        $message->setRecipients([$this->config['my_phone']]);
+        $this->object->setParams([
+                                     'login' => $this->config['serwersms_login'],
+                                     'password' => $this->config['serwersms_password'],
+                                     'sender' => $this->config['serwersms_sender'],
+                                     'extra' => ['test' => $this->config['serwersms_test']]
+                                 ]);
+        $result = $this->object->send($message);
+        $this->assertTrue($result);
+        $this->assertCount(0, $this->object->getErrors());
+    }
+
     /**
      * @covers SmsZilla\Adapter\SerwerSmsAdapter::send
      * @covers SmsZilla\Adapter\AbstractAdapter::getErrors

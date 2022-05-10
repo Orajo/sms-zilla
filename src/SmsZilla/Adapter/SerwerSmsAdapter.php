@@ -48,7 +48,7 @@ class SerwerSmsAdapter extends AbstractAdapter {
      * @return bool
      */
     public function send(MessageInterface $message, $skipErrors = true) {
-        if (count($message->getRecipient()) > self::MAX_RECIPIENS) {
+        if (count($message->getRecipients()) > self::MAX_RECIPIENS) {
             throw new ConfigurationException('Too many recipiens. For SerwerSms gateway limit is ' . self::MAX_RECIPIENS);
         }
 

@@ -41,7 +41,7 @@ interface SmsSenderInterface {
      * @param bool $ignoreErrors Flag to ignore errors in phone number
      * @return SmsSenderInterface
      */
-    public function setRecipients($phoneNo, $ignoreErrors = true);
+    public function setRecipient($phoneNo, $ignoreErrors = true);
 
     /**
      * Returns list of recipients (phone numbers)

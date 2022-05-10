@@ -145,7 +145,7 @@ class SmsSender implements SmsSenderInterface {
      * @param bool $ignoreErrors Flag to ignore errors in phone number
      * @return SmsSender
      */
-    public function setRecipients($phoneNo, $ignoreErrors = true) {
+    public function setRecipient($phoneNo, $ignoreErrors = true) {
         $this->getMessage()->clearRecipients();
         return $this->addRecipient($phoneNo, $ignoreErrors);
     }

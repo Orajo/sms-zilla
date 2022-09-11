@@ -19,6 +19,8 @@ $config = array(
     'serwersms_password' => 'demo',
     'serwersms_sender' => null,
     'serwersms_test' => false,
+    'orange_token' => '',
+    'orange_sender' => '',
 );
 
 $local_config = [];

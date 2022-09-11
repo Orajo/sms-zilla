@@ -120,7 +120,7 @@ function getConfig($options) {
                 $config = array_merge($config, $localConfig);
             }
             catch(\Exception $exp) {
-                printError("Error in config file " . $localConfig, $exp);
+                printError("Error in config file: " . $configFilePath, $exp);
             }
         }
     }

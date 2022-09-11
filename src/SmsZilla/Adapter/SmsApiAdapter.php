@@ -98,7 +98,6 @@ class SmsApiAdapter extends AbstractAdapter {
             throw new ConfigurationException(__CLASS__ . ' is not configured properly. Please set "token" or "login" and "passwd_pash" parameters properly.');
         }
 
-        $client = null;
         if (!empty($token)) {
             $client = Client::createFromToken($token);
         }

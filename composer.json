@@ -11,7 +11,8 @@
         "SMSApi",
         "SmsCenter",
         "Infobip",
-        "Cisco"
+        "Cisco",
+        "Orange"
     ],
     "homepage": "https://github.com/Orajo/sms-zilla",
     "authors": [
@@ -28,7 +29,9 @@
         "giggsey/libphonenumber-for-php": "8.*",
         "laminas/laminas-http": "2.*",
         "serwersms/serwersms-php-client": "1.*",
-        "laminas/laminas-dependency-plugin": "^2.1"
+        "laminas/laminas-dependency-plugin": "^2.1",
+        "enigma972/orange-api-client": "^1.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "5.*"

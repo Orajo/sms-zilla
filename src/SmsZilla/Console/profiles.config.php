@@ -35,6 +35,11 @@ return [
             'login' => '',
             'password' => '',
             'sender' => null // ECO
+        ],
+        'orange' => [
+            'adapter' => \SmsZilla\Adapter\OrangeSmsOffnetNatAdapter::class,
+            'token' => '',
+            'sender' => ''
         ]
     ],
 ];

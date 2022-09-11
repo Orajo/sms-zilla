@@ -51,9 +51,9 @@ class ClickatellAdapter extends AbstractAdapter {
 
         try {
             $response = $gateway->sendMessage($message->getRecipients(), $message->getText());
-            foreach ($response as $message) {
-                if ($message->errorCode) {
-                    $this->addError(new SendingError($message->destination, $message->errorCode, $message->error));
+            foreach ($response as $datum) {
+                if ($datum->errorCode) {
+                    $this->addError(new SendingError($datum->destination, $datum->errorCode, $datum->error));
                 }
             }
         }

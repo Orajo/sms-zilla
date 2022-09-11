@@ -87,16 +87,13 @@ abstract class AbstractAdapter implements AdapterInterface {
                 if (is_array($this->params[$name])) {
                     if (is_array($value)) {
                         $this->params[$name] = array_merge($this->params[$name], $value);
-                    }
-                    else {
+                    } else {
                         throw new ConfigurationException(sprintf('Parameters type mismatch. Given type is "%s", expected type is "%s"', gettype($this->params[$name]) ,gettype($value)));
                     }
-                }
-                else {
+                } else {
                     $this->params[$name] = $value;
                 }
-            }
-            else {
+            } else {
                 throw new ConfigurationException(sprintf('Parameter "%s" doesn\'t exists', $name));
             }
         }

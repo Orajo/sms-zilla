@@ -49,7 +49,7 @@ class SerwerSmsAdapter extends AbstractAdapter {
      */
     public function send(MessageInterface $message, $skipErrors = true) {
         if (count($message->getRecipients()) > self::MAX_RECIPIENS) {
-            throw new ConfigurationException('Too many recipiens. For SerwerSms gateway limit is ' . self::MAX_RECIPIENS);
+            throw new ConfigurationException('Too many recipients. For SerwerSms gateway limit is ' . self::MAX_RECIPIENS);
         }
 
         $client = $this->getClient();
@@ -114,10 +114,8 @@ class SerwerSmsAdapter extends AbstractAdapter {
      * @return mixed Value of the $name parameter
      */
     public function setParams($params) {
-        if (isset($params['extra'])) {
-            if (isset($params['extra']['details'])) {
-                throw new ConfigurationException('"details" option is readonly (always true) and cannot be set');
-            }
+        if (isset($params['extra']['details'])) {
+            throw new ConfigurationException('"details" option is readonly (always true) and cannot be set');
         }
         parent::setParams($params);
     }

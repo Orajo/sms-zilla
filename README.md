@@ -14,7 +14,7 @@ Currently supported gateways:
 * Cisco EHWIC and 880G for 3.7G (HSPA+)/3.5G (HSPA) device,
 * text files generator (for gateways which monitor shared folder,
 * mock (dummy gateway for testing)
-* Orange SMSOffnetNat (https://api.orange.pl/produktyapi.html)
+* [Orange SMSOffnetNat](https://api.orange.pl/produktyapi.html)
 
 The library can be easily extended to support new gateways or integrated into your application, such as filtering of recipients based on consent to receiving SMS messages.
 

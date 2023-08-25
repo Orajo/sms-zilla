@@ -22,7 +22,7 @@ class OrangeSmsOffnetNatAdapter extends AbstractAdapter
     /**
      * @throws ConfigurationException
      */
-    function send(MessageInterface $message, $skipErrors = true)
+    function send(MessageInterface $message, bool $skipErrors = true): bool
     {
         $client = $this->getClient();
 

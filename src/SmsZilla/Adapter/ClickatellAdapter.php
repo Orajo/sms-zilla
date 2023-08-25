@@ -35,12 +35,14 @@ class ClickatellAdapter extends AbstractAdapter {
 
     /**
      * Send message through Clickatell.com gateway
+     *
      * @param SmsMessageModel $message
      * @return bool
      */
-    public function send(MessageInterface $message, $skipErrors = true) {
+    public function send(MessageInterface $message, bool $skipErrors = true): bool
+    {
 
-        // check clickatell limit
+        // check Clickatell limit
         if (count($message->getRecipients()) > 600) {
             $this->addError(new SendingError($message->getRecipients(),
                     'You have excedded provider limit of messages to send in one time.'
@@ -50,14 +52,14 @@ class ClickatellAdapter extends AbstractAdapter {
         $gateway = $this->getClient();
 
         try {
-            $response = $gateway->sendMessage($message->getRecipients(), $message->getText());
-            foreach ($response as $datum) {
-                if ($datum->errorCode) {
-                    $this->addError(new SendingError($datum->destination, $datum->errorCode, $datum->error));
+            $response = $gateway->sendMessage(['to' => $message->getRecipients(), 'content' => $message->getText()]);
+            foreach ($response as $msg) {
+                if ($msg['error']) {
+                    $this->addError(new SendingError($msg['to'], $msg['errorCode'], $msg['error'] . ' Description; ' . $msg['errorDescription']));
                 }
             }
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $this->addError(new SendingError('', $e->getCode(), $e->getMessage()));
             if (!$skipErrors) {
                 throw new \RuntimeException($e->getMessage(), $e->getCode());
@@ -78,7 +80,7 @@ class ClickatellAdapter extends AbstractAdapter {
             throw new ConfigurationException(__CLASS__ . ' is not configured properly. Please set "token" parameter properly.');
         }
 
-        return new \Clickatell\Api\ClickatellRest($token);
+        return new \Clickatell\Rest($token);
     }
 
 }

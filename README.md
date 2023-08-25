@@ -11,10 +11,11 @@ Currently supported gateways:
 * [SerwerSms.pl](https://serwersms.pl/),
 * [Infobip.com](http://www.infobip.com/)
 * [Clickatell](https://www.clickatell.com/)
+* [SmsPlanet.pl](https://smsplanet.pl/)
+* [Orange SMSOffnetNat](https://api.orange.pl/produktyapi.html)
 * Cisco EHWIC and 880G for 3.7G (HSPA+)/3.5G (HSPA) device,
 * text files generator (for gateways which monitor shared folder,
 * mock (dummy gateway for testing)
-* [Orange SMSOffnetNat](https://api.orange.pl/produktyapi.html)
 
 The library can be easily extended to support new gateways or integrated into your application, such as filtering of recipients based on consent to receiving SMS messages.
 
@@ -59,7 +60,7 @@ $result = $smsSender->send();
 
 See tests for more examples.
 
-See https://github.com/Orajo/zf-sms-zilla if you need ZendFramework 2 module for sending SMS. The module is based on this library. 
+See https://github.com/Orajo/zf-sms-zilla if you need Laminas module for sending SMS. The module is based on this library. 
 
 Author
 ------

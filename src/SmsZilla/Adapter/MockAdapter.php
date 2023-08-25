@@ -26,11 +26,13 @@ class MockAdapter extends AbstractAdapter {
     
     /**
      * Stores messages on stack
+     *
      * @param MessageInterface $message
      * @param bool $skipErrors
      * @return boolean Always true
      */
-    public function send(MessageInterface $message, $skipErrors = true) {
+    public function send(MessageInterface $message, bool $skipErrors = true): bool
+    {
         $this->sentMessages[] = $message;
         return true;
     }
@@ -38,7 +40,8 @@ class MockAdapter extends AbstractAdapter {
     /**
      * @return array
      */
-    public function getSentMessages() {
+    public function getSentMessages(): array
+    {
         return $this->sentMessages;
     }
 }

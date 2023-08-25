@@ -12,7 +12,8 @@
         "SmsCenter",
         "Infobip",
         "Cisco",
-        "Orange"
+        "Orange",
+        "SmsPlanet"
     ],
     "homepage": "https://github.com/Orajo/sms-zilla",
     "authors": [
@@ -23,17 +24,17 @@
         }
     ],
     "require": {
+        "php": "^7.1 || ^8.0",
         "arcturial/clickatell": "3.*",
         "smsapi.pl/php-client": "^1.7",
         "mlebkowski/mobitex": "1.0.*",
         "giggsey/libphonenumber-for-php": "8.*",
         "laminas/laminas-http": "2.*",
         "serwersms/serwersms-php-client": "1.*",
-        "laminas/laminas-dependency-plugin": "^2.1",
         "ext-json": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.*"
+        "phpunit/phpunit": "^9.6"
     },
     "autoload": {
         "psr-0": {

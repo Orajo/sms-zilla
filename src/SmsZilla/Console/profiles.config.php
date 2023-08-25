@@ -40,6 +40,12 @@ return [
             'adapter' => \SmsZilla\Adapter\OrangeSmsOffnetNatAdapter::class,
             'token' => '',
             'sender' => ''
+        ],
+        'smsplanet' => [
+            'adapter' => \SmsZilla\Adapter\SmsPlanetAdapter::class,
+            'token' => '',
+			'password' => '',
+            'sender' => ''
         ]
     ],
 ];

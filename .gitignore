@@ -25,3 +25,5 @@ data/DoctrineORMModule/cache/
 demos/
 extras/documentation
 /tests/src/config.local.php
+/nbproject/
+/.idea/

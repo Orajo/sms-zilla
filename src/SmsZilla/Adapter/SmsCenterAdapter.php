@@ -38,16 +38,18 @@ class SmsCenterAdapter extends AbstractAdapter {
     
     /**
      * Send message through SmsCenter.pl gateway
+     *
      * @param SmsMessageModel $message
      * @return bool
      */
-    public function send(MessageInterface $message, $skipErrors = true) {
+    public function send(MessageInterface $message, bool $skipErrors = true): bool
+    {
 
-        $mobitex = $this->getClient();
+        $client = $this->getClient();
         
         foreach ($message->getRecipient() as $recipient) {
             try {
-                $mobitex->sendMessage($recipient, $message->getText());
+                $client->sendMessage($recipient, $message->getText());
             }
             catch (Exception $e) {
                 $this->addError(new SendingError($recipient, $e->getCode(), $e->getMessage()));
@@ -61,10 +63,10 @@ class SmsCenterAdapter extends AbstractAdapter {
 
     /**
      * Prepare client configuration
-     * @return Client
      * @throws ConfigurationException
      */
-    private function getClient() {
+    private function getClient(): Sender
+    {
         $login = $this->getParam('login');
         $password = $this->getParam('password');
         $sender = $this->getParam('sender');

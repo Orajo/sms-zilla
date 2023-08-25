@@ -29,27 +29,29 @@ use SmsZilla\SendingError;
  */
 class SerwerSmsAdapter extends AbstractAdapter {
 
-    const MAX_RECIPIENS = 100000;
+    protected const MAX_RECIPIENTS = 100000;
 
     protected $params = [
         'login' => '',
         'password' => '',
         'sender' => null, // ECO
-        'extra' => array(
+        'extra' => [
             'test' => false,
             'details' => true, // readonly and always true
             'utf' => true
-        ),
+        ],
     ];
 
     /**
      * Send message through SerwerSms gateway
+     *
      * @param SmsMessageModel $message
      * @return bool
      */
-    public function send(MessageInterface $message, $skipErrors = true) {
-        if (count($message->getRecipients()) > self::MAX_RECIPIENS) {
-            throw new ConfigurationException('Too many recipiens. For SerwerSms gateway limit is ' . self::MAX_RECIPIENS);
+    public function send(MessageInterface $message, bool $skipErrors = true): bool
+    {
+        if (count($message->getRecipients()) > self::MAX_RECIPIENTS) {
+            throw new ConfigurationException('Too many recipients. For SerwerSms gateway limit is ' . self::MAX_RECIPIENTS);
         }
 
         $client = $this->getClient();
@@ -80,7 +82,7 @@ class SerwerSmsAdapter extends AbstractAdapter {
                 }
             }
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $this->addError(new SendingError('', $e->getCode(), $e->getMessage()));
             if (!$skipErrors) {
                 throw new \RuntimeException($e->getMessage());
@@ -94,7 +96,8 @@ class SerwerSmsAdapter extends AbstractAdapter {
      * @return \SerwerSMS\SerwerSMS
      * @throws ConfigurationException
      */
-    private function getClient() {
+    private function getClient(): SerwerSMS
+    {
         $login = $this->getParam('login');
         $password = $this->getParam('password');
 
@@ -110,15 +113,16 @@ class SerwerSmsAdapter extends AbstractAdapter {
      *
      * "details" option (in "extra" group) is read only and must be true for
      * properly handle errors
+     *
      * @param array $params List of options as associative array name => value
-     * @return mixed Value of the $name parameter
+     * @return AdapterInterface Value of the $name parameter
+     * @throws ConfigurationException
      */
-    public function setParams($params) {
-        if (isset($params['extra'])) {
-            if (isset($params['extra']['details'])) {
-                throw new ConfigurationException('"details" option is readonly (always true) and cannot be set');
-            }
+    public function setParams(array $params): AdapterInterface {
+        if (isset($params['extra']['details'])) {
+            throw new ConfigurationException('"details" option is readonly (always true) and cannot be set');
         }
         parent::setParams($params);
+        return $this;
     }
 }

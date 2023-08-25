@@ -41,11 +41,11 @@ class SmsSender implements SmsSenderInterface {
      * @param AdapterInterface $adapter
      * @param array $params Adapter configuration
      */
-    public function __construct(AdapterInterface $adapter, array $params = null) {
+    public function __construct(AdapterInterface $adapter, array $params = []) {
         $this->message = new SmsMessageModel();
 
         $this->adapter = $adapter;
-        if (is_array($params) && !empty($params)) {
+        if (!empty($params)) {
             $this->adapter->setParams($params);
         }
 

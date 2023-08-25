@@ -11,6 +11,7 @@ Currently supported gateways:
 * [SerwerSms.pl](https://serwersms.pl/),
 * [Infobip.com](http://www.infobip.com/)
 * [Clickatell](https://www.clickatell.com/)
+* [SmsPlanet.pl](https://smsplanet.pl/)
 * Cisco EHWIC and 880G for 3.7G (HSPA+)/3.5G (HSPA) device,
 * text files generator (for gateways which monitor shared folder,
 * mock (dummy gateway for testing)
@@ -58,7 +59,7 @@ $result = $smsSender->send();
 
 See tests for more examples.
 
-See https://github.com/Orajo/zf-sms-zilla if you need ZendFramework 2 module for sending SMS. The module is based on this library. 
+See https://github.com/Orajo/zf-sms-zilla if you need Laminas module for sending SMS. The module is based on this library. 
 
 Author
 ------

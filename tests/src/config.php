@@ -19,6 +19,10 @@ $config = array(
     'serwersms_password' => 'demo',
     'serwersms_sender' => null,
     'serwersms_test' => false,
+    'smsplanet_test' => false,
+    'smsplanet_sender' => null,
+    'smsplanet_token' => null,
+    'smsplanet_password' => null,
 );
 
 $local_config = [];

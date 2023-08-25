@@ -26,7 +26,7 @@ abstract class AbstractAdapter implements AdapterInterface {
      * Adapter configuration
      * @var array
      */
-    protected $params = null;
+    protected $params = [];
 
     /**
      * List of errors while sendind messages to recipients
@@ -38,10 +38,10 @@ abstract class AbstractAdapter implements AdapterInterface {
      * Constructor
      * @param array $params Adapter parameters
      */
-    public function __construct($params = null) {
+    public function __construct($params = []) {
         $this->clearErrors();
 
-        if (is_array($params) && !empty($params)) {
+        if (!empty($params)) {
             $this->setParams($params);
         }
     }
@@ -54,16 +54,17 @@ abstract class AbstractAdapter implements AdapterInterface {
      * @param bool $skipErrors If false error during sending message breaks sending others
      * @return bool true if success, false if error
      */
-    abstract function send(MessageInterface $message, $skipErrors = true);
+    abstract function send(MessageInterface $message, bool $skipErrors = true): bool;
 
     /**
      * Returns value gateway param
+     *
      * @param string $name
      * @return mixed Value of the $name parameter
      */
-    public function getParam($name) {
+    public function getParam(string $name) {
         if (empty($name) || !is_string($name)) {
-            throw new \InvalidArgumentException('Paramater name must be not empty string');
+            throw new \InvalidArgumentException('Parameter name must be not empty string');
         }
 
         if (isset($this->params[$name]) || array_key_exists($name, $this->params)) {
@@ -74,14 +75,12 @@ abstract class AbstractAdapter implements AdapterInterface {
 
     /**
      * Sets options of gateway
+     *
      * @param array $params List of options as associative array name => value
-     * @return mixed Value of the $name parameter
+     * @return AdapterInterface Value of the $name parameter
+     * @throws ConfigurationException
      */
-    public function setParams($params) {
-        if (!is_array($params)) {
-            throw new \InvalidArgumentException('Paramater $params must be an array.');
-        }
-
+    public function setParams(array $params): AdapterInterface {
         foreach ($params as $name => $value) {
             if (isset($this->params[$name]) || array_key_exists($name, $this->params)) {
                 if (is_array($this->params[$name])) {
@@ -100,14 +99,15 @@ abstract class AbstractAdapter implements AdapterInterface {
                 throw new ConfigurationException(sprintf('Parameter "%s" doesn\'t exists', $name));
             }
         }
+        return $this;
     }
 
     /**
-     * Return all errors, that occured during sending process.
-     * Error code depends of selected Adapter
-     * @return ArrayObject
+     * Return all errors, that occurred during sending process.
+     * Error code depends on selected Adapter
+     * @return \ArrayObject
      */
-    public function getErrors() {
+    public function getErrors(): \ArrayObject {
         return $this->errors;
     }
 
@@ -116,7 +116,8 @@ abstract class AbstractAdapter implements AdapterInterface {
      * @param SendingErrorInterface $error
      * @return AbstractAdapter
      */
-    protected function addError(SendingErrorInterface $error) {
+    protected function addError(SendingErrorInterface $error): AbstractAdapter
+    {
         $this->errors->append($error);
         return $this;
     }
@@ -126,7 +127,8 @@ abstract class AbstractAdapter implements AdapterInterface {
      *
      * @return AbstractAdapter
      */
-    protected function clearErrors() {
+    protected function clearErrors(): AbstractAdapter
+    {
         $this->errors = new \ArrayObject();
         return $this;
     }

@@ -56,7 +56,7 @@ class SmsMessageModel implements MessageInterface {
     /**
      * Adds recipient phone number
      * Recipients number should be: \d{9} or \d{11}
-     * @param string $phoneNo
+     * @param string|array $phoneNo
      * @return SmsMessageModel
      */
     public function addRecipient($phoneNo)

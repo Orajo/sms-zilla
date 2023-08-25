@@ -40,10 +40,12 @@ class SmsApiAdapter extends AbstractAdapter {
 
     /**
      * Send message through SmsApi.pl gateway
+     *
      * @param SmsMessageModel $message
      * @return bool
      */
-    public function send(MessageInterface $message, $skipErrors = true) {
+    public function send(MessageInterface $message, bool $skipErrors = true): bool
+    {
         $smsapi = new SmsFactory();
         $smsapi->setClient($this->getClient());
 

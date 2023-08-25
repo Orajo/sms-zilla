@@ -56,18 +56,20 @@ class InfobipAdapter extends AbstractAdapter {
 
     /**
      * Send message through infobip.com gateway
-     * @param SmsMessageModel $error
+     *
+     * @param SmsMessageModel $message
      * @return bool
      */
-    public function send(MessageInterface $error, $skipErrors = true) {
+    public function send(MessageInterface $message, bool $skipErrors = true): bool
+    {
 
         $sender = $this->getParam('sender');
 
         $request = $this->getRequest();
         $body = [
             'from' => $sender,
-            'to' => $error->getRecipients(),
-            'text' => $error->getText()
+            'to' => $message->getRecipients(),
+            'text' => $message->getText()
         ];
 
         $request->setContent(json_encode($body));
@@ -77,13 +79,13 @@ class InfobipAdapter extends AbstractAdapter {
             $status = $response->getStatusCode();
 
             if ($status !== 200) { // OK code
-                $error = $this->decodeError($response);
+                $message = $this->decodeError($response);
             }
             else {
                 $this->decodeResponse($response);
             }
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             $this->addError(new SendingError(json_encode($body), $e->getCode(), $e->getMessage()));
             if (!$skipErrors) {
                 throw new \RuntimeException($e->getMessage(), $e->getCode(), true);
@@ -133,8 +135,9 @@ class InfobipAdapter extends AbstractAdapter {
      * @link https://dev.infobip.com/v1/docs/2fa-status-codes-and-error-details Status codes and error details
      * @param Response $response
      */
-    private function decodeError(Response $response) {
-        $data = json_decode($response->getContent());
+    private function decodeError(Response $response): void
+    {
+        $data = json_decode($response->getBody(), false);
 
         if (is_object($data)) {
             $code = $data->requestError->serviceException->messageId;
@@ -149,7 +152,7 @@ class InfobipAdapter extends AbstractAdapter {
     /**
      * Decodes response
      *
-     * Response is has JSON structure:
+     * Response has JSON structure:
      * {"messages":[
      *    {"to":"null",
      *        "status":{
@@ -166,11 +169,12 @@ class InfobipAdapter extends AbstractAdapter {
      * @param Response $response
      * @return void
      */
-    private function decodeResponse($response) {
+    private function decodeResponse($response): void
+    {
 
-        $data = json_decode($response->getContent());
+        $data = json_decode($response->getBody(), false);
 
-        if (count($data->messages)> 0) {
+        if (count($data->messages) > 0) {
             foreach ($data->messages as $message) {
                 $this->parseResponseMessage($message);
             }
@@ -182,9 +186,10 @@ class InfobipAdapter extends AbstractAdapter {
      *
      * @link https://dev.infobip.com/docs/send-sms-response Description of the response message
      * @param Object $msg Message object according to {@link https://dev.infobip.com/docs/send-sms-response}
-     * @return boolean True if there are no errors
+     * @return void True if there are no errors
      */
-    private function parseResponseMessage($msg) {
+    private function parseResponseMessage($msg): void
+    {
         if (in_array($msg->status->groupId, [
             self::STATUS_GROUPS_UNDELIVERABLE, self::STATUS_GROUPS_EXPIRED,
             self::STATUS_GROUPS_REJECTED])) {
@@ -194,8 +199,6 @@ class InfobipAdapter extends AbstractAdapter {
                     $msg->status->groupId,
                     $msg->status->description);
             $this->addError(new SendingError($msg->to, $code, $text));
-            return false;
         }
-        return true;
     }
 }

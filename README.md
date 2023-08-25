@@ -12,6 +12,7 @@ Currently supported gateways:
 * [Infobip.com](http://www.infobip.com/)
 * [Clickatell](https://www.clickatell.com/)
 * [SmsPlanet.pl](https://smsplanet.pl/)
+* [Orange SMSOffnetNat](https://api.orange.pl/produktyapi.html)
 * Cisco EHWIC and 880G for 3.7G (HSPA+)/3.5G (HSPA) device,
 * text files generator (for gateways which monitor shared folder,
 * mock (dummy gateway for testing)

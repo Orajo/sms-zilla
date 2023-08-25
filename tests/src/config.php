@@ -23,6 +23,8 @@ $config = array(
     'smsplanet_sender' => null,
     'smsplanet_token' => null,
     'smsplanet_password' => null,
+    'orange_token' => '',
+    'orange_sender' => '',
 );
 
 $local_config = [];

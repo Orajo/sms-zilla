@@ -11,7 +11,9 @@
         "SMSApi",
         "SmsCenter",
         "Infobip",
-        "Cisco"
+        "Cisco",
+        "Orange",
+        "SmsPlanet"
     ],
     "homepage": "https://github.com/Orajo/sms-zilla",
     "authors": [

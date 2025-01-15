@@ -24,7 +24,7 @@
         }
     ],
     "require": {
-        "php": "^7.1 || ^8.0",
+        "php": "^7.1 || ^8.0 || ^8.2",
         "arcturial/clickatell": "3.*",
         "smsapi.pl/php-client": "^1.7",
         "mlebkowski/mobitex": "1.0.*",
@@ -46,10 +46,5 @@
         "classmap": [
             "src/"
         ]
-    },
-    "config": {
-        "allow-plugins": {
-            "laminas/laminas-dependency-plugin": true
-        }
     }
 }

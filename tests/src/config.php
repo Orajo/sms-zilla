@@ -25,6 +25,8 @@ $config = array(
     'smsplanet_password' => null,
     'orange_token' => '',
     'orange_sender' => '',
+    'szybkisms_token' => '',
+    'szybkisms_sender' => '',
 );
 
 $local_config = [];

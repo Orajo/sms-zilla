@@ -9,7 +9,6 @@
 
 namespace SmsZilla\Adapter;
 
-use Mobitex\Exception;
 use Mobitex\Sender;
 use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
@@ -51,7 +50,7 @@ class SmsCenterAdapter extends AbstractAdapter {
             try {
                 $client->sendMessage($recipient, $message->getText());
             }
-            catch (Exception $e) {
+            catch (\Exception $e) {
                 $this->addError(new SendingError($recipient, $e->getCode(), $e->getMessage()));
                 if (!$skipErrors) {
                     throw new \RuntimeException($e->getMessage(), $e->getCode());

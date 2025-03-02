@@ -52,18 +52,20 @@ class SzybkiSmsAdapter extends AbstractAdapter {
         
         foreach ($message->getRecipient() as $recipient) {
             try {
+                // + jest wymagany
+                if (!str_starts_with($recipient, '+')) {
+                    $recipient = '+' . $recipient;
+                }
                 $response = $client->outgoing->sms->send(
-                    [
-                        new SmsMessage(
-                            recipients: [$recipient],
-                            message: $message->getText(),
-                            sender: $sender,
-                            type: SmsType::SmsPro,
-                            unicode: true,
-                            flash: false,
-                            date: null,
-                        )
-                    ]
+                    new SmsMessage(
+                        recipients: $recipient,
+                        message: $message->getText(),
+                        sender: $sender,
+                        type: SmsType::SmsPro,
+                        unicode: true,
+                        flash: false,
+                        date: null,
+                    )
                 );
 
                 if ($response->messages === null) {
@@ -75,7 +77,7 @@ class SzybkiSmsAdapter extends AbstractAdapter {
             } catch (ErrorResponseThrowable | SDKException | \Exception $e) {
                 $this->addError(new SendingError($recipient, $e->getCode(), $e->getMessage()));
                 if (!$skipErrors) {
-                    throw new \RuntimeException($e->getMessage(), $e->getCode());
+                    throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
                 }
             }
         }

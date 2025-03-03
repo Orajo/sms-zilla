@@ -9,6 +9,16 @@ use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
 use SmsZilla\SendingError;
 
+/**
+ * Send message through HostedSms.pl provider.
+ *
+ * @link https://hostedsms.pl/ Service homepage
+ * @link https://hostedsms.pl/pl/api-sms/opis-techniczny-api/ API documentation
+ * @link https://github.com/dcs-pl/hostedsms-php PHP API Client HostedSMS.pl
+ *
+ * @subpackage Adapter
+ * @author Jarosław Wasilewski <orajo@windowslive.com>
+ */
 class HostedSmsAdapter extends AbstractAdapter
 {
     protected $params = [
@@ -19,8 +29,9 @@ class HostedSmsAdapter extends AbstractAdapter
 
     /**
      * @inheritDoc
+     * @throws ConfigurationException
      */
-    function send(MessageInterface $message, bool $skipErrors = true): bool
+    public function send(MessageInterface $message, bool $skipErrors = true): bool
     {
 
         $client = $this->getClient();

@@ -4,7 +4,7 @@
  * phone number and SmsApi.pl security token.
  */
 
-$config = array(
+$config = [
     'message' => 'Message content with ĄŻŹĆŚĘŁÓŃążźćśęłóń',
     'smsapi_token' => '',
     'phones' => ['48123456789', '48121212121'],
@@ -25,7 +25,10 @@ $config = array(
     'smsplanet_password' => null,
     'orange_token' => '',
     'orange_sender' => '',
-);
+    'hostedsms_login' => '',
+    'hostedsms_password' => '',
+    'hostedsms_sender' => '',
+];
 
 $local_config = [];
 $distFilePath = __DIR__ . '/config.local.php';

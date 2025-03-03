@@ -13,7 +13,9 @@
         "Infobip",
         "Cisco",
         "Orange",
-        "SmsPlanet"
+        "SmsPlanet",
+        "HostedSMS",
+        "SzybkiSMS"
     ],
     "homepage": "https://github.com/Orajo/sms-zilla",
     "authors": [
@@ -25,13 +27,14 @@
     ],
     "require": {
         "php": "^7.1 || ^8.0 || ^8.2",
+        "ext-json": "*",
         "arcturial/clickatell": "3.*",
         "smsapi.pl/php-client": "^1.7",
         "mlebkowski/mobitex": "1.0.*",
         "giggsey/libphonenumber-for-php": "8.*",
         "laminas/laminas-http": "2.*",
         "serwersms/serwersms-php-client": "1.*",
-        "ext-json": "*",
+        "gsmservice-pl/messaging-sdk-php": "^2.1",
         "dcs-pl/hostedsms-php": "^1.1"
     },
     "require-dev": {

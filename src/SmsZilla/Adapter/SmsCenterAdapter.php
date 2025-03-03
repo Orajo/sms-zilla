@@ -9,12 +9,11 @@
 
 namespace SmsZilla\Adapter;
 
-use Mobitex\Exception;
 use Mobitex\Sender;
 use SmsZilla\ConfigurationException;
 use SmsZilla\MessageInterface;
-use SmsZilla\SmsMessageModel;
 use SmsZilla\SendingError;
+use SmsZilla\SmsMessageModel;
 
 /**
  * Send message through SmsCenter.pl provider.
@@ -50,8 +49,7 @@ class SmsCenterAdapter extends AbstractAdapter {
         foreach ($message->getRecipient() as $recipient) {
             try {
                 $client->sendMessage($recipient, $message->getText());
-            }
-            catch (Exception $e) {
+            } catch (\Exception $e) {
                 $this->addError(new SendingError($recipient, $e->getCode(), $e->getMessage()));
                 if (!$skipErrors) {
                     throw new \RuntimeException($e->getMessage(), $e->getCode());

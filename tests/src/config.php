@@ -28,6 +28,8 @@ $config = [
     'hostedsms_login' => '',
     'hostedsms_password' => '',
     'hostedsms_sender' => '',
+    'szybkisms_token' => '',
+    'szybkisms_sender' => '',
 ];
 
 $local_config = [];
